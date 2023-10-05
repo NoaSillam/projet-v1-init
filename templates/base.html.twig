@@ -34,10 +34,10 @@
               <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                   <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="https://127.0.0.1:8000/article/">Artircles</a>
+                    <a class="nav-link active" aria-current="page" href="{{path ('app_article_index')}}">Articles</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="https://127.0.0.1:8000/type/">Types</a>
+                    <a class="nav-link" href="{{path ('app_type_index')}}">Types</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="#">Pricing</a>
@@ -55,6 +55,7 @@
                       <li><a class="dropdown-item" href="#">Something else here</a></li>
                     </ul>
                   </li>
+                </ul>
                   <ul class="navbar-nav ms-auto mb-2 mb-lg-0 " >
                     {% if app.user %}
                     <li class="nav-item">
@@ -72,11 +73,23 @@
                     </li>
                     {%endif%}
                    
-                  </ul>
+                  
                 </ul>
               </div>
             </div>
           </nav>
+        
+          {% if app.user and app.user.isVerified == false %}
+          <div class="alert alert-warning alert-dismissible" role="alert">
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            <div class="alert-message">
+              <strong>
+                Votre compte n'est pas activée</strong>, <a href="{{path('resend_verif')}}">renvoyer le lien d'activation</a>
+            </div>
+          </div>
+
+          {%endif%}
+          {% include "main/_flash.html.twig" %}
         {% block body %}
      
         {% endblock %}
