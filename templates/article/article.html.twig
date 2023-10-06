@@ -8,7 +8,7 @@
     <br>
     <div style="margin: auto; width: 90%;">
         <div style="margin-left:auto; margin-right:auto;">
-    <a href="{{ path('admin_article_app_article_new') }}" class="btn btn-secondary">Ajouter un article</a>
+    {#<a href="{{ path('app_article_new') }}" class="btn btn-secondary">Ajouter un article</a>#}
 </br>
 </br>
 <div class="row row-cols-12 g-4 w-100" >
@@ -34,9 +34,9 @@
         </div>
           <div class="card-footer" style="display: flex; align-items: center; justify-content: center; ">
          {# <div style="display: flex; justify-content: space-between; width: 180px;"> #}
-              <a class="btn btn-success" href="{{ path('admin_article_app_article_show', {'id': article.id}) }}" style="width:60px; height:100%; margin-right: 10px;"><img src="{{asset( 'assets/images/plus.png') }}" class="card-img-top" style="width:25px;" alt=""></a>
-                    <a class="btn btn-info" href="{{ path('admin_article_app_article_edit', {'id': article.id}) }}" style="width:60px; height:100%; margin-right: 10px;"> <img src="{{asset( 'assets/images/modifier.png') }}" class="card-img-top" style="width:25px;" alt=""></a>    
-                    {{ include('article/_delete_form.html.twig') }}
+              <a class="btn btn-success" href="{{ path('app_article_show', {'id': article.id}) }}" style="width:60px; height:100%; margin-right: 10px;"><img src="{{asset( 'assets/images/plus.png') }}" class="card-img-top" style="width:25px;" alt=""></a>
+              {#   <a class="btn btn-info" href="{{ path('app_article_edit', {'id': article.id}) }}" style="width:60px; height:100%; margin-right: 10px;"> <img src="{{asset( 'assets/images/modifier.png') }}" class="card-img-top" style="width:25px;" alt=""></a>   #} 
+                  {#     {{ include('article/_delete_form.html.twig') }}#}
                     {#  </div>#}
      
                

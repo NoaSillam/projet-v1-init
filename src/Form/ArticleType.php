@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Form\DataTransformerInterface;
 use App\Form\DataTransformer\FileToStringTransformer;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class ArticleType extends AbstractType
 {
@@ -32,12 +33,20 @@ class ArticleType extends AbstractType
         ],
             'constraints' => [
                 new File([
-                    'maxSize' => '1024k',
+                   // 'maxSize' => '1024k',
                     'mimeTypes' => [
                         'image/jpeg',
                         'image/png',
+                        'image/webp',
+                        'image/gif',
+                        'image/jpg',
                     ],
-                    'mimeTypesMessage' => 'Please upload a valid image file',
+                    'mimeTypesMessage' => 'Mettez un type fichier valide',
+                   // 'maxSizeMessage' => 'L\'image doit faire 10 pixels de large au maximum',
+                ]),
+                new Assert\Image([
+                    'maxWidth' => 1024, // Définissez la largeur maximale souhaitée en pixels
+                    'maxWidthMessage' => 'La largeur de l\'image ne doit pas dépasser {{ max_width }} pixels de large.',
                 ]),
             ],
         'label_attr' => [

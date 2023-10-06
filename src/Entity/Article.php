@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\ArticleRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ArticleRepository::class)]
 class Article
@@ -15,6 +16,9 @@ class Article
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'Le nom de l\'article ne peut pas être vide')]
+    #[Assert\Length(min:5, minMessage:'Le nom de l\'article doit faire minimum {{ limit }} caractères')]
+    #[Assert\Length(max:255, maxMessage:'Le nom de l\'article ne doit pas faire plus de {{ limit }} caractères')]
     private ?string $Nom = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]

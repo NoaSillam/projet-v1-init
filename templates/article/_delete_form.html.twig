@@ -1,7 +1,7 @@
 
 
 
-<form method="post" action="{{ path('app_article_delete', {'id': article.id}) }}" onsubmit="return confirm('Etes-vous sure de vouloir supprimer cette article?');">
+<form method="post" action="{{ path('admin_article_app_article_delete', {'id': article.id}) }}" onsubmit="return confirm('Etes-vous sure de vouloir supprimer cette article?');">
     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ article.id) }}">
     <button class="btn btn-danger btn-supprimer" style="width:60px; height:100%;"><img src="{{asset( 'assets/images/delete.png') }}" class="card-img-top" style="width:25px;" alt=""></button>
 </form>

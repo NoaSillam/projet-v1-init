@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Article{% endblock %}
+
+
+{% block body %}
+
+<img src="{{ asset('assets/images/isolation.jpeg') }}" style="width:100%;" class="img-top">
+<br>
+<div style="margin: auto; width: 90%; height: 100vh; display: flex; align-items: center; justify-content: center;">
+    <div style="width: 200%; height: 200px; background-color: grey; border-radius: 50px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+
+        <div style="width: 150px; height: 140px; background-color: white; border-radius: 50px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+
+            <img src="{{ asset('assets/images/isole.png') }}" style="width: 30%;" class="img-top">
+        
+        <p>Isolation</p>
+        </div>
+
+  
+
+    </div>
+</div>
+  
+{% endblock %}

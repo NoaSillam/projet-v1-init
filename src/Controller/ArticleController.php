@@ -18,97 +18,103 @@ class ArticleController extends AbstractController
     #[Route('/', name: 'app_article_index', methods: ['GET'])]
     public function index(ArticleRepository $articleRepository): Response
     {
-        return $this->render('article/index.html.twig', [
+        return $this->render('article/article.html.twig', [
             'articles' => $articleRepository->findAll(),
         ]);
     }
 
-    #[Route('/new', name: 'app_article_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    #[Route('/accueil', name: 'app_article_index', methods: ['GET'])]
+    public function Accueil(): Response
     {
-        $article = new Article();
-        $form = $this->createForm(ArticleType::class, $article);
-        $form->handleRequest($request);
+        return $this->render('accueil/accueil.html.twig');
+    }
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $imageFile = $form->get('Image')->getData();
+    // #[Route('/new', name: 'app_article_new', methods: ['GET', 'POST'])]
+    // public function new(Request $request, EntityManagerInterface $entityManager): Response
+    // {
+    //     $article = new Article();
+    //     $form = $this->createForm(ArticleType::class, $article);
+    //     $form->handleRequest($request);
 
-            if ($imageFile) {
-                // Générer un nom de fichier unique
-                $fileName = md5(uniqid()).'.'.$imageFile->guessExtension();
+    //     if ($form->isSubmitted() && $form->isValid()) {
+    //         $imageFile = $form->get('Image')->getData();
+
+    //         if ($imageFile) {
+    //             // Générer un nom de fichier unique
+    //             $fileName = md5(uniqid()).'.'.$imageFile->guessExtension();
     
-                // Copier le fichier dans le dossier d'images
-                $filesystem = new Filesystem();
-                $filesystem->copy($imageFile->getPathname(), $this->getParameter('images_directory').'/'.$fileName);
+    //             // Copier le fichier dans le dossier d'images
+    //             $filesystem = new Filesystem();
+    //             $filesystem->copy($imageFile->getPathname(), $this->getParameter('images_directory').'/'.$fileName);
                 
     
-                // Enregistrer le nom de fichier dans l'entité Article
-                $article->setImage($fileName);
-            }
+    //             // Enregistrer le nom de fichier dans l'entité Article
+    //             $article->setImage($fileName);
+    //         }
 
 
-            $entityManager->persist($article);
-            $entityManager->flush();
+    //         $entityManager->persist($article);
+    //         $entityManager->flush();
 
-            return $this->redirectToRoute('app_article_index', [], Response::HTTP_SEE_OTHER);
-        }
+    //         return $this->redirectToRoute('app_article_index', [], Response::HTTP_SEE_OTHER);
+    //     }
 
-        return $this->render('article/new.html.twig', [
-            'article' => $article,
-            'form' => $form,
-        ]);
-    }
+    //     return $this->render('article/new.html.twig', [
+    //         'article' => $article,
+    //         'form' => $form,
+    //     ]);
+    // }
 
     #[Route('/{id}', name: 'app_article_show', methods: ['GET'])]
     public function show(Article $article): Response
     {
-        return $this->render('article/show.html.twig', [
+        return $this->render('article/showArticle.html.twig', [
             'article' => $article,
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_article_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Article $article, EntityManagerInterface $entityManager): Response
-    {
-        $form = $this->createForm(ArticleType::class, $article);
-        $form->handleRequest($request);
+    // #[Route('/{id}/edit', name: 'app_article_edit', methods: ['GET', 'POST'])]
+    // public function edit(Request $request, Article $article, EntityManagerInterface $entityManager): Response
+    // {
+    //     $form = $this->createForm(ArticleType::class, $article);
+    //     $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $imageFile = $form->get('Image')->getData();
+    //     if ($form->isSubmitted() && $form->isValid()) {
+    //         $imageFile = $form->get('Image')->getData();
 
-            if ($imageFile) {
-                // Générer un nom de fichier unique
-                $fileName = md5(uniqid()).'.'.$imageFile->guessExtension();
+    //         if ($imageFile) {
+    //             // Générer un nom de fichier unique
+    //             $fileName = md5(uniqid()).'.'.$imageFile->guessExtension();
     
-                // Copier le fichier dans le dossier d'images
-                $filesystem = new Filesystem();
-                $filesystem->copy($imageFile->getPathname(), $this->getParameter('images_directory').'/'.$fileName);
+    //             // Copier le fichier dans le dossier d'images
+    //             $filesystem = new Filesystem();
+    //             $filesystem->copy($imageFile->getPathname(), $this->getParameter('images_directory').'/'.$fileName);
                 
     
-                // Enregistrer le nom de fichier dans l'entité Article
-                $article->setImage($fileName);
-            }
+    //             // Enregistrer le nom de fichier dans l'entité Article
+    //             $article->setImage($fileName);
+    //         }
 
             
-            $entityManager->flush();
+    //         $entityManager->flush();
 
-            return $this->redirectToRoute('app_article_index', [], Response::HTTP_SEE_OTHER);
-        }
+    //         return $this->redirectToRoute('app_article_index', [], Response::HTTP_SEE_OTHER);
+    //     }
 
-        return $this->render('article/edit.html.twig', [
-            'article' => $article,
-            'form' => $form,
-        ]);
-    }
+    //     return $this->render('article/edit.html.twig', [
+    //         'article' => $article,
+    //         'form' => $form,
+    //     ]);
+    // }
 
-    #[Route('/{id}', name: 'app_article_delete', methods: ['POST'])]
-    public function delete(Request $request, Article $article, EntityManagerInterface $entityManager): Response
-    {
-        if ($this->isCsrfTokenValid('delete'.$article->getId(), $request->request->get('_token'))) {
-            $entityManager->remove($article);
-            $entityManager->flush();
-        }
+    // #[Route('/{id}', name: 'app_article_delete', methods: ['POST'])]
+    // public function delete(Request $request, Article $article, EntityManagerInterface $entityManager): Response
+    // {
+    //     if ($this->isCsrfTokenValid('delete'.$article->getId(), $request->request->get('_token'))) {
+    //         $entityManager->remove($article);
+    //         $entityManager->flush();
+    //     }
 
-        return $this->redirectToRoute('app_article_index', [], Response::HTTP_SEE_OTHER);
-    }
+    //     return $this->redirectToRoute('app_article_index', [], Response::HTTP_SEE_OTHER);
+    // }
 }
