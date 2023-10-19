@@ -3,8 +3,13 @@
 {% block title %}Type{% endblock %}
 
 {% block body %}
-    <h1>Type</h1>
 
+    <a href="{{ path('app_type_index') }}" class="btn btn-dark" style="margin-left:3%;">Retour</a>
+
+    <h1 style="text-align:center">Type</h1>
+    <br>
+    <div style="margin: auto; width: 80%;">
+        <div style="margin-left:auto; margin-right:auto;">
     <table class="table">
         <tbody>
             <tr>
@@ -15,12 +20,18 @@
                 <th>Nom</th>
                 <td>{{ type.Nom }}</td>
             </tr>
+            <tr>
+                <th>Modifier :</th>
+                <td><a class="btn btn-info" href="{{ path('app_type_edit', {'id': type.id}) }}" style="width:60px; height:100%;"> <img src="{{asset( 'assets/images/modifier.png') }}" class="card-img-top" style="width:25px;" alt=""></a></td>
+            </tr>
+            <tr>
+                <th>Supprimer :</th>
+                <td>  {{ include('type/_delete_form.html.twig') }}</td>
+            </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('app_type_index') }}">back to list</a>
-
-    <a href="{{ path('app_type_edit', {'id': type.id}) }}">edit</a>
-
-    {{ include('type/_delete_form.html.twig') }}
+</div>
+</div>
+   
 {% endblock %}

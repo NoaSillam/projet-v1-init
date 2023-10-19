@@ -20,4 +20,15 @@ class MainController extends AbstractController
     {
         return $this->render('main/profil.html.twig');
     }
+    #[Route('/accueil', name: 'accueil')]
+    public function accueil(): Response
+    {
+        return $this->render('main/accueil.html.twig');
+    }
+    #[Route('/devis', name: 'devis')]
+    public function devis(): Response
+    {
+        return $this->render('main/devis.html.twig');
+    }
+    
 }

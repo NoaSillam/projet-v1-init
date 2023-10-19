@@ -3,11 +3,13 @@
 {% block title %}Edit Type{% endblock %}
 
 {% block body %}
-    <h1>Edit Type</h1>
+
+    <a href="{{ path('app_type_index') }}" class="btn btn-dark" style="margin-left:3%;">Retour</a>
+    <div style="float:right; margin-right:3%;">{{ include('type/_delete_form.html.twig') }}</div>
+
+    <h1 style="text-align:center;">Editer un type</h1>
+
 
     {{ include('type/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('app_type_index') }}">back to list</a>
-
-    {{ include('type/_delete_form.html.twig') }}
 {% endblock %}

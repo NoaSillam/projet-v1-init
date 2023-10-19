@@ -32,15 +32,28 @@
           {% set truncatedAnnonce = article.Annonce|length > annonceLength ? article.Annonce|slice(0, annonceLength) ~ '...' : article.Annonce %}
           <p class="card-text">{{ truncatedAnnonce | raw }}</p>
         </div>
-          <div class="card-footer" style="display: flex; align-items: center; justify-content: center; ">
-         {# <div style="display: flex; justify-content: space-between; width: 180px;"> #}
-              <a class="btn btn-success" href="{{ path('app_article_show', {'id': article.id}) }}" style="width:60px; height:100%; margin-right: 10px;"><img src="{{asset( 'assets/images/plus.png') }}" class="card-img-top" style="width:25px;" alt=""></a>
-              {#   <a class="btn btn-info" href="{{ path('app_article_edit', {'id': article.id}) }}" style="width:60px; height:100%; margin-right: 10px;"> <img src="{{asset( 'assets/images/modifier.png') }}" class="card-img-top" style="width:25px;" alt=""></a>   #} 
-                  {#     {{ include('article/_delete_form.html.twig') }}#}
-                    {#  </div>#}
-     
-               
-        </div>
+        {% if is_granted('ROLE_PRODUCT_ADMIN')%}
+        <div class="card-footer" style="display: flex; align-items: center; justify-content: center; ">
+           <div style="display: flex; justify-content: space-between; width: 180px;"> 
+               <a class="btn btn-success" href="{{ path('admin_article_app_article_show', {'id': article.id}) }}" style="width:60px; height:100%; margin-right: 10px;"><img src="{{asset( 'assets/images/plus.png') }}" class="card-img-top" style="width:25px;" alt=""></a>
+                 <a class="btn btn-info" href="{{ path('admin_article_app_article_edit', {'id': article.id}) }}" style="width:60px; height:100%; margin-right: 10px;"> <img src="{{asset( 'assets/images/modifier.png') }}" class="card-img-top" style="width:25px;" alt=""></a>   
+                       {{ include('article/_delete_form.html.twig') }}
+                       </div>
+      
+                
+         </div>
+        {% else %}
+        <div class="card-footer" style="display: flex; align-items: center; justify-content: center; ">
+          {# <div style="display: flex; justify-content: space-between; width: 180px;"> #}
+               <a class="btn btn-success" href="{{ path('app_article_show', {'id': article.id}) }}" style="width:60px; height:100%; margin-right: 10px;"><img src="{{asset( 'assets/images/plus.png') }}" class="card-img-top" style="width:25px;" alt=""></a>
+               {#   <a class="btn btn-info" href="{{ path('app_article_edit', {'id': article.id}) }}" style="width:60px; height:100%; margin-right: 10px;"> <img src="{{asset( 'assets/images/modifier.png') }}" class="card-img-top" style="width:25px;" alt=""></a>   #} 
+                   {#     {{ include('article/_delete_form.html.twig') }}#}
+                     {#  </div>#}
+      
+                
+         </div>
+        {% endif %}
+        
       </div>
     </div>
 

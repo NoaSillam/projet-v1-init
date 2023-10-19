@@ -4,6 +4,7 @@
 
 {% block body %}
 <br>
+
 <a href="{{ path('app_article_index') }}" class="btn btn-dark" style="margin-left:3%;">Retour</a>
     <h1 style="text-align:center;">L'Article</h1>
     <div style="margin: auto; width: 80%;">
@@ -20,7 +21,7 @@
             </tr>
             <tr>
                 <th style="width:10%;">Annonce :</th>
-                <td>{{ article.Annonce }}</td>
+                <td>{{ article.Annonce | raw  }}</td>
             </tr>
             <tr>
                 <th>Image :</th>

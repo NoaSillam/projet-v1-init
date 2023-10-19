@@ -4,7 +4,11 @@
 
 {% block body %}
 <br>
+{% if is_granted('ROLE_PRODUCT_ADMIN')%}
+<a href="{{ path('admin_article_app_article_index') }}" class="btn btn-dark" style="margin-left:3%;">Retour</a>
+{%else%}
 <a href="{{ path('app_article_index') }}" class="btn btn-dark" style="margin-left:3%;">Retour</a>
+{%endif%}
     <h1 style="text-align:center;">L'Article</h1>
     <div style="margin: auto; width: 80%;">
         <div style="margin-left:auto; margin-right:auto;">
@@ -20,20 +24,26 @@
             </tr>
             <tr>
                 <th style="width:10%;">Annonce :</th>
-                <td>{{ article.Annonce }}</td>
+                <td>{{ article.Annonce | raw }}</td>
             </tr>
             <tr>
                 <th>Image :</th>
                 <td> <img src="{{asset( 'assets/images/'~article.Image) }}" class="card-img-top" alt="" style="width:30%;"></td>
             </tr>
             <tr>
+                <th>Type :</th>
+                <td> {{ article.getTypeArticle() }}</td>
+            </tr>
+            {% if is_granted('ROLE_PRODUCT_ADMIN')%}
+            <tr>
                 <th>Modifier :</th>
-                <td><a class="btn btn-info" href="{{ path('app_article_edit', {'id': article.id}) }}" style="width:60px; height:100%;"> <img src="{{asset( 'assets/images/modifier.png') }}" class="card-img-top" style="width:25px;" alt=""></a></td>
+                <td><a class="btn btn-info" href="{{ path('admin_article_app_article_edit', {'id': article.id}) }}" style="width:60px; height:100%;"> <img src="{{asset( 'assets/images/modifier.png') }}" class="card-img-top" style="width:25px;" alt=""></a></td>
             </tr>
             <tr>
                 <th>Supprimer :</th>
                 <td>  {{ include('article/_delete_form.html.twig') }}</td>
             </tr>
+            {% endif %}
         </tbody>
     </table>
 
