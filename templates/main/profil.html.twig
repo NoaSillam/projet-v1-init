@@ -2,5 +2,20 @@
 
 {% block title  %} Mon profil {%endblock%}
 {%block body%}
-<h1>Mon profil</h1>
+<br>
+<h1 style="text-align:center;">Mon profil</h1>
+<br>
+<div style="margin: auto; width: 50%;">
+    <div style="margin-left:auto; margin-right:auto;">
+<b>Nom</b> : {{app.user.Nom}}
+<br>
+<br>
+<b>Prénom</b> : {{app.user.Prenom}}
+<br>
+<br>
+<b>Adresse mail</b> : {{app.user.Email}}
+<br>
+</div>
+</div>
+
 {%endblock%}

@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}UserNewsletter{% endblock %}
+
+{% block body %}
+<br>
+<a href="{{ path('app_user_newsletter_index') }}" class="btn btn-dark" style="margin-left:3%;">Retour</a>
+
+    <h1 style="text-align:center;">Information d'un client</h1>
+    <div style="margin: auto; width: 80%;">
+        <div style="margin-left:auto; margin-right:auto;">
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ user_newsletter.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ user_newsletter.nom }}</td>
+            </tr>
+            <tr>
+                <th>Prenom</th>
+                <td>{{ user_newsletter.prenom }}</td>
+            </tr>
+            <tr>
+                <th>AdresseMail</th>
+                <td>{{ user_newsletter.adresseMail }}</td>
+            </tr>
+            <tr>
+                <th>Modifier</th>
+                <td><a class="btn btn-info" href="{{ path('app_user_newsletter_edit', {'id': user_newsletter.id}) }}" style="width:60px; height:100%;"> <img src="{{asset( 'assets/images/modifier.png') }}" class="card-img-top" style="width:25px;" alt=""></a></td>
+            </tr>
+            <tr>
+                <th>Supprimer :</th>
+                <td>{{ include('user_newsletter/_delete_form.html.twig') }}</td>
+            </tr>
+
+        </tbody>
+    </table>
+
+</div>
+</div>
+
+
+{#    <a href="{{ path('app_user_newsletter_index') }}">back to list</a>#}
+{#    <a href="{{ path('app_user_newsletter_edit', {'id': user_newsletter.id}) }}">edit</a>#}
+
+{#    {{ include('user_newsletter/_delete_form.html.twig') }}#}
+{% endblock %}

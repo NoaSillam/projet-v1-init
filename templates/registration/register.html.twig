@@ -18,6 +18,8 @@
                 <fieldset class="mb-3">
                     <legend> Mes identifiants</legend>
                     {{ form_row(registrationForm.email) }}
+                 {{ form_row(registrationForm.roles) }}
+
 
         {{ form_row(registrationForm.plainPassword, {
             label: 'Password'

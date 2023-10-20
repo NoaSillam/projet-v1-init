@@ -83,15 +83,18 @@
        {# </div>#}
        <hr class="vertical">
         <div class="col-md-5 offset-md-1 mb-3">
-          <form>
-            <h5>S'inscrire à notre newsletters</h5>
+         {# <form>#}
+            <h5>S'informer</h5>
+            <a href="{{path ('app_user_newsletter_new_user')}}">  <button type="button" class="btn btn-primary" style="width:300px; height:50px; margin-right:4%; border-radius:50px; background: linear-gradient(to right,#004d00, #66ff66); font-size:15px;  border-color: #1D4851;" ><strong>{{" S'inscrire à notre newsletters" | upper}}</strong></button></a>
+
+           
             {#<p>Monthly digest of what's new and exciting from us.</p>#}
-            <div class="d-flex flex-column flex-sm-row w-100 gap-2">
-              <label for="newsletter1" class="visually-hidden">Email address</label>
-              <input id="newsletter1" type="text" class="form-control" placeholder="Adresse mail">
-              <button class="btn btn-primary" type="button">S'inscrire</button>
-            </div>
-              </form>
+           {# <div class="d-flex flex-column flex-sm-row w-100 gap-2">#}
+            {#  <label for="newsletter1" class="visually-hidden">Email address</label>#}
+            {#  <input id="newsletter1" type="text" class="form-control" placeholder="Adresse mail">#}
+             {# <button class="btn btn-primary" type="button">S'inscrire</button>#}
+            {#</div>#}
+             {# </form>#}
      <br>
      <br>
      <br>

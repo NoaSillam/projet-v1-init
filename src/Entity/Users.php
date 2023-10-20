@@ -39,7 +39,7 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type:'boolean')]
     private $is_verified = false;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $resetToken = null;
 
     #[ORM\Column(options: ['default'=>'CURRENT_TIMESTAMP'])]

@@ -2,13 +2,14 @@
 
 namespace App\Entity;
 
-use App\Repository\UserNewsletterRepository;
+use App\Repository\ArticleNewsletterRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: UserNewsletterRepository::class)]
-class UserNewsletter
+#[ORM\Entity(repositoryClass: ArticleNewsletterRepository::class)]
+class ArticleNewsletter
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -19,13 +20,14 @@ class UserNewsletter
     private ?string $nom = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $prenom = null;
+    private ?string $image = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $adresseMail = null;
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $annonce = null;
 
-    #[ORM\OneToMany(mappedBy: 'UserNewsletter', targetEntity: UserArticle::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'ArticleNewsletter', targetEntity: ArticleNewsletter::class, orphanRemoval: true)]
     private Collection $userArticles;
+
 
     public function __construct()
     {
@@ -49,26 +51,26 @@ class UserNewsletter
         return $this;
     }
 
-    public function getPrenom(): ?string
+    public function getImage(): ?string
     {
-        return $this->prenom;
+        return $this->image;
     }
 
-    public function setPrenom(string $prenom): static
+    public function setImage(string $image): static
     {
-        $this->prenom = $prenom;
+        $this->image = $image;
 
         return $this;
     }
 
-    public function getAdresseMail(): ?string
+    public function getAnnonce(): ?string
     {
-        return $this->adresseMail;
+        return $this->annonce;
     }
 
-    public function setAdresseMail(string $adresseMail): static
+    public function setAnnonce(string $annonce): static
     {
-        $this->adresseMail = $adresseMail;
+        $this->annonce = $annonce;
 
         return $this;
     }
@@ -85,7 +87,7 @@ class UserNewsletter
     {
         if (!$this->userArticles->contains($userArticle)) {
             $this->userArticles->add($userArticle);
-            $userArticle->setUserNewsletter($this);
+            $userArticle->setArticleNewsletter($this);
         }
 
         return $this;
@@ -95,11 +97,14 @@ class UserNewsletter
     {
         if ($this->userArticles->removeElement($userArticle)) {
             // set the owning side to null (unless already changed)
-            if ($userArticle->getUserNewsletter() === $this) {
-                $userArticle->setUserNewsletter(null);
+            if ($userArticle->getArticleNewsletter() === $this) {
+                $userArticle->setArticleNewsletter(null);
             }
         }
 
         return $this;
     }
+
+
+
 }

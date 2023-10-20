@@ -1,0 +1,147 @@
+{% block stylesheets %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+<style>
+    .isolation{
+        width: 150px; 
+        height: 140px; 
+        background-color: white; 
+        border-radius: 50px; 
+        display: flex; 
+        flex-direction: column; 
+        align-items: center; 
+        justify-content: center;
+    }
+    .isolation:hover
+    {
+        background-color: #ADD8E6;
+    }
+    .pompeChaleur
+    {
+        width: 150px; 
+        height: 140px; 
+        background-color: white; 
+        border-radius: 50px; 
+        display: flex; 
+        flex-direction: column; 
+        align-items: center; 
+        justify-content: center;
+    }
+    .pompeChaleur:hover
+    {
+        background-color:#FFB6C1;
+    }
+    .solaire
+    {
+        width: 150px; 
+        height: 140px; 
+        background-color: white; 
+        border-radius: 50px; 
+        display: flex; 
+        flex-direction: column; 
+        align-items: center; 
+        justify-content: center;
+    }
+    .solaire:hover{
+        background-color: #8FBC8F;
+    }
+    .aide{
+        width: 150px; 
+        height: 140px; 
+        background-color: white; 
+        border-radius: 50px; 
+        display: flex; 
+        flex-direction: column; 
+        align-items: center; 
+        justify-content: center;
+    }
+    .aide:hover{
+        background-color:#FFEFD5;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+{{ include('base.html.twig') }}
+<h1 style="text-align:center; color: #1D4851;"><b>Accueil</b></h1>
+<br>
+<br>
+<div style="margin: auto; width: 90%; display: flex; align-items: center; justify-content: center;">
+    <div style="width: 200%; height: 200px; background-color: #D3D3D3; border-radius: 50px; text-align: center; display: flex; flex-direction: row; align-items: center; justify-content: space-around;">
+
+    <a href="{{path ('app_article_index_2')}}" style="text-decoration:none; color: black;">  
+        <div class="isolation">
+            <img src="{{ asset('assets/images/isole.png') }}" style="width: 60%;" class="img-top">
+            <p><b>Isolation</b></p>
+        </div>
+    </a>
+
+    <a href="{{path ('app_article_index_3')}}" style="text-decoration:none; color: black;">
+        <div class="pompeChaleur">
+            <img src="{{ asset('assets/images/pompe-a-chaleur-removebg-preview.png') }}" style="width: 60%;" class="img-top">
+            <p><b>Pompe à chaleur</b></p>
+        </div>
+    </a>
+
+    <a href="{{path ('app_article_index_4')}}" style="text-decoration:none; color: black;">
+        <div class="solaire">
+            <img src="{{ asset('assets/images/solaire-removebg-preview.png') }}" style="width: 65%;" class "img-top">
+            <p style="font-size:13px;"><b>Solaire & Photovoltaïque</b></p>
+        </div>
+    </a>
+
+    <a href="{{path ('app_article_index_5')}}" style="text-decoration:none; color: black;">
+        <div class="aide">
+            <img src="{{ asset('assets/images/aide-prime.png') }}" style="width: 95%;" class "img-top">
+            <p><b>Aides & primes</b></p>
+        </div>
+    </a>
+
+
+
+    </div>
+</div>
+<br>
+<br>
+<div style="margin: auto; width: 90%; display: flex; align-items: center; justify-content: center;">
+    <div style="width: 200%; height: auto; background-color: #D3D3D3; border-radius: 50px; text-align: center;">
+        <br>
+        <h3 style="text-align: center; color: #1D4851;"><b>Comment faire des économies sur l'eau et l'électricité ?</b></h3>
+        
+        <br>
+        <h4 style="text-align: center; color: #1D4851;"><b>Maximiser l'efficacité énergétique grâce à l'isolation :</b></h4>
+        <p style="margin: 0 auto; width: 700px; text-align: center;">
+            L'isolation est un premier pas essentiel pour économiser de l'eau et de l'électricité. En améliorant l'isolation de votre maison, vous réduisez les pertes de chaleur en hiver et de fraîcheur en été. Cela signifie moins de recours au chauffage et à la climatisation, ce qui se traduit par une réduction significative de votre consommation énergétique. Assurez-vous que votre isolation est adéquate pour minimiser les déperditions thermiques.
+        </p>
+      
+        <br>
+        <h4 style="text-align: center; color: #1D4851;"><b>Adopter une pompe à chaleur pour un chauffage plus efficace :</b></h4>
+        <p style="margin: 0 auto; width: 700px; text-align: center;">
+            L'installation d'une pompe à chaleur est une solution économique pour chauffer votre maison tout en réduisant votre empreinte énergétique. Ces systèmes exploitent l'énergie thermique de l'air ou du sol pour chauffer votre maison de manière efficiente. Ils consomment moins d'électricité que les systèmes de chauffage traditionnels, réduisant ainsi votre facture d'énergie tout en préservant l'environnement.
+        </p>
+      
+        <br>
+        <h4 style="text-align: center; color: #1D4851;"><b>Investir dans l'énergie solaire et photovoltaïque :</b></h4>
+        <p style="margin: 0 auto; width: 700px; text-align: center;">
+            L'énergie solaire est une ressource abondante et renouvelable. En installant des panneaux solaires photovoltaïques sur votre toit, vous pouvez produire votre propre électricité, ce qui réduit votre dépendance aux fournisseurs d'énergie traditionnels. De plus, grâce aux incitations fiscales et aux tarifs de rachat d'électricité, l'investissement initial dans les panneaux solaires peut être rapidement amorti. C'est un moyen durable et économique de réduire votre facture d'électricité et de contribuer à la protection de l'environnement.
+        </p>
+        <br>
+        <br>
+    </div>
+</div>
+</br>
+</br>
+<p style="text-align:center;">On vous accompagne tout au long de votre rénovation énergétique</p>
+
+
+
+
+
+{{ include('main/accueil.html.twig') }}
+
+{% endblock %}
+
+{%block javascripts %}
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+{%endblock%}

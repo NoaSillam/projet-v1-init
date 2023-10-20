@@ -30,5 +30,11 @@ class MainController extends AbstractController
     {
         return $this->render('main/devis.html.twig');
     }
+
+    #[Route('/accueilUser', name: 'accueil_user')]
+    public function accueilUser(): Response
+    {
+        return $this->render('main/accueilUser.html.twig');
+    }
     
 }

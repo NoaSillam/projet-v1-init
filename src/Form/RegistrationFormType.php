@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Users;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -33,6 +34,38 @@ class RegistrationFormType extends AbstractType
                 'attr' =>['class' => 'form-control'],
                 'label' => 'E-mail',
             ] )
+            ->add('roles', ChoiceType::class, [
+                'choices' => [
+                    'Users' => 'ROLE_USERS',
+                    'User' => 'ROLE_USER',
+                    'Admin' => 'ROLE_ADMIN',
+                    'Product Admin' => 'ROLE_PRODUCT_ADMIN',
+                   // 'Role admin' => 'ROLE_ADMIN',
+                    'Super Admin' => 'ROLE_SUPER_ADMIN'
+                    // Ajoutez d'autres rôles selon vos besoins
+                ],
+                'expanded' => false,
+                'multiple' => true,
+                'attr' => ['class' => 'form-control'],
+            ])
+
+
+
+            // ->add('roles', ChoiceType::class, [
+            //     'choices' => [
+            //         'Role users' => 'ROLE_USERS',
+            //         'Role user' => 'ROLE_USER',
+            //         'Role product admin' => 'ROLE_PRODUCT_ADMIN',
+            //         'Role admin' => 'ROLE_ADMIN',
+            //         'Role super admin' => 'ROLE_SUPER_ADMIN',
+            //     ],
+            //     'multiple' => false, // Un seul choix autorisé
+            //     'expanded' => false, // Liste déroulante
+            //     'attr' => [
+            //         'class' => 'form-control',
+            //     ],
+            // ])
+
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'constraints' => [
@@ -46,7 +79,7 @@ class RegistrationFormType extends AbstractType
             //      'mapped' => false,
             //     'data' => new \DateTime(), // Set the default value to the current date and time
             // ] )
-            
+
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller

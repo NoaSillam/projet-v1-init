@@ -1,0 +1,28 @@
+
+{% block javascripts %}
+<script src="https://cdn.tiny.cloud/1/xi3fv210yjl2ttd482biaayx94emsrcjs4jc7qx37pccqnwz/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+    tinymce.init({
+      selector: 'textarea',
+      plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
+      toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+    });
+  </script>
+{% endblock %}
+
+
+
+<div style="margin: auto; width: 50%;">
+    <div style="margin-left:auto; margin-right:auto;">
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+    <br>
+    <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+        
+        <button type="submit" style="margin-left: 54%;" class="btn btn-primary" >{{ button_label|default('Valider') }}</button>
+         </div>
+    </div>
+    {{ form_end(form) }}
+</div>
+</div>

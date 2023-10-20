@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New ArticleNewsletter{% endblock %}
+
+{% block body %}
+<br>
+<a href="{{ path('app_article_newsletter_index') }}" class="btn btn-dark" style="margin-left:3%;">Retour</a>
+<br>
+    <h1 style="text-align:center;">Crée un nouvel article de la newsletter</h1>
+    <br>
+
+    {{ include('article_newsletter/_form.html.twig') }}
+
+{#    <a href="{{ path('app_article_newsletter_index') }}">back to list</a>#}
+{% endblock %}

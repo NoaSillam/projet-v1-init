@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ArticleNewsletter{% endblock %}
+
+{% block body %}
+<br>
+<a href="{{ path('app_article_newsletter_index') }}" class="btn btn-dark" style="margin-left:3%;">Retour</a>
+
+<h1 style="text-align:center;">L'article de la newsletter</h1>
+<div style="margin: auto; width: 80%;">
+    <div style="margin-left:auto; margin-right:auto;">
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ article_newsletter.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ article_newsletter.nom }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td> <img src="{{asset( 'assets/images/'~article_newsletter.image ) }}" class="card-img-top" alt="" style="width:30%;"></td>
+            </tr>
+            <tr>
+                <th>Annonce</th>
+                <td>{{ article_newsletter.annonce | raw }}</td>
+            </tr>
+            <tr>
+                <th>Modifier :</th>
+                <td><a class="btn btn-primary" href="{{ path('send_newsletter', {'id': article_newsletter.id}) }}" style="width:60px; height:100%;"> <img src="{{asset( 'assets/images/icons8-envoyer-30.png') }}" class="card-img-top" style="width:25px;" alt=""></a></td>
+            </tr>
+            
+            <tr>
+                <th>Modifier :</th>
+                <td><a class="btn btn-info" href="{{ path('app_article_newsletter_edit', {'id': article_newsletter.id}) }}" style="width:60px; height:100%;"> <img src="{{asset( 'assets/images/modifier.png') }}" class="card-img-top" style="width:25px;" alt=""></a></td>
+            </tr>
+            <tr>
+                <th>Supprimer :</th>
+                <td>  {{ include('article_newsletter/_delete_form.html.twig') }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+    {% endblock %}

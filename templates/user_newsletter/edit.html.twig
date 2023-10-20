@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit UserNewsletter{% endblock %}
+
+{% block body %}
+<br>
+<a href="{{ path('app_user_newsletter_index') }}" class="btn btn-dark" style="margin-left:3%;">Retour</a>
+<div style="float:right; margin-right:3%;"> {{ include('user_newsletter/_delete_form.html.twig') }}</div>
+<br>
+    <h1 style="text-align:center;">Modifier les informations d'un client</h1>
+
+    {{ include('user_newsletter/_form.html.twig', {'button_label': 'Enregistrer'}) }}
+
+{#    <a href="{{ path('app_user_newsletter_index') }}">back to list</a> #}
+
+{% endblock %}
