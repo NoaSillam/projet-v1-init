@@ -1,8 +1,8 @@
-{% extends 'base.html.twig' %}
 
-{% block title %}New Article{% endblock %}
+
 
 {% block body %}
+    {{ include('base.html.twig') }}
 <br>
 <a href="{{ path('admin_article_app_article_index') }}" class="btn btn-dark" style="margin-left:3%;">Retour</a>
 <br>
@@ -10,5 +10,32 @@
     <br>
 
     {{ include('article/_form.html.twig') }}
+<br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 {% endblock %}

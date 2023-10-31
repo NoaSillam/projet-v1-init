@@ -26,7 +26,7 @@ class ArticleController extends AbstractController
     #[Route('/Isolation', name: 'app_article_index_2', methods: ['GET'])]
     public function isolation(Request $request, ArticleRepository $articleRepository): Response
     {
-        $articles = $articleRepository->findByType(2);
+        $articles = $articleRepository->findByType(1);
         $screenWidth = $request->query->get('screen_width');
 
         // Définissez les variables en fonction de la largeur de l'écran
@@ -47,7 +47,7 @@ class ArticleController extends AbstractController
     #[Route('/pompeAchaleur', name: 'app_article_index_3', methods: ['GET'])]
     public function pompeAchaleur(Request $request, ArticleRepository $articleRepository): Response
     {
-        $articles = $articleRepository->findByType(1);
+        $articles = $articleRepository->findByType(2);
         $screenWidth = $request->query->get('screen_width');
 
         // Définissez les variables en fonction de la largeur de l'écran
@@ -65,7 +65,7 @@ class ArticleController extends AbstractController
     #[Route('/solaire', name: 'app_article_index_4', methods: ['GET'])]
     public function solaire(Request $request, ArticleRepository $articleRepository): Response
     {
-        $articles = $articleRepository->findByType(4);
+        $articles = $articleRepository->findByType(3);
         $screenWidth = $request->query->get('screen_width');
 
         // Définissez les variables en fonction de la largeur de l'écran

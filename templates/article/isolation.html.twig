@@ -113,9 +113,16 @@
         max-width: 100%;
       max-height: 300px; /* Remplacez par la hauteur maximale souhaitée */
       height: auto;
-      
-}
+    }
 
+    .imgCard-isolation
+    {
+        height: 275px;
+    }
+    .imgCard-isolation-mobile
+    {
+        height: 350px;
+    }
 
 </style>
 {% endblock %}
@@ -181,16 +188,21 @@
                             {% if loop.index % 3 == 1 %}
                                 <div class="carousel-item {% if isFirst %}active{% endif %}" data-bs-interval="10000">
                                     <div class="d-flex flex-row justify-content-around">
-                                        <div class="row row-cols-1 row-cols-md-3 g-4">
+                                        {# <div class="row row-cols-1 row-cols-md-3 g-4">#}
+                                <div class="row row-cols-1 row-cols-md-3 g-4">
                             {% endif %}
+                                    {# <div class="col">
+                                        <div class="card h-100">#}
+
                             <div class="col">
                                 <div class="card h-100">
+                                    <div class="imgCard-isolation">
                                     <img src="{{ asset('assets/images/' ~ article.Image ) }}" class="card-img-top imgCarousel" alt="...">
-                                    <div class="card-body">
+                                    </div>
+                                    <div class="card-body " style="height: 250px;" >
                                         <h5 class="card-title">{{ article.Nom }}</h5>
-                                        {% set annonceLength = 250 %}
-                                        {% set truncatedAnnonce = article.Annonce|length > annonceLength ? article.Annonce|slice(0, annonceLength) ~ '...' : article.Annonce %}
-                                        <p class="card-text"> {{ truncatedAnnonce | raw }}</p>
+                                        <div class="card-text" style="max-height: 180px; overflow: hidden;">
+                                            <p>{{ article.Annonce|raw }}</p></div>...
                                     </div>
                                     <div class="card-footer" style="display: flex; align-items: center; justify-content: center; ">
                                         <a href="{{ path('app_article_show_voir_plus', {'id': article.id}) }}" class="btn btn-success">Voir plus</a>
@@ -234,16 +246,18 @@
                             {% if loop.index % 1 == 0 %}
                                 <div class="carousel-item {% if isFirst %}active{% endif %}" data-bs-interval="10000">
                                     <div class="d-flex flex-row justify-content-around">
-                                        <div class="row row-cols-1 row-cols-md-1 g-4">
+                                        {# <div class="row row-cols-1 row-cols-md-1 g-4">#}
+                                <div class="row row-cols-1 row-cols-md-3 g-4">
                             {% endif %}
                             <div class="col">
                                 <div class="card h-100">
-                                    <img src="{{ asset('assets/images/' ~ article.Image ) }}" class="card-img-top" style="width: 100%; height: auto;" alt="...">
+                                    <div class="imgCard-isolation-mobile">
+                                    <img src="{{ asset('assets/images/' ~ article.Image ) }}" class="card-img-top imgCarousel"  alt="...">
+                                    </div>
                                     <div class="card-body">
                                         <h5 class="card-title">{{ article.Nom }}</h5>
-                                        {% set annonceLength = 250 %}
-                                        {% set truncatedAnnonce = article.Annonce|length > annonceLength ? article.Annonce|slice(0, annonceLength) ~ '...' : article.Annonce %}
-                                        <p class="card-text"> {{ truncatedAnnonce | raw }}</p>
+                                        <div class="card-text" style="max-height: 130px; overflow: hidden;">
+                                            <p>{{ article.Annonce|raw }}</p></div>...
                                     </div>
                                     <div class="card-footer" style="display: flex; align-items: center; justify-content: center; ">
                                         <a href="{{ path('app_article_show_voir_plus', {'id': article.id}) }}" class="btn btn-success">Voir plus</a>
@@ -313,6 +327,8 @@
                     // Initialisation du carousel mobile
                     $('#carouselExampleIntervalMobile').carousel();
                 });
+
+
             </script>
             {%endblock%}
 

@@ -1,69 +1,95 @@
-{% extends 'base.html.twig' %}
 
-{% block title %}Article{% endblock %}
+{% block stylesheets %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+        .imgCarousel{
+
+            object-fit: scale-down;
+            max-width: 100%;
+            max-height: 300px; /* Remplacez par la hauteur maximale souhaitée */
+            height: auto;
+
+        }
+        .imgCard-index
+        {
+            height: 350px;
+        }
+    </style>
+{% endblock %}
 
 
 {% block body %}
+    {{ include('base.html.twig') }}
     <h1 style="text-align: center;">Article</h1>
     <br>
-    <div style="margin: auto; width: 90%;">
-        <div style="margin-left:auto; margin-right:auto;">
-    {#<a href="{{ path('app_article_new') }}" class="btn btn-secondary">Ajouter un article</a>#}
-</br>
-</br>
-<div class="row row-cols-12 g-4 w-100" >
 
 
-    {% for article in articles %}
- 
-        <div class="col-4">
-            <div class="card h-100">
-        <img src="{{ asset('assets/images/') ~ article.Image }}" class="card-img-top" style="height: 280px; " alt="">
-      </br>
+            <div style="margin: auto; width: 90%;">
+                <div style="margin-left:auto; margin-right:auto;">
+                    <a href="{{ path('admin_article_app_article_new') }}" class="btn btn-secondary">Ajouter un article</a>
+                    <br>
+                    <br>
+                    <div class="row row-cols-12 g-4 w-100">
+                        <div class="row row-cols-3 g-4" >
 
-        <h4 class="card-title" style="text-align:center;">{{ article.Nom }}</h4>
-        <div class="card-body" style="display: flex; align-items: center; justify-content: center;">
-
-         
-        </br>
-      </br>
-    </br>
-          {% set annonceLength = 250 %} {# Définissez la longueur maximale de l'annonce ici #}
-          {% set truncatedAnnonce = article.Annonce|length > annonceLength ? article.Annonce|slice(0, annonceLength) ~ '...' : article.Annonce %}
-          <p class="card-text">{{ truncatedAnnonce | raw }}</p>
-        </div>
-        {% if is_granted('ROLE_PRODUCT_ADMIN')%}
-        <div class="card-footer" style="display: flex; align-items: center; justify-content: center; ">
-           <div style="display: flex; justify-content: space-between; width: 180px;"> 
-               <a class="btn btn-success" href="{{ path('admin_article_app_article_show', {'id': article.id}) }}" style="width:60px; height:100%; margin-right: 10px;"><img src="{{asset( 'assets/images/plus.png') }}" class="card-img-top" style="width:25px;" alt=""></a>
-                 <a class="btn btn-info" href="{{ path('admin_article_app_article_edit', {'id': article.id}) }}" style="width:60px; height:100%; margin-right: 10px;"> <img src="{{asset( 'assets/images/modifier.png') }}" class="card-img-top" style="width:25px;" alt=""></a>   
-                       {{ include('article/_delete_form.html.twig') }}
-                       </div>
-      
-                
-         </div>
-        {% else %}
-        <div class="card-footer" style="display: flex; align-items: center; justify-content: center; ">
-          {# <div style="display: flex; justify-content: space-between; width: 180px;"> #}
-               <a class="btn btn-success" href="{{ path('app_article_show', {'id': article.id}) }}" style="width:60px; height:100%; margin-right: 10px;"><img src="{{asset( 'assets/images/plus.png') }}" class="card-img-top" style="width:25px;" alt=""></a>
-               {#   <a class="btn btn-info" href="{{ path('app_article_edit', {'id': article.id}) }}" style="width:60px; height:100%; margin-right: 10px;"> <img src="{{asset( 'assets/images/modifier.png') }}" class="card-img-top" style="width:25px;" alt=""></a>   #} 
-                   {#     {{ include('article/_delete_form.html.twig') }}#}
-                     {#  </div>#}
-      
-                
-         </div>
-        {% endif %}
-        
-      </div>
-    </div>
+                            {% for article in articles %}
+                                <div class="col-4">
+                                    <div class="card" style="height: 750px;">
+                                        <div class="imgCard-index">
+                                            <img src="{{ asset('assets/images/') ~ article.Image }}" class="card-img-top imgCarousel" alt="...">
+                                        </div>
+                                        <div class="card-body">
+                                            <h3 class="card-title">{{ article.Nom }}</h3>
+                                            <div class="card-text" style="max-height: 250px; overflow: hidden;">
+                                                <p>{{ article.Annonce|raw }}</p></div>...
+                                        </div>
+                                        <div class="card-footer" style="display: flex; align-items: center; justify-content: center; ">
+                                            {% if is_granted('ROLE_PRODUCT_ADMIN')%}
 
 
-      {% endfor %}
- 
-    </div>
-</div>
-</div>
-  
+                                                <a class="btn btn-success" href="{{ path('admin_article_app_article_show', {'id': article.id}) }}" style="width:60px; height:auto; margin-right: 10px;"><img src="{{asset( 'assets/images/plus.png') }}" class="card-img-top" style="width:25px;" alt=""></a>
+                                                <a class="btn btn-info" href="{{ path('admin_article_app_article_edit', {'id': article.id}) }}" style="width:60px; height:auto; margin-right: 10px;"> <img src="{{asset( 'assets/images/modifier.png') }}" class="card-img-top" style="width:25px;" alt=""></a>
+                                                <div style="margin-top: 14px;"> {{ include('article/_delete_form.html.twig') }}</div>
 
-   
+
+
+                                            {% else %}
+
+                                                {# <div style="display: flex; justify-content: space-between; width: 180px;"> #}
+                                                <a class="btn btn-success" href="{{ path('app_article_show', {'id': article.id}) }}" style="width:60px; height:100%; margin-right: 10px;"><img src="{{asset( 'assets/images/plus.png') }}" class="card-img-top" style="width:25px;" alt=""></a>
+                                                {#   <a class="btn btn-info" href="{{ path('app_article_edit', {'id': article.id}) }}" style="width:60px; height:100%; margin-right: 10px;"> <img src="{{asset( 'assets/images/modifier.png') }}" class="card-img-top" style="width:25px;" alt=""></a>   #}
+                                                {#     {{ include('article/_delete_form.html.twig') }}#}
+                                                {#  </div>#}
+
+
+
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+<br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                </div>
+            </div>
+
+
+
+
 {% endblock %}
+        {%block javascripts %}
+
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+        {%endblock%}

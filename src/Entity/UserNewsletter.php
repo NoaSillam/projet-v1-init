@@ -27,6 +27,9 @@ class UserNewsletter
     #[ORM\OneToMany(mappedBy: 'UserNewsletter', targetEntity: UserArticle::class, orphanRemoval: true)]
     private Collection $userArticles;
 
+    #[ORM\Column]
+    private ?int $numTelephone = null;
+
     public function __construct()
     {
         $this->userArticles = new ArrayCollection();
@@ -99,6 +102,18 @@ class UserNewsletter
                 $userArticle->setUserNewsletter(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getNumTelephone(): ?int
+    {
+        return $this->numTelephone;
+    }
+
+    public function setNumTelephone(int $numTelephone): static
+    {
+        $this->numTelephone = $numTelephone;
 
         return $this;
     }

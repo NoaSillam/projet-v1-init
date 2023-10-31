@@ -1,17 +1,28 @@
-{% extends 'base.html.twig' %}
 
-{% block title %}Edit Article{% endblock %}
 
 {% block body %}
+    {{ include('base.html.twig') }}
+
 <br>
 <a href="{{ path('admin_article_app_article_index') }}" class="btn btn-dark" style="margin-left:3%;">Retour</a>
-<div style="float:right; margin-right:3%;">{{ include('article/_delete_form.html.twig') }}</div>
+<div style="float:right; margin-right:3%; height: 50px;">{{ include('article/_delete_form.html.twig') }}</div>
 <br>
     <h1 style="text-align:center;">Editer un Article</h1>
     <br>
     
    
-    {{ include('article/_form.html.twig', {'button_label': 'Modifier'}) }} 
+    {{ include('article/_form.html.twig', {'button_label': 'Modifier'}) }}
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
 
 
  

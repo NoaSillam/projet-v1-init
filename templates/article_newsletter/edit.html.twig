@@ -1,8 +1,7 @@
-{% extends 'base.html.twig' %}
 
-{% block title %}Edit ArticleNewsletter{% endblock %}
 
 {% block body %}
+    {{ include('base.html.twig') }}
 <br>
 <a href="{{ path('app_article_newsletter_index') }}" class="btn btn-dark" style="margin-left:3%;">Retour</a>
 
@@ -14,5 +13,14 @@
 
 
     {{ include('article_newsletter/_form.html.twig', {'button_label': 'Update'}) }}
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
 
 {% endblock %}

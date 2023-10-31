@@ -110,6 +110,7 @@ class ArticleNewsletterController extends AbstractController
     public function sendNewsletter(UserNewsletterRepository $userNewsletterRepository, ArticleNewsletter $articleNewsletter, MailerInterface $mailer, EntityManagerInterface $entityManager ):Response
     {
         $users = $userNewsletterRepository->findAll();
+        try {
         foreach($users as $user)
         {
                 $email = (new TemplatedEmail())
@@ -132,6 +133,9 @@ class ArticleNewsletterController extends AbstractController
         }
         $entityManager->flush();
         $this->addFlash('success', 'La newsletter a bien était envoyée !!!!');
+        } catch (\Exception $e) {
+            $this->addFlash('error', 'Erreur lors de l\'envoi de la newsletter : ' . $e->getMessage());
+        }
         return $this->redirectToRoute('app_article_newsletter_index');
 
     }

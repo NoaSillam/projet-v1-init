@@ -43,6 +43,7 @@ class ArticleNewsletterType extends AbstractType
                             'image/webp',
                             'image/gif',
                             'image/jpg',
+                            'image/avif',
                         ],
                         'mimeTypesMessage' => 'Mettez un type fichier valide',
                        // 'maxSizeMessage' => 'L\'image doit faire 10 pixels de large au maximum',
