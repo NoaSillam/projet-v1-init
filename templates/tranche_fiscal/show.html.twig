@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}TrancheFiscal{% endblock %}
+
+{% block body %}
+    <h1>TrancheFiscal</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ tranche_fiscal.id }}</td>
+            </tr>
+            <tr>
+                <th>Debut</th>
+                <td>{{ tranche_fiscal.Debut }}</td>
+            </tr>
+            <tr>
+                <th>Fin</th>
+                <td>{{ tranche_fiscal.Fin }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_tranche_fiscal_index') }}">back to list</a>
+
+    <a href="{{ path('app_tranche_fiscal_edit', {'id': tranche_fiscal.id}) }}">edit</a>
+
+    {{ include('tranche_fiscal/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,74 @@
+{% block stylesheets %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <style>
+
+    </style>
+{% endblock %}
+
+{% block body %}
+    {{ include('base.html.twig') }}
+    <br>
+    <a href="{{ path('app_tranche_index') }}" class="btn btn-dark" style="margin-left:3%;">Retour</a>
+    <h1 style="text-align: center;">Tranche</h1>
+<div style="margin: auto; width: 80%;">
+    <div style="margin-left:auto; margin-right:auto;">
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ tranche.id }}</td>
+            </tr>
+            <tr>
+                <th>Debut</th>
+                <td>{{ tranche.debut }}</td>
+            </tr>
+            <tr>
+                <th>Fin</th>
+                <td>{{ tranche.Fin }}</td>
+            </tr>
+            <tr>
+                <th>Menage</th>
+                <td>{{ tranche.Menage.Nom }}</td>
+            </tr>
+            <tr>
+                <th>Region</th>
+                <td>{{ tranche.Region.Nom }}</td>
+            </tr>
+            <tr>
+                <th>Nb Personne</th>
+                <td>{{ tranche.nbPersonne.nbPersonne }}</td>
+            </tr>
+            <tr>
+                <th>Prime</th>
+                <td>{{ tranche.Prime.Nom }}</td>
+            </tr>
+            <tr>
+                <th>Aide</th>
+                <td>{{ tranche.Prime.aide }}</td>
+            </tr>
+            <tr>
+                <th>Chauffage</th>
+                <td>{{ tranche.TypeDevis.Nom | default('N/A') }}</td>
+            </tr>
+            <tr>
+                <th>Modifier :</th>
+                <td><a class="btn btn-info" href="{{ path('app_tranche_edit', {'id': tranche.id}) }}" style="width:60px; height:100%;"> <img src="{{asset( 'assets/images/modifier.png') }}" class="card-img-top" style="width:25px;" alt=""></a></td>
+            </tr>
+            <tr>
+                <th>Supprimer :</th>
+                <td>  {{ include('tranche/_delete_form.html.twig') }}</td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+</div>
+
+{% endblock %}
+ {%block javascripts %}
+
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+ {%endblock%}
+

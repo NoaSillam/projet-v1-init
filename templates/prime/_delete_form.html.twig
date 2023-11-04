@@ -1,0 +1,6 @@
+
+
+<form method="post" action="{{ path('app_prime_delete', {'id': prime.id}) }}" onsubmit="return confirm('Etes-vous sur de vouloir supprimer cette prime ``{{ prime.Nom }}``?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ prime.id) }}">
+    <button class="btn btn-danger btn-supprimer" style="width:60px; height:100%;"><img src="{{asset( 'assets/images/delete.png') }}" class="card-img-top" style="width:25px;" alt=""></button>
+</form>

@@ -1,0 +1,6 @@
+
+
+<form method="post" action="{{ path('app_type_devis_delete', {'id': type_devi.id}) }}" onsubmit="return confirm('Etes-vous sur de vouloir supprimer ce type de chauffage ``{{ type_devi.Nom }}``?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ type_devi.id) }}">
+    <button class="btn btn-danger btn-supprimer" style="width:60px; height:100%;"><img src="{{asset( 'assets/images/delete.png') }}" class="card-img-top" style="width:25px;" alt=""></button>
+</form>
