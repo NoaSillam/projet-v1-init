@@ -105,6 +105,12 @@
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="{{path ('app_menage_index')}}">Ménages</a></li>
                         <li><a class="dropdown-item" href="{{path ('app_regions_index')}}">Régions</a></li>
+                        <li><a class="dropdown-item" href="{{path ('app_personne_index')}}">Personne</a></li>
+                        <li><a class="dropdown-item" href="{{path ('app_type_devis_index')}}">Type de chauffage</a></li>
+                        <li><a class="dropdown-item" href="{{path ('app_prime_index')}}">Prime</a></li>
+                        <li><a class="dropdown-item" href="{{path ('app_tranche_fiscal_index')}}">Tranche Fiscal</a></li>
+                        <li><a class="dropdown-item" href="{{path ('app_tranche_index')}}">Tranche</a></li>
+
                     </ul>
                 </li>
             </ul>
@@ -209,7 +215,7 @@
             </ul>
 
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0 "  >
-             <a href="{{path ('main_devis')}}"> <button type="button" class="btn btn-primary" style="width:200px; height:50px; margin-right:4%; border-radius:50px; background: linear-gradient(to right,#004d00, #66ff66); font-size:15px;  border-color: #1D4851;" ><strong>{{"Demander un devis" | upper}}</strong></button></a>
+             <a href="{{path ('app_infos_devis_new')}}"> <button type="button" class="btn btn-primary" style="width:200px; height:50px; margin-right:4%; border-radius:50px; background: linear-gradient(to right,#004d00, #66ff66); font-size:15px;  border-color: #1D4851;" ><strong>{{"Demander un devis" | upper}}</strong></button></a>
             </ul>
            {#  <form class="d-flex" role="search"> #}
            {#     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">#}
