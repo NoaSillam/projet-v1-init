@@ -20,6 +20,14 @@ class InfosDevisRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, InfosDevis::class);
     }
+    public function findTrancheFiscalChoicesByPersonne(Personne $personne)
+    {
+        return $this->createQueryBuilder('tf')
+            ->where(':personne MEMBER OF tf.nbPersonne')
+            ->setParameter('personne', $personne)
+            ->getQuery()
+            ->getResult();
+    }
 
 //    /**
 //     * @return InfosDevis[] Returns an array of InfosDevis objects

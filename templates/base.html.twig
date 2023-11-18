@@ -25,7 +25,9 @@
               width:          1px;       
           
           }
-      
+          .nav-item-space {
+              margin-right: 25px;
+          }
           
         </style>
         {% endblock %}
@@ -59,8 +61,8 @@
       {% if is_granted('ROLE_USER')%}
       <nav class="navbar navbar-expand-lg bg" style="background-color: #1D4851; color: white;">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">
-            <img src="{{ asset('assets/images/LOGO-JS-ENERGIE-DEFINITIF-def.png') }}" width="100" style="margin-top: -15%; margin-bottom: -12%;" height="96">
+          <a class="navbar-brand" href="{{path ('main_accueil')}}">
+            <img src="{{ asset('assets/images/LOGO_JS_ENERGIE_DEFINITIF2_3_copie-2.png') }}" width="100" style="margin-top: -15%; margin-bottom: -12%;" height="96">
           </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -68,28 +70,28 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
 
-              <li class="nav-item">
+        {#      <li class="nav-item">
                 <a class="nav-link active" style="font-size:20px; color: white;" aria-current="page" href="{{path ('main_accueil')}}">Accueil</a>
-              </li>
+              </li>#}
            
-              <li class="nav-item">
+              <li class="nav-item nav-item-space">
               <a class="nav-link active" style="font-size:20px; color: white;" aria-current="page" href="{{path ('app_article_index')}}">Accueil Article</a>       
              </li>
 
               {% if is_granted('ROLE_PRODUCT_ADMIN')%}
              
-              <li class="nav-item">
+              <li class="nav-item nav-item-space">
                 <a class="nav-link active" style="font-size:20px; color: white;" aria-current="page" href="{{path ('admin_article_app_article_index')}}">Articles admin</a>
               </li>
               {%else%}
-              <li class="nav-item">
+              <li class="nav-item nav-item-space" >
                 <a class="nav-link active" style="font-size:20px; color: white;" aria-current="page" href="{{path ('app_article_index_1')}}">Articles</a>
               </li>
               {%endif%}
-              <li class="nav-item">
+              <li class="nav-item nav-item-space">
                 <a class="nav-link" style="font-size:20px; color: white;" href="{{path ('app_type_index')}}">Types</a>
               </li>
-              <li class="nav-item dropdown">
+              <li class="nav-item dropdown nav-item-space">
              <a class="nav-link dropdown-toggle" style="font-size:20px; color: white;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   La newsletter
                 </a>
@@ -98,7 +100,7 @@
                 <li><a class="dropdown-item" href="{{path ('app_user_newsletter_index')}}">Les clients inscrit à la newsletter</a></li>
               </ul>
               </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown nav-item-space">
                     <a class="nav-link dropdown-toggle" style="font-size:20px; color: white;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Devis
                     </a>
@@ -110,6 +112,7 @@
                         <li><a class="dropdown-item" href="{{path ('app_prime_index')}}">Prime</a></li>
                         <li><a class="dropdown-item" href="{{path ('app_tranche_fiscal_index')}}">Tranche Fiscal</a></li>
                         <li><a class="dropdown-item" href="{{path ('app_tranche_index')}}">Tranche</a></li>
+                        <li><a class="dropdown-item" href="{{path ('app_infos_devis_index')}}">Devis</a></li>
 
                     </ul>
                 </li>
@@ -118,17 +121,17 @@
 
               <ul class="navbar-nav ms-auto mb-2 mb-lg-0 " >
                 {% if app.user %}
-                <li class="nav-item">
+                <li class="nav-item nav-item-space">
                   <a class="nav-link" style="font-size:20px; color: white;" href="{{path ('main_profil')}}">Mon compte</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item nav-item-space">
                   <a class="nav-link" style="font-size:20px; color: white;" href="{{path ('app_logout')}}">Me déconnecter</a>
                 </li>
                 {%else%}
-                <li class="nav-item">
+                <li class="nav-item nav-item-space">
                   <a class="nav-link" style="font-size:20px; color: white;" href="{{path ('app_register')}}">M'inscrire</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item nav-item-space">
                   <a class="nav-link" style="font-size:20px; color: white;" href="{{path ('app_login')}}">Me connecter</a>
                 </li>
                 {%endif%}
@@ -145,8 +148,8 @@
       {%else%}
       <nav class="navbar navbar-expand-lg bg" style="background-color: #1D4851; color: white;">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">
-            <img src="{{ asset('assets/images/LOGO-JS-ENERGIE-DEFINITIF-def.png') }}" width="100" style="margin-top: -15%; margin-bottom: -12%;" height="96">
+          <a class="navbar-brand" href="{{path ('main_accueil_user')}}">
+            <img src="{{ asset('assets/images/LOGO_JS_ENERGIE_DEFINITIF2_3_copie-2.png') }}" width="100" style="margin-top: -15%; margin-bottom: -12%;" height="96">
           </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -154,11 +157,11 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
-              <li class="nav-item">
+            {#  <li class="nav-item">
                 <a class="nav-link active" style="font-size:20px; color: white;" aria-current="page" href="{{path ('main_accueil_user')}}">Accueil</a>       
-               </li>
+               </li>#}
 
-              <li class="nav-item dropdown" >
+              <li class="nav-item dropdown nav-item-space" >
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-size:20px; color: white;">
                   Isolation
                 </a>
@@ -167,7 +170,7 @@
                 </ul>
               </li>
 
-              <li class="nav-item dropdown">
+              <li class="nav-item dropdown nav-item-space">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-size:20px; color: white;">
                   Pompe à chaleur
                 </a>
@@ -175,7 +178,7 @@
                   <li><a class="dropdown-item" style="color: #1D4851;" href="{{path ('app_article_index_3')}}">Pompe à chaleur</a></li>
                 </ul>
               </li>
-              <li class="nav-item dropdown">
+              <li class="nav-item dropdown nav-item-space">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-size:20px; color: white;">
                   Solaire & Photovoltaique
                 </a>
@@ -184,7 +187,7 @@
                 </ul>
               </li>
 
-              <li class="nav-item dropdown">
+              <li class="nav-item dropdown nav-item-space">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-size:20px; color: white;">
                   Aides & primes
                 </a>
@@ -201,7 +204,7 @@
 
 
 
-              <li class="nav-item dropdown">
+              <li class="nav-item dropdown nav-item-space">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-size:20px; color: white;">
                   Actualités
                 </a>

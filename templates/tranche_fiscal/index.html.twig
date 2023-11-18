@@ -17,18 +17,20 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Debut</th>
-                <th>Fin</th>
+                <th style="text-align: center;">Debut</th>
+                <th style="text-align: center;">Fin</th>
+                <th style="text-align: center;">Nombre de Personne dans le Foyer</th>
+                <th style="text-align: center;">Régions</th>
                 <th style="text-align: center;">Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for tranche_fiscal in tranche_fiscals %}
             <tr>
-                <td>{{ tranche_fiscal.id }}</td>
-                <td>{{ tranche_fiscal.Debut }}€</td>
-                <td>{{ tranche_fiscal.Fin | default('N/A') }}€</td>
+                <td style="text-align: center;">{{ tranche_fiscal.Debut }}€</td>
+                <td style="text-align: center;">{{ tranche_fiscal.Fin | default('N/A') }}€</td>
+                <td style="text-align: center;">{{ tranche_fiscal.nbPersonne.nbPersonne | default('N/A')}}</td>
+                <td style="text-align: center;">{{ tranche_fiscal.Region.Nom | default('N/A') }}</td>
                 <td style="display: flex; align-items: center; justify-content: center;  " >
 
                     <a class="btn btn-success" href="{{ path('app_tranche_fiscal_show', {'id': tranche_fiscal.id}) }}" style="width:60px;  height:40px; margin-right: 10px;"><img src="{{asset( 'assets/images/plus.png') }}" class="card-img-top" style="width:25px;" alt=""></a>

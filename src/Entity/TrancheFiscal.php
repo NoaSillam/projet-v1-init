@@ -24,9 +24,16 @@ class TrancheFiscal
     #[ORM\OneToMany(mappedBy: 'TrancheFiscal', targetEntity: Tranche::class)]
     private Collection $tranches;
 
+    #[ORM\ManyToOne(inversedBy: 'trancheFiscals')]
+    private ?Personne $nbPersonne = null;
+
+    #[ORM\OneToMany(mappedBy: 'TrancheFiscal', targetEntity: InfosDevis::class, orphanRemoval: true)]
+    private Collection $infosDevis;
+
     public function __construct()
     {
         $this->tranches = new ArrayCollection();
+        $this->infosDevis = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -86,6 +93,57 @@ class TrancheFiscal
         }
 
         return $this;
+    }
+
+    public function getNbPersonne(): ?Personne
+    {
+        return $this->nbPersonne;
+    }
+
+    public function setNbPersonne(?Personne $nbPersonne): static
+    {
+        $this->nbPersonne = $nbPersonne;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, InfosDevis>
+     */
+    public function getInfosDevis(): Collection
+    {
+        return $this->infosDevis;
+    }
+
+    public function addInfosDevi(InfosDevis $infosDevi): static
+    {
+        if (!$this->infosDevis->contains($infosDevi)) {
+            $this->infosDevis->add($infosDevi);
+            $infosDevi->setTrancheFiscal($this);
+        }
+
+        return $this;
+    }
+
+    public function removeInfosDevi(InfosDevis $infosDevi): static
+    {
+        if ($this->infosDevis->removeElement($infosDevi)) {
+            // set the owning side to null (unless already changed)
+            if ($infosDevi->getTrancheFiscal() === $this) {
+                $infosDevi->setTrancheFiscal(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getLabel(): string
+    {
+        if ($this->getFin() == null)
+        {
+            return $this->getDebut().' > ';
+        }
+        return $this->getDebut().' - '.$this->getFin(); // Remplacez 'description' par le nom de la propriété que vous souhaitez afficher
     }
 
 }

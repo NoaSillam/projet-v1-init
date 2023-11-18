@@ -2,8 +2,8 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 <style>
     .isolation{
-        width: 150px; 
-        height: 140px; 
+        width: 170px;
+        height: 160px;
         background-color: white;
         border: 1px solid #D3D3D3;
         border-radius: 50px; 
@@ -18,8 +18,8 @@
     }
     .pompeChaleur
     {
-        width: 150px; 
-        height: 140px; 
+        width: 170px;
+        height: 160px;
         background-color: white; 
         border-radius: 50px;
         border: 1px solid #D3D3D3;
@@ -34,8 +34,8 @@
     }
     .solaire
     {
-        width: 150px; 
-        height: 140px; 
+        width: 170px;
+        height: 160px;
         background-color: white; 
         border-radius: 50px;
         border: 1px solid #D3D3D3;
@@ -48,8 +48,8 @@
         background-color: #8FBC8F;
     }
     .aide{
-        width: 150px; 
-        height: 140px; 
+        width: 170px;
+        height: 160px;
         background-color: white; 
         border-radius: 50px;
         border: 1px solid #D3D3D3;
@@ -62,30 +62,103 @@
         background-color:#FFEFD5;
     }
     #map{ /* la carte DOIT avoir une hauteur sinon elle n'apparaît pas */
-        height:700px;
+        height:650px;
+
+    }
+    .demarche{
+        width: 170px;
+        height: 160px;
+        background-color: white;
+        border: 1px solid #D3D3D3;
+        border-radius: 50px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+    }
+    .demarche:hover
+    {
+        background-color: #ADD8E6;
+    }
+    .expert
+    {
+        width: 170px;
+        height: 160px;
+        background-color: white;
+        border-radius: 50px;
+        border: 1px solid #D3D3D3;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .expert:hover
+    {
+        background-color:#FFB6C1;
+    }
+    .suivi
+    {
+        width: 170px;
+        height: 160px;
+        background-color: white;
+        border-radius: 50px;
+        border: 1px solid #D3D3D3;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .suivi:hover{
+        background-color: #8FBC8F;
+    }
+    .assistance{
+        width: 170px;
+        height: 160px;
+        background-color: white;
+        border-radius: 50px;
+        border: 1px solid #D3D3D3;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .assistance:hover{
+        background-color:#FFEFD5;
     }
 </style>
 {% endblock %}
 
 {% block body %}
 {{ include('base.html.twig') }}
-<h1 style="text-align:center; color: #1D4851;"><b>Accueil</b></h1>
+<h1 style="text-align:center; color: #1D4851; font-size: 65px;"><b>JS ENERGIE</b></h1>
+    <br>
+
+    <h5 style="text-align:center; color: #1D4851; font-size: 30px;"><b>Votre patrimoine énergétique</b></h5>
 <br>
 <br>
-<div style="margin: auto; width: 90%; display: flex; align-items: center; justify-content: center;">
-    <div style="width: 200%; height: 200px;  border-radius: 50px; text-align: center; display: flex; flex-direction: row; align-items: center; justify-content: space-around;">
+{#    <img src="{{ asset('assets/images/homme-casque-blanc-pres-panneau-solaire.jpg') }}" class="img-top" style="height: 50%; margin-left: 20%;">
+    <br>#}
+
+<div style="margin: auto; width: 70%; ">
+    <div style="width: 100%; height: 300px;  border-radius: 50px; text-align: center; background-color: #f5f5f5; ">
+        <br>
+        <h3 style="text-align:center; color: #1D4851; width: 100%; "><b>Voici nos offres</b></h3>
+        <br>
+        <div style="display: flex; align-items: center; justify-content: center;">
+            <div style="display: flex; flex-direction: row; align-items: center; justify-content: space-around; width: 100%; ">
 
     <a href="{{path ('app_article_index_2')}}" style="text-decoration:none; color: black;">
         <div class="isolation">
             <img src="{{ asset('assets/images/isole.png') }}" style="width: 60%;" class="img-top">
-            <p><b>Isolation</b></p>
+            <p style="font-size: 15px;"><b>Isolation</b></p>
         </div>
     </a>
 
     <a href="{{path ('app_article_index_3')}}" style="text-decoration:none; color: black;">
         <div class="pompeChaleur">
             <img src="{{ asset('assets/images/pompe-a-chaleur-removebg-preview.png') }}" style="width: 60%;" class="img-top">
-            <p><b>Pompe à chaleur</b></p>
+            <p style="font-size: 15px;"><b>Pompe à chaleur</b></p>
         </div>
     </a>
 
@@ -99,21 +172,25 @@
     <a href="{{path ('app_article_index_5')}}" style="text-decoration:none; color: black;">
         <div class="aide">
             <img src="{{ asset('assets/images/aide-prime.png') }}" style="width: 95%;" class="img-top">
-            <p><b>Aides & primes</b></p>
+            <p style="font-size: 15px;"><b>Aides & primes</b></p>
         </div>
     </a>
 
-
+            </div>
+        </div>
 
     </div>
 </div>
 <br>
 <br>
-<div style="margin: auto; width: 90%; display: flex; align-items: center; justify-content: center;">
-    <div style="width: 200%; height: auto; border-radius: 50px; text-align: center;">
+<div style="margin: auto; width: 70%; display: flex; align-items: center; justify-content: center; ">
+    <div style="width: 200%; height: auto; border-radius: 50px; text-align: center; background-color: #f5f5f5; ">
         <br>
         <h3 style="text-align: center; color: #1D4851;"><b>Comment faire des économies sur l'eau et l'électricité ?</b></h3>
-        
+    <br>
+
+        <img src="{{ asset('assets/images/6573.jpg') }}" class="img-top" style="width: 20%; border-radius: 20px; ">
+        <br>
         <br>
         <h4 style="text-align: center; color: #1D4851;"><b>Maximiser l'efficacité énergétique grâce à l'isolation :</b></h4>
         <p style="margin: 0 auto; width: 700px; text-align: center;">
@@ -133,34 +210,65 @@
         </p>
         <br>
         <br>
+        <br>
     </div>
 </div>
 </br>
 </br>
-<div style="margin: auto; width: 90%; display: flex; align-items: center; justify-content: center;">
-    <div style="width: 200%; height: auto; border-radius: 50px; text-align: center;">
-        <h3 style="text-align:center; color: #1D4851;"><b>On vous accompagne tout au long de votre rénovation énergétique</b></h3>
-<br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
 
 
+    <div style="margin: auto; width: 70%; margin-top: 10px; margin-bottom: 10px;">
+        <div style="width: 100%; height: 300px; border-radius: 50px; text-align: center; background-color: #f5f5f5; padding-right: 40px; padding-left: 40px;">
+            <br>
+            <h3 style="text-align:center; color: #1D4851; width: 100%;"><b>On vous accompagne tout au long de votre rénovation énergétique</b></h3>
+            <br>
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <a href="" style="text-decoration:none; color: black;">
+                    <div class="demarche">
+                        <img src="{{ asset('assets/images/illustration-du-concept-multitache_23-2148405446-removebg-preview.png') }}" style="width: 50%;" class="img-top">
+                        <p style="font-size: 13px;"><b>Démarches administratives</b></p>
+                    </div>
+                </a>
 
+                <a href="" style="text-decoration:none; color: black;">
+                    <div class="expert">
+                        <img src="{{ asset('assets/images/5995357-removebg-preview.png') }}" style="width: 57%;" class="img-top">
+                        <p style="font-size: 13px;"><b>Nos experts sont là pour vous accompagner</b></p>
+                    </div>
+                </a>
 
+                <a href="" style="text-decoration:none; color: black;">
+                    <div class="suivi">
+                        <img src="{{ asset('assets/images/Checklist-removebg-preview.png') }}" style="width: 70%;" class="img-top">
+                        <p style="font-size: 15px;"><b>Suivi personnalisé</b></p>
+                    </div>
+                </a>
+
+                <a href="" style="text-decoration:none; color: black;">
+                    <div class="assistance">
+                        <img src="{{ asset('assets/images/illustration-du-support-client_23-2148890148-removebg-preview.png') }}" style="width: 54%;" class="img-top">
+                        <p style="font-size: 13px;"><b>Nous sommes à votre écoute</b></p>
+                    </div>
+                </a>
+
+            </div>
+        </div>
     </div>
-</div>
-<div style="margin: auto; width: 70%; display: flex; align-items: center; justify-content: center;">
-    <div style="width: 200%; height: auto; border-radius: 50px; text-align: center;">
+
+
+    <br>
+    <br>
+<div style="margin: auto; width: 70%;  display: flex; align-items: center; justify-content: center;">
+    <div style="width: 200%; height: 150%; border-radius: 50px; text-align: center; background-color: #f5f5f5;">
+        <br>
         <h3 style="text-align:center; color: #1D4851;"><b>Nous sommes partout en France</b></h3>
+        <br>
 
-        <div id="map">
+        <div id="map" style="width: 96%; margin-left: 2%;">
         <!-- Ici s'affichera la carte -->
     </div>
+        <br>
+        <br>
 
     </div>
 </div>
@@ -183,101 +291,41 @@
         var map = null;
         // Fonction d'initialisation de la carte
         var villes = {
-            "Paris":{"lat": 48.852969,"lon": 2.349903},
+            // "Paris":{"lat": 48.852969,"lon": 2.349903},
             "Lille":{"lat": 50.63050633699946,"lon": 3.0450208797258327},
-            "Caen":{"lat": 49.16387131579312,"lon": -0.36360986867510103},
+           // "Caen":{"lat": 49.16387131579312,"lon": -0.36360986867510103},
             "Rouen":{"lat": 49.43315087038192,"lon": 1.1121182974708699},
-            "Versailles":{"lat": 48.796621115409536,"lon": 2.14038954158438},
-            "Saint-Malo":{"lat": 48.63308927151447,"lon": -2.0114328467328613},
+            // "Versailles":{"lat": 48.796621115409536,"lon": 2.14038954158438},
+           // "Saint-Malo":{"lat": 48.63308927151447,"lon": -2.0114328467328613},
             "Rennes":{"lat": 48.10238825551071,"lon": -1.6777347455295333},
-          //  "Le Mans":{"lat": 47.9977997426176,"lon": 0.21419187104777304},
-            "Angers":{"lat": 47.454354294753216,"lon": -0.5388528457980502},
+            // "Angers":{"lat": 47.454354294753216,"lon": -0.5388528457980502},
             "Tours":{"lat": 47.37888037073164,"lon": 0.7008764896587216},
             "Nantes":{"lat": 47.198504965182636,"lon": -1.547766017051313},
-            "Poitiers":{"lat": 46.56648544140624,"lon": 0.34938647534881184},
-            "Dijon":{"lat": 47.314388238818616,"lon": 5.049204096038173},
+            // "Poitiers":{"lat": 46.56648544140624,"lon": 0.34938647534881184},
+            // "Dijon":{"lat": 47.314388238818616,"lon": 5.049204096038173},
             "Strasbourg":{"lat": 48.56697810869012,"lon": 7.759080009336707},
             "Brest":{"lat": 48.383,"lon": -4.500},
-         //   "Quimper":{"lat": 48.000,"lon": -4.100},
-
-
-
-          //  "Lorient":{"lat": 47.73700857681778,"lon": -3.3554802377328175},
-          //  "La Rochelle":{"lat": 46.152175407206094,"lon": -1.140347163779598},
-           // "Limoges":{"lat": 45.81129696674026,"lon": 1.2606036932465736},
-           // "Clermont-Ferrand":{"lat": 45.77018483521351,"lon": 3.0975588832299605},
-          //  "Lyon":{"lat": 45.76492541363485,"lon": 4.840009494402757},
-            "Calais":{"lat": 50.95235751613912,"lon": 1.8645713265067654},
-         //   "Amiens":{"lat": 49.89037752729156,"lon": 2.3020688848930027},
+            "Siege":{"lat": 48.89729592069684,"lon": 2.4053439235890233},
+           // "Calais":{"lat": 50.95235751613912,"lon": 1.8645713265067654},
             "Reims":{"lat": 49.24371010892985,"lon": 4.039931895152327},
             "Metz":{"lat": 49.11499287874225,"lon": 6.1805862655849175},
-            "Nancy":{"lat": 48.67799333702273,"lon": 6.19817871778225},
+           // "Nancy":{"lat": 48.67799333702273,"lon": 6.19817871778225},
             "Troyes":{"lat": 48.28242514829323,"lon": 4.079106017731897},
             "Orleans":{"lat": 47.88609723397634,"lon": 1.9234122947401566},
-            "Bourges":{"lat": 47.06582233670851,"lon": 2.39589529661131},
-            "Le Havre":{"lat": 49.48093938392777,"lon": 0.11027273732300724},
-          //  "Angouleme":{"lat": 45.63880154785975,"lon": 0.16703931209995027},
-         //   "Vichy":{"lat": 46.11287710053293,"lon": 3.4316187545772703},
-      //      "Auxerre":{"lat": 47.788936094945704,"lon": 3.5842552410515127},
-            "Besancon":{"lat": 47.229553107034306,"lon": 6.028389567569765},
-
-
-            "Belfort":{"lat": 47.62693384327874,"lon": 6.870503970709527},
+            // "Bourges":{"lat": 47.06582233670851,"lon": 2.39589529661131},
+            // "Le Havre":{"lat": 49.48093938392777,"lon": 0.11027273732300724},
+            // "Besancon":{"lat": 47.229553107034306,"lon": 6.028389567569765},
+            // "Belfort":{"lat": 47.62693384327874,"lon": 6.870503970709527},
             "Mulhouse":{"lat": 47.74000526474074,"lon": 7.336683732175855},
-         //   "Macon":{"lat": 46.295714004615235,"lon": 4.838532369978381},
-            "Nevers":{"lat": 46.98018496241854,"lon": 3.1654866765306267},
-
-          //  "Annecy":{"lat": 45.888046238751286,"lon": 6.134343059804062},
-            //"Grenoble":{"lat": 45.185748808590226,"lon": 5.739891263868535},
-            //"Valence":{"lat": 44.92812435376226,"lon": 4.898973193728917},
-        //    "Chateauroux":{"lat": 46.80890476950868,"lon": 1.693426412328427},
-
-         //   "Rochefort":{"lat": 45.93171362772539,"lon": -0.9540679903915517},
-
-        //    "Vannes":{"lat": 47.64306324460313,"lon": -2.754021695171156},
-        //    "Morlaix":{"lat": 48.579931409218645,"lon": -3.827263888052781},
-         //   "Challans":{"lat": 46.837140618513565,"lon": -1.8790933999831672},
-         //   "La Roche-sur-Yon":{"lat": 46.664231516306145,"lon": -1.431627331314258},
-
-
-            "Dunkerque":{"lat": 51.03051373237552,"lon": 2.3782812808846954},
-           // "Laval":{"lat": 48.06623047739633,"lon": -0.7638883785598982},
-       //     "Blois":{"lat": 47.57886558623297,"lon": 1.340744682003927},
-        //    "Saint-Nazaire":{"lat": 47.2649848130887,"lon": -2.204080871723688},
-
-
-          //   "Lannion":{"lat": 48.72856557814468,"lon": -3.4580541136756926},
-            "Saint-Brieuc":{"lat": 48.50907938769857,"lon": -2.762395856801587},
-          //  "Cherbourg-en-Cotentin":{"lat": 49.63261308049841,"lon": -1.6155145275146832},
-          //  "Niort":{"lat": 46.31651840747499,"lon": -0.45192339439040774},
-
-            "Creteil":{"lat": 48.7822654772598,"lon": 2.465726605080305},
-            "Beauvais":{"lat": 48.50907938769857,"lon": -2.762395856801587},
-           // "Laon":{"lat": 49.63261308049841,"lon": -1.6155145275146832},
-            "Chartres":{"lat": 48.44262042163912,"lon": 1.4896231101828938},
-
-           // "Lisieux":{"lat": 49.147634466457625,"lon": 0.2307403059112012},
-         //   "Evreux":{"lat": 49.01961049561936,"lon": 1.1438573675526875},
-         //   "Dreux":{"lat": 48.730446857940436,"lon": 1.3738026764425149},
-      //      "Vendome":{"lat": 47.78689375373469,"lon": 1.067545690037952},
-
-            "Deauville":{"lat": 49.354909529804,"lon": 0.07084063789131623},
-            "Etretat":{"lat": 49.70753067755496,"lon": 0.20538495746792673},
-            "Honfleur":{"lat": 49.41840390885456,"lon": 0.23613271442499695},
-         //   "Fougere":{"lat": 48.35096328891455,"lon": -1.2037946570910774},
-
-           // "Les Pieux":{"lat": 49.50792979014528,"lon": -1.8084756164042548},
-           // "La Hague":{"lat": 49.66182419615138,"lon": -1.8300366490924391},
-          //  "Valognes":{"lat": 49.506676484030216,"lon": -1.4680170437625462},
-          //  "Picauville":{"lat": 49.37749285846286,"lon": -1.4122687701566283},
-
-
-           // "Port-Bail-sur-Mer":{"lat": 49.334868702204446,"lon": -1.7006497492428352},
-            //"Lessay":{"lat": 49.218397111832985,"lon": -1.5319180149047518},
-            //"Gouville-sur-Mer":{"lat": 49.09630892965703,"lon": -1.5817293072707406},
-           // "Coutances":{"lat": 49.05070772638748,"lon": -1.4425574543873454},
-
-
+           // "Nevers":{"lat": 46.98018496241854,"lon": 3.1654866765306267},
+          //  "Dunkerque":{"lat": 51.03051373237552,"lon": 2.3782812808846954},
+            // "Saint-Brieuc":{"lat": 48.50907938769857,"lon": -2.762395856801587},
+         //   "Creteil":{"lat": 48.7822654772598,"lon": 2.465726605080305},
+          //  "Beauvais":{"lat": 48.50907938769857,"lon": -2.762395856801587},
+            // "Chartres":{"lat": 48.44262042163912,"lon": 1.4896231101828938},
+            // "Deauville":{"lat": 49.354909529804,"lon": 0.07084063789131623},
+            // "Etretat":{"lat": 49.70753067755496,"lon": 0.20538495746792673},
+            // "Honfleur":{"lat": 49.41840390885456,"lon": 0.23613271442499695},
         };
         function initMap() {
             // Créer l'objet "map" et l'insèrer dans l'élément HTML qui a l'ID "map"
@@ -304,18 +352,28 @@
                 }
             });
 
-            for(ville in villes){
-                var marker = new google.maps.Marker({
-                    // A chaque boucle, la latitude et la longitude sont lues dans le tableau
-                    position: {lat: villes[ville].lat, lng: villes[ville].lon},
-                    // On en profite pour ajouter une info-bulle contenant le nom de la ville
-                    title: ville,
-                    map: map
-                });
-
+            for (ville in villes) {
+                var marker;
+                if (ville === "Siege") {
+                    // Marqueur jaune pour la ville "Siege"
+                    marker = new google.maps.Marker({
+                        position: { lat: villes[ville].lat, lng: villes[ville].lon },
+                        title: ville,
+                        map: map,
+                        icon: {
+                            url: 'http://maps.google.com/mapfiles/ms/micons/yellow-dot.png',
+                            scaledSize: new google.maps.Size(50, 50),
+                        },
+                    });
+                } else {
+                    // Marqueurs rouges pour les autres villes
+                    marker = new google.maps.Marker({
+                        position: { lat: villes[ville].lat, lng: villes[ville].lon },
+                        title: ville,
+                        map: map,
+                    });
+                }
             }
-
-
         }
         window.onload = function(){
             // Fonction d'initialisation qui s'exécute lorsque le DOM est chargé

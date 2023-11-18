@@ -27,13 +27,39 @@ class InfosDevis
     #[ORM\Column]
     private ?float $Num_fiscal = null;
 
-    #[ORM\ManyToMany(targetEntity: Tranche::class, inversedBy: 'infosDevis')]
-    private Collection $Tranche;
+
+
+    #[ORM\ManyToOne(inversedBy: 'infosDevis')]
+    private ?Personne $nbPersonne = null;
+
+    #[ORM\ManyToOne(inversedBy: 'infosDevis')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Regions $Regions = null;
+
+    #[ORM\ManyToOne(inversedBy: 'infosDevis')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?TrancheFiscal $TrancheFiscal = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $proprieter = null;
+
+    #[ORM\Column]
+    private ?int $surfaceHabitable = null;
+
+    #[ORM\Column]
+    private ?int $telephone = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $typeChauffage = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $residencePrincipale = null;
 
     public function __construct()
     {
-        $this->Tranche = new ArrayCollection();
+       // $this->nbPersonne = null; // Initialisez avec null
     }
+
 
     public function getId(): ?int
     {
@@ -88,28 +114,108 @@ class InfosDevis
         return $this;
     }
 
-    /**
-     * @return Collection<int, Tranche>
-     */
-    public function getTranche(): Collection
+
+    public function getNbPersonne(): ?Personne
     {
-        return $this->Tranche;
+        return $this->nbPersonne;
     }
 
-    public function addTranche(Tranche $tranche): static
+/*    public function setNbPersonne(?Personne $nbPersonne): static
     {
-        if (!$this->Tranche->contains($tranche)) {
-            $this->Tranche->add($tranche);
-        }
+        $this->nbPersonne = $nbPersonne;
+
+        return $this;
+    }*/
+    public function setNbPersonne(?Personne $nbPersonne): static
+    {
+        $this->nbPersonne = $nbPersonne;
 
         return $this;
     }
 
-    public function removeTranche(Tranche $tranche): static
+    public function getRegions(): ?Regions
     {
-        $this->Tranche->removeElement($tranche);
+        return $this->Regions;
+    }
+
+    public function setRegions(?Regions $Regions): static
+    {
+        $this->Regions = $Regions;
 
         return $this;
     }
+
+    public function getTrancheFiscal(): ?TrancheFiscal
+    {
+        return $this->TrancheFiscal;
+    }
+
+    public function setTrancheFiscal(?TrancheFiscal $TrancheFiscal): static
+    {
+        $this->TrancheFiscal = $TrancheFiscal;
+
+        return $this;
+    }
+
+    public function getProprieter(): ?string
+    {
+        return $this->proprieter;
+    }
+
+    public function setProprieter(string $proprieter): static
+    {
+        $this->proprieter = $proprieter;
+
+        return $this;
+    }
+
+    public function getSurfaceHabitable(): ?int
+    {
+        return $this->surfaceHabitable;
+    }
+
+    public function setSurfaceHabitable(int $surfaceHabitable): static
+    {
+        $this->surfaceHabitable = $surfaceHabitable;
+
+        return $this;
+    }
+
+    public function getTelephone(): ?int
+    {
+        return $this->telephone;
+    }
+
+    public function setTelephone(int $telephone): static
+    {
+        $this->telephone = $telephone;
+
+        return $this;
+    }
+
+    public function getTypeChauffage(): ?string
+    {
+        return $this->typeChauffage;
+    }
+
+    public function setTypeChauffage(string $typeChauffage): static
+    {
+        $this->typeChauffage = $typeChauffage;
+
+        return $this;
+    }
+
+    public function getResidencePrincipale(): ?string
+    {
+        return $this->residencePrincipale;
+    }
+
+    public function setResidencePrincipale(string $residencePrincipale): static
+    {
+        $this->residencePrincipale = $residencePrincipale;
+
+        return $this;
+    }
+
 
 }

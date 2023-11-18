@@ -32,8 +32,8 @@
         {% for tranche in tranches %}
             <tr>
                 <td>{{ tranche.id }}</td>
-                <td>{{ tranche.debut }}€</td>
-                <td>{{ tranche.Fin | default('N/A') }}€</td>
+            {#    <td>{{ tranche.debut }}€</td>
+                <td>{{ tranche.Fin | default('N/A') }}€</td>#}
                 <td>{{ tranche.TrancheFiscal is not null ? tranche.TrancheFiscal.Debut ~ '€' : 'N/A' }}</td>
                 <td>{{ tranche.TrancheFiscal is not null ? tranche.TrancheFiscal.Fin ~ '€' : 'N/A' }}</td>
                 <td>{{ tranche.Menage.Nom }}</td>

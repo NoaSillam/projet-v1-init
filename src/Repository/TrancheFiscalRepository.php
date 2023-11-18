@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Personne;
 use App\Entity\TrancheFiscal;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -20,13 +21,104 @@ class TrancheFiscalRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, TrancheFiscal::class);
     }
-    public function findTrancheFiscalChoices()
+/*    public function findTrancheFiscalChoices()
     {
         return $this->createQueryBuilder('tf')
             ->select('tf')
             ->getQuery()
             ->getResult();
     }
+
+    public function findTrancheFiscalChoicesByPersonne(Personne $personne)
+    {
+        return $this->createQueryBuilder('tf')
+            ->andWhere('tf.nbPersonne = :val')
+            ->setParameter('val', $personne)
+            ->orderBy('tf.nbPersonne', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }*/
+/*    public function findTrancheFiscalChoicesByPersonne(?Personne $personne)
+    {
+        if ($personne === null) {
+            return []; // ou une autre valeur par défaut selon vos besoins
+        }
+
+        return $this->createQueryBuilder('tf')
+            ->andWhere('tf.nbPersonne = :val')
+            ->setParameter('val', $personne)
+            ->orderBy('tf.nbPersonne', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }*/
+
+    public function findTrancheFiscalChoicesByPersonne(?Personne $personne)
+    {
+        if ($personne === null) {
+            return []; // ou une autre valeur par défaut selon vos besoins
+        }
+
+        $tranchesFiscales = $this->createQueryBuilder('tf')
+            ->andWhere('tf.nbPersonne = :val')
+            ->setParameter('val', $personne)
+            ->orderBy('tf.nbPersonne', 'ASC')
+            ->getQuery()
+            ->getResult();
+
+        $choices = [];
+        foreach ($tranchesFiscales as $tranche) {
+            $choices[$tranche->getId()] = $tranche->__toString();
+        }
+
+        return $choices;
+    }
+
+
+
+
+
+
+
+
+    public function findByNbPersonne($nbPersonne)
+    {
+        return $this->createQueryBuilder('tranchefiscal')
+            ->join('tranchefiscal.nbPersonne', 'p')
+            ->andWhere('p.nbPersonne = :nbPersonne')
+            ->setParameter('nbPersonne', $nbPersonne)
+            ->getQuery()
+            ->getResult();
+    }
+    public function findByRegion($Region)
+    {
+        return $this->createQueryBuilder('tranchefiscal')
+            ->join('tranchefiscal.Region', 'r')
+            ->andWhere('r.id = :Region')
+            ->setParameter('Region', $Region)
+            ->getQuery()
+            ->getResult();
+    }
+    public function findByNbPersonneByRegions($nbPersonne, $Region)
+    {
+        return $this->createQueryBuilder('tranchefiscal')
+            ->join('tranchefiscal.nbPersonne', 'p')
+            ->join('tranchefiscal.Region', 'r')
+            ->Where('p.nbPersonne = :nbPersonne')
+            ->andWhere('r.id = :Region')
+            ->setParameter('nbPersonne', $nbPersonne)
+            ->setParameter('Region', $Region)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findTrancheFiscalChoices()
+    {
+        return $this->createQueryBuilder('tf')
+            ->andWhere('tf.nbPersonne IS NOT NULL') // Ajoutez cette condition pour ne sélectionner que les tranches liées à une personne
+            ->getQuery()
+            ->getResult();
+    }
+
 
 //    /**
 //     * @return TrancheFiscal[] Returns an array of TrancheFiscal objects

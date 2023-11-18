@@ -43,15 +43,14 @@ class Tranche
     #[ORM\Column]
     private ?int $Aide = null;
 
-    #[ORM\ManyToMany(targetEntity: InfosDevis::class, mappedBy: 'Tranche')]
-    private Collection $infosDevis;
+
 
     #[ORM\ManyToOne(inversedBy: 'tranches')]
     private ?TrancheFiscal $TrancheFiscal = null;
 
     public function __construct()
     {
-        $this->infosDevis = new ArrayCollection();
+      //  $this->infosDevis = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -155,32 +154,7 @@ class Tranche
         return $this;
     }
 
-    /**
-     * @return Collection<int, InfosDevis>
-     */
-    public function getInfosDevis(): Collection
-    {
-        return $this->infosDevis;
-    }
 
-    public function addInfosDevi(InfosDevis $infosDevi): static
-    {
-        if (!$this->infosDevis->contains($infosDevi)) {
-            $this->infosDevis->add($infosDevi);
-            $infosDevi->addTranche($this);
-        }
-
-        return $this;
-    }
-
-    public function removeInfosDevi(InfosDevis $infosDevi): static
-    {
-        if ($this->infosDevis->removeElement($infosDevi)) {
-            $infosDevi->removeTranche($this);
-        }
-
-        return $this;
-    }
     public function __toString()
     {
         if($this->Fin == null)

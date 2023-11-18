@@ -1,33 +1,50 @@
-{% extends 'base.html.twig' %}
 
-{% block title %}InfosDevis index{% endblock %}
+{% block stylesheets %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
+    <style>
+    </style>
+{% endblock %}
 {% block body %}
-    <h1>InfosDevis index</h1>
-
+    {{ include('base.html.twig') }}
+    <br>
+    <h1 style="text-align:center;">Les devis</h1>
+<div style="margin: auto; width: 90%;">
+    <div style="margin-left:auto; margin-right:auto;">
+        <a href="{{ path('app_infos_devis_new')}}" class="btn btn-secondary">Ajouter un nouveau devis</a>
+        <br>
+        <br>
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>Prenom</th>
-                <th>Mail</th>
-                <th>Num_fiscal</th>
-                <th>actions</th>
+                <th style="text-align: center;">Nom</th>
+                <th style="text-align: center;">Prenom</th>
+                <th style="text-align: center;">Mail</th>
+                <th style="text-align: center;">Nombre de Personne dans le Foyer</th>
+                <th style="text-align: center;">Numéro Fiscal de référence</th>
+                <th style="text-align: center;">Tranche Fiscal de référence</th>
+                <th style="text-align: center;">Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for infos_devi in infos_devis %}
             <tr>
-                <td>{{ infos_devi.id }}</td>
-                <td>{{ infos_devi.Nom }}</td>
-                <td>{{ infos_devi.Prenom }}</td>
-                <td>{{ infos_devi.Mail }}</td>
-                <td>{{ infos_devi.NumFiscal }}</td>
-                <td>
-                    <a href="{{ path('app_infos_devis_show', {'id': infos_devi.id}) }}">show</a>
-                    <a href="{{ path('app_infos_devis_edit', {'id': infos_devi.id}) }}">edit</a>
+                <td style="text-align: center;">{{ infos_devi.Nom }}</td>
+                <td style="text-align: center;">{{ infos_devi.Prenom }}</td>
+                <td style="text-align: center;">{{ infos_devi.Mail }}</td>
+                <td style="text-align: center;">{{ infos_devi.nbPersonne.nbPersonne | default('N/A')}}</td>
+                <td style="text-align: center;">{{ infos_devi.NumFiscal }} €</td>
+                <td style="text-align: center;">{{ infos_devi.TrancheFiscal is not null ? infos_devi.TrancheFiscal.Debut ~ '€' : 'N/A' }} - {{ infos_devi.TrancheFiscal is not null ? infos_devi.TrancheFiscal.Fin ~ '€' : 'N/A' }}</td>
+
+                <td style="display: flex; align-items: center; justify-content: center;  " >
+
+                    <a class="btn btn-success" href="{{ path('app_infos_devis_show', {'id': infos_devi.id}) }}" style="width:60px;  height:40px; margin-right: 10px;"><img src="{{asset( 'assets/images/plus.png') }}" class="card-img-top" style="width:25px;" alt=""></a>
+                    <a class="btn btn-info" href="{{ path('app_infos_devis_edit', {'id': infos_devi.id}) }}" style="width:60px;  height:40px; margin-right: 10px;"><img src="{{asset( 'assets/images/modifier.png') }}" class="card-img-top" style="width:25px;" alt=""></a>
+                    <div style="  height:40px;">  {{ include('infos_devis/_delete_form.html.twig') }}</div>
+
+
                 </td>
+
             </tr>
         {% else %}
             <tr>
@@ -36,6 +53,17 @@
         {% endfor %}
         </tbody>
     </table>
+        <br>
+        <br>
+        <br>
+        <br>
+    </div>
+</div>
 
-    <a href="{{ path('app_infos_devis_new') }}">Create new</a>
 {% endblock %}
+      {%block javascripts %}
+
+          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+      {%endblock%}

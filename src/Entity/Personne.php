@@ -21,9 +21,17 @@ class Personne
     #[ORM\OneToMany(mappedBy: 'nbPersonne', targetEntity: Tranche::class, orphanRemoval: true)]
     private Collection $tranches;
 
+    #[ORM\OneToMany(mappedBy: 'nbPersonne', targetEntity: InfosDevis::class, orphanRemoval: true)]
+    private Collection $infosDevis;
+
+    #[ORM\OneToMany(mappedBy: 'nbPersonne', targetEntity: TrancheFiscal::class, orphanRemoval: true)]
+    private Collection $trancheFiscals;
+
     public function __construct()
     {
         $this->tranches = new ArrayCollection();
+        $this->infosDevis = new ArrayCollection();
+        $this->trancheFiscals = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -67,6 +75,66 @@ class Personne
             // set the owning side to null (unless already changed)
             if ($tranch->getNbPersonne() === $this) {
                 $tranch->setNbPersonne(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, InfosDevis>
+     */
+    public function getInfosDevis(): Collection
+    {
+        return $this->infosDevis;
+    }
+
+    public function addInfosDevi(InfosDevis $infosDevi): static
+    {
+        if (!$this->infosDevis->contains($infosDevi)) {
+            $this->infosDevis->add($infosDevi);
+            $infosDevi->setNbPersonne($this);
+        }
+
+        return $this;
+    }
+
+    public function removeInfosDevi(InfosDevis $infosDevi): static
+    {
+        if ($this->infosDevis->removeElement($infosDevi)) {
+            // set the owning side to null (unless already changed)
+            if ($infosDevi->getNbPersonne() === $this) {
+                $infosDevi->setNbPersonne(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, TrancheFiscal>
+     */
+    public function getTrancheFiscals(): Collection
+    {
+        return $this->trancheFiscals;
+    }
+
+    public function addTrancheFiscal(TrancheFiscal $trancheFiscal): static
+    {
+        if (!$this->trancheFiscals->contains($trancheFiscal)) {
+            $this->trancheFiscals->add($trancheFiscal);
+            $trancheFiscal->setNbPersonne($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTrancheFiscal(TrancheFiscal $trancheFiscal): static
+    {
+        if ($this->trancheFiscals->removeElement($trancheFiscal)) {
+            // set the owning side to null (unless already changed)
+            if ($trancheFiscal->getNbPersonne() === $this) {
+                $trancheFiscal->setNbPersonne(null);
             }
         }
 
