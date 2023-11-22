@@ -24,14 +24,17 @@ class Regions
     #[ORM\OneToMany(mappedBy: 'Regions', targetEntity: InfosDevis::class, orphanRemoval: true)]
     private Collection $infosDevis;
 
-    #[ORM\OneToMany(mappedBy: 'Region', targetEntity: TrancheFiscal::class)]
+    #[ORM\OneToMany(mappedBy: 'Regions', targetEntity: TrancheFiscal::class)]
     private Collection $trancheFiscals;
+
+
 
     public function __construct()
     {
         $this->tranches = new ArrayCollection();
         $this->infosDevis = new ArrayCollection();
         $this->trancheFiscals = new ArrayCollection();
+
     }
 
     public function getId(): ?int
@@ -123,7 +126,7 @@ class Regions
     {
         if (!$this->trancheFiscals->contains($trancheFiscal)) {
             $this->trancheFiscals->add($trancheFiscal);
-            $trancheFiscal->setRegion($this);
+            $trancheFiscal->setRegions($this);
         }
 
         return $this;
@@ -133,11 +136,13 @@ class Regions
     {
         if ($this->trancheFiscals->removeElement($trancheFiscal)) {
             // set the owning side to null (unless already changed)
-            if ($trancheFiscal->getRegion() === $this) {
-                $trancheFiscal->setRegion(null);
+            if ($trancheFiscal->getRegions() === $this) {
+                $trancheFiscal->setRegions(null);
             }
         }
 
         return $this;
     }
+
+
 }

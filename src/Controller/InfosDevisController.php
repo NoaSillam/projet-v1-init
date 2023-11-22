@@ -33,6 +33,146 @@ class InfosDevisController extends AbstractController
     }
 
 
+
+
+
+
+
+    #[Route('/new', name: 'app_infos_devis_new', methods: ['GET', 'POST'])]
+    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $infosDevi = new InfosDevis();
+        $tranchesFiscalesData = []; // Déplacez la déclaration ici
+
+        // Récupérer le nombre de personnes depuis la requête
+ /*       $nbPersonneId = $request->request->get('infos_devis')['nbPersonne'] ?? null;
+        // Récupérer la région depuis la requête
+        $regionId = $request->request->get('infos_devis')['Region'] ?? null;*/
+        $nbPersonneId = $request->request->get('nbPersonne') ?? null;
+        $regionId = $request->request->get('Region') ?? null;
+
+
+        if ($nbPersonneId) {
+            // Récupérer les tranches fiscales en fonction du nombre de personnes
+           // $tranchesFiscales = $entityManager->getRepository(TrancheFiscal::class)->findByNbPersonne($nbPersonneId);
+// Votre méthode new dans le contrôleur
+            $tranchesFiscales = $entityManager->getRepository(TrancheFiscal::class)->findByNbPersonneByRegions($nbPersonneId, $regionId);
+
+            // Transformez les données des tranches fiscales en un format approprié pour la réponse JSON
+            foreach ($tranchesFiscales as $tranche) {
+                $tranchesFiscalesData[] = [
+                    'value' => $tranche->getId(),
+                    'label' => $tranche->getDebut() . ' - ' . $tranche->getFin(),
+                ];
+            }
+        } else {
+            // Si le nombre de personnes n'est pas sélectionné, récupérer toutes les tranches fiscales
+            $tranchesFiscales = $entityManager->getRepository(TrancheFiscal::class)->findAll();
+        }
+
+        // ... (le reste de votre code)
+        $form = $this->createForm(InfosDevisType::class, $infosDevi, ['tranchesFiscales' => $tranchesFiscales]);
+        $form->handleRequest($request);
+
+        // Traitement du formulaire
+        if ($form->isSubmitted() && $form->isValid()) {
+            // ... (votre logique pour traiter le formulaire)
+            $entityManager->persist($infosDevi);
+            $entityManager->flush();
+            // Vérifiez si c'est une requête AJAX
+            if ($request->isXmlHttpRequest()) {
+                // Renvoyez une réponse JSON avec les données appropriées
+                return new JsonResponse(['success' => true, 'redirect' => $this->generateUrl('app_infos_devis_index')]);
+            }
+
+            // S'il ne s'agit pas d'une requête AJAX, redirigez vers la vue appropriée
+            return $this->redirectToRoute('app_infos_devis_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        // Si la requête n'est pas AJAX, renvoyez la vue HTML
+        if ($request->isXmlHttpRequest()) {
+            // Renvoyez une réponse JSON pour indiquer le succès
+            return new JsonResponse(['success' => true]);
+        }
+
+        // S'il ne s'agit pas d'une requête AJAX, renvoyez la vue HTML
+        return  $this->render('infos_devis/new.html.twig', [
+            'infos_devi' => $infosDevi,
+            'form' => $form->createView(),
+        ]);
+    }
+
+
+    #[Route('/updateTranches', name: 'app_infos_devis_tranches', methods: ['GET', 'POST'])]
+    public function updateTranches(Request $request, TrancheFiscalRepository $trancheFiscalRepository)
+    {
+
+        try {
+        $nbPersonneId = $request->query->get('nbPersonneId');
+        $regionId = $request->query->get('regionId');
+
+        // Votre logique pour récupérer les tranches fiscales en fonction du nombre de personnes
+        // Votre méthode updateTranches dans le contrôleur
+        $tranchesFiscales = $trancheFiscalRepository->findByNbPersonneByRegions($nbPersonneId, $regionId);
+
+       // dd($nbPersonneId, $regionId);
+        $tranchesFiscalesData = [];
+
+        foreach ($tranchesFiscales as $tranche) {
+            // $label = $tranche->getDebut();
+
+            // Ajoutez ' - fin' si la valeur de 'fin' n'est pas null
+            if ($tranche->getFin() !== null) {
+                $label = $tranche->getDebut().' - ' . $tranche->getFin();
+            } else {
+                $label = ' > ' . $tranche->getDebut();
+            }
+
+            $tranchesFiscalesData[] = [
+                'value' => $tranche->getId(),
+                'label' => $label,
+            ];
+        }
+
+        return new JsonResponse($tranchesFiscalesData);
+        } catch (\Exception $e) {
+            // Log the exception
+            $this->get('logger')->error('Error fetching tranches: ' . $e->getMessage());
+
+            // Renvoyer une réponse d'erreur au format JSON par exemple
+            return $this->json(['error' => 'Internal Server Error'], 500);
+        }
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   /*  #[Route('/new', name: 'app_infos_devis_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -145,8 +285,8 @@ class InfosDevisController extends AbstractController
     }*/
 
 
-/*
-    #[Route('/new', name: 'app_infos_devis_new', methods: ['GET', 'POST'])]
+
+  /*  #[Route('/new', name: 'app_infos_devis_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $infosDevi = new InfosDevis();
@@ -237,6 +377,176 @@ class InfosDevisController extends AbstractController
 
 
 
+/*
+    #[Route('/new', name: 'app_infos_devis_new', methods: ['GET', 'POST'])]
+    public function new(Request $request, EntityManagerInterface $entityManager): Response{
+        $infosDevi = new InfosDevis();
+        $tranchesFiscalesData = []; // Déplacez la déclaration ici
+        //    // Récupérer le nombre de personnes depuis la requête
+          $nbPersonneId = $request->request->get('infos_devis')['nbPersonne']->getId() ?? null;
+          $nbRegionsId = $request->request->get('infos_devis')['Regions']->getId() ?? null;
+          if ($nbPersonneId !== null && $nbRegionsId !== null)   {
+              // Récupérer les tranches fiscales en fonction du nombre de personnes
+                    $tranchesFiscales = $entityManager->getRepository(TrancheFiscal::class)->findByNbPersonneByRegions($nbPersonneId, $nbRegionsId);
+                    // Transformez les données des tranches fiscales en un format approprié pour la réponse JSON
+              foreach ($tranchesFiscales as $tranche) {
+              $tranchesFiscalesData[] = [
+                  'value' => $tranche->getId(),
+                  'label' => $tranche->getDebut() . ' - ' . $tranche->getFin(),
+                  ];
+              }
+          } else {
+              // Si le nombre de personnes n'est pas sélectionné, récupérer toutes les tranches fiscales
+               $tranchesFiscales = $entityManager->getRepository(TrancheFiscal::class)->findAll();
+          }
+          // ... (le reste de votre code)
+        $form = $this->createForm(InfosDevisType::class,
+            $infosDevi, ['tranchesFiscales' => $tranchesFiscales]);
+          $form->handleRequest($request);    // Traitement du formulaire
+         if ($form->isSubmitted() && $form->isValid()) {
+             // ... (votre logique pour traiter le formulaire)
+             //        // Vérifiez si c'est une requête AJAX
+             if ($request->isXmlHttpRequest()) {
+                 // Renvoyez une réponse JSON avec les données appropriées
+                 return new JsonResponse(['success' => true, 'redirect' => $this->generateUrl('app_infos_devis_index')]);
+             }
+             // S'il ne s'agit pas d'une requête AJAX, redirigez vers la vue appropriée
+             return $this->redirectToRoute('app_infos_devis_index', [], Response::HTTP_SEE_OTHER);
+         }    // Si la requête n'est pas AJAX, renvoyez la vue HTML
+        if ($request->isXmlHttpRequest()) {
+            // Renvoyez une réponse JSON pour indiquer le succès
+             return new JsonResponse(['success' => true]);
+        }
+        // S'il ne s'agit pas d'une requête AJAX, renvoyez la vue HTML
+        return  $this->render('infos_devis/new.html.twig', [
+            'infos_devi' => $infosDevi,
+            'form' => $form->createView(),
+            ]);}
+
+    #[Route('/updateTranches', name: 'app_infos_devis_tranches', methods: ['GET', 'POST'])]
+    public function updateTranches(Request $request, TrancheFiscalRepository $trancheFiscalRepository){
+        $nbPersonneId = $request->query->get('nbPersonneId')  ?? null;
+        $nbRegionsId = $request->query->get('nbRegionsId')  ?? null;
+        // Votre logique pour récupérer les tranches fiscales en fonction du nombre de personnes
+        $tranchesFiscales = $trancheFiscalRepository->findByNbPersonneByRegions($nbPersonneId, $nbRegionsId);
+        $tranchesFiscalesData = [];    foreach ($tranchesFiscales as $tranche) {
+           $label = $tranche->getDebut();
+            //        // Ajoutez ' - fin' si la valeur de 'fin' n'est pas null
+              if ($tranche->getFin() !== null) {
+              $label = $tranche->getDebut().' - ' . $tranche->getFin();
+              } else {
+                  $label = ' > ' . $tranche->getDebut();
+              }        $tranchesFiscalesData[] = [
+                  'value' => $tranche->getId(),
+                'label' => $label,        ];
+        }    return new JsonResponse($tranchesFiscalesData);
+    }*/
+
+/*
+#[Route('/new', name: 'app_infos_devis_new', methods: ['GET', 'POST'])]
+public function new(Request $request, EntityManagerInterface $entityManager): Response
+{        try {
+    $infosDevi = new InfosDevis();
+    $tranchesFiscalesData = []; // Déplacez la déclaration ici
+    //           // Récupérer le nombre de personnes depuis la requête
+            $nbPersonneId = $request->request->get('nbPersonne') ?? null;
+            $nbRegionId = $request->request->get('regionName') ?? null;
+            if ($nbPersonneId) {
+                $tranchesFiscales = $entityManager->getRepository(TrancheFiscal::class)->findByNbPersonneByRegion($nbPersonneId, $nbRegionId);
+                // Transformez les données des tranches fiscales en un format approprié pour la réponse JSON
+                foreach ($tranchesFiscales as $tranche) {
+                    $tranchesFiscalesData[] = [
+                        'value' => $tranche->getId(),
+                        'label' => $tranche->getDebut() . ' - ' . $tranche->getFin(),
+                        ];
+                }
+            } else {
+                // Si le nombre de personnes n'est pas sélectionné, récupérer toutes les tranches fiscales
+               $tranchesFiscales = $entityManager->getRepository(TrancheFiscal::class)->findAll();
+            }            // ... (le reste de votre code)
+              $form = $this->createForm(InfosDevisType::class, $infosDevi, ['tranchesFiscales' => $tranchesFiscales]);
+            $form->handleRequest($request);
+            // Traitement du formulaire
+          if ($form->isSubmitted() && $form->isValid()) {
+              // ... (votre logique pour traiter le formulaire)
+              $formData = $form->getData();
+              // Persister les données
+              $entityManager->persist($formData);
+              $entityManager->flush();
+              // Redirection ou réponse JSON en fonction de la requête
+            if ($request->isXmlHttpRequest()) {
+                return new JsonResponse(['success' => true, 'redirect' => $this->generateUrl('app_infos_devis_index')]);
+            }
+            return $this->redirectToRoute('app_infos_devis_index', [], Response::HTTP_SEE_OTHER);
+          }
+          //   Assurez-vous d'adapter ce code en fonction de votre logique métier spécifique et de vos entités associées. Si le problème persiste, examinez les messages d'erreur spécifiques générés par Doctrine lors de la tentative de flush pour obtenir des informations plus précises sur ce qui ne va pas.
+    //            // Si la requête n'est pas AJAX, renvoyez la vue HTML
+              if ($request->isXmlHttpRequest()) {
+                  // Renvoyer une réponse JSON pour indiquer le succès
+               return new JsonResponse(['success' => true]);
+              }
+              // S'il ne s'agit pas d'une requête AJAX, renvoyez la vue HTML
+                return  $this->render('infos_devis/new.html.twig', [
+                    'infos_devi' => $infosDevi,
+                    'form' => $form->createView(),
+                    ]);        } catch (\Exception $e) {
+    // Log or handle the exception as needed
+               error_log('Error in InfosDevisController: ' . $e->getMessage());
+               if ($request->isXmlHttpRequest()) {
+                   return new JsonResponse(['success' => false, 'error' => $e->getMessage()]);
+               }
+               // Ajoutez un message flash pour afficher l'erreur dans la vue
+            $this->addFlash('error', $e->getMessage());
+               return $this->redirectToRoute('app_infos_devis_index', [], Response::HTTP_SEE_OTHER);
+}}
+    #[Route('/updateTranches', name: 'app_infos_devis_tranches', methods: ['GET', 'POST'])]
+    public function updateTranches(Request $request, TrancheFiscalRepository $trancheFiscalRepository)
+    {
+        $nbPersonneId = $request->query->get('nbPersonneId');
+        $nbRegionId = $request->query->get('nbRegionId');
+        // Votre logique pour récupérer les tranches fiscales en fonction du nombre de personnes
+           $tranchesFiscales = $trancheFiscalRepository->findByNbPersonneByRegion($nbPersonneId, $nbRegionId);
+           $tranchesFiscalesData = [];
+           foreach ($tranchesFiscales as $tranche) {
+               // $label = $tranche->getDebut();
+               //            // Ajoutez ' - fin' si la valeur de 'fin' n'est pas null
+                         if ($tranche->getFin() !== null) {
+                             $label = $tranche->getDebut().' - ' . $tranche->getFin();
+                         } else {
+                             $label = ' > ' . $tranche->getDebut();
+                         }
+                         $tranchesFiscalesData[] = [
+                             'value' => $tranche->getId(),
+                             'label' => $label,
+                             ];        }
+           return new JsonResponse($tranchesFiscalesData);
+    }
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
     #[Route('/new', name: 'app_infos_devis_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -321,7 +631,7 @@ class InfosDevisController extends AbstractController
         }
 
         return new JsonResponse($tranchesFiscalesData);
-    }
+    }*/
 
 
 /*

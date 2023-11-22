@@ -54,7 +54,13 @@ class InfosDevisType extends AbstractType{
             ])
 
 
-
+            ->add('telephone', null, [
+                'label' => 'Téléphone',
+                'attr' => ['class' => 'form-control',
+                    'style' => 'color:black; margin-bottom: 20px;'],
+                'label_attr' => ['class' => 'custom-label',
+                    'style' => 'color: black; font-weight : bold; text-align : center; margin-left: 43%;'],
+                ])
 
          /*   ->add('nbPersonne', EntityType::class, [
                 'class' => Personne::class,
@@ -93,7 +99,70 @@ class InfosDevisType extends AbstractType{
                 'label' => 'Numéro Fiscale (€)',
                 'attr' => ['class' => 'form-control', 'style' => 'color:black; margin-bottom: 20px;'],
                 'label_attr' => ['class' => 'custom-label', 'style' => 'color: black; font-weight : bold; text-align : center; margin-left: 40%;'],
-            ]);
+            ])
+            ->add('proprieter',  ChoiceType::class, [
+                'choices' => ['Locataire' => 'Locataire',
+                    'Propriétaire' => 'Proprietaire',
+                    ],
+                'label' => 'Propriétaire / Locataire',
+                'placeholder' => 'Choisir Propriétaire / Locataire',
+                'attr' => ['class' => 'form-control',
+                    'style' => 'color:black; margin-bottom: 20px;'],
+                'label_attr' => ['class' => 'custom-label',
+                    'style' => 'color: black; 
+                    font-weight : bold; 
+                    text-align : center; 
+                    margin-left: 40%;'],
+                ])
+            ->add('typeChauffage',  ChoiceType::class, [
+                'choices' => ['Életricité' => 'electricite',
+                    'Fioul' => 'fioul',
+                    'Gaz' => 'gaz',
+                    'Bois' => 'bois',
+                    ],
+                'label' => 'Type de chauffage',
+                'placeholder' => 'Choisir le type de chauffage',
+                'attr' => ['class' => 'form-control',
+                    'style' => 'color:black; margin-bottom: 20px;'],
+                'label_attr' => ['class' => 'custom-label',
+                    'style' => 'color: black; 
+                    font-weight : bold; 
+                    text-align : center; margin-left: 40%;'],
+                ])
+            ->add('surfaceHabitable', null, [
+                'label' => 'Surface habitable (m2)',
+                'attr' => ['class' => 'form-control',
+                    'style' => 'color:black; margin-bottom: 20px;'],
+                'label_attr' => ['class' => 'custom-label',
+                    'style' => 'color: black; 
+                    font-weight : bold; 
+                    text-align : center; 
+                    margin-left: 40%;'],
+                ])
+            ->add('residencePrincipale', ChoiceType::class, [
+                'label' => 'Résidence Principale',
+                'choices' => [
+                    'Oui' => 'Oui',
+                    'Non' => 'Non',
+                ],
+                'expanded' => true,
+                'multiple' => false,
+                'choice_attr' => [
+                    'Oui' => ['style' => 'margin-left: 50px; text-align:center;'],
+                    'Non' => ['style' => 'margin-left: 150px; text-align:center; margin-bottom:100px;'],
+                ],
+                'attr' => [
+                    'class' => 'form-control',
+                    'style' => 'color:black; margin-bottom: 20px; height:40px;',
+                ],
+                'label_attr' => [
+                    'class' => 'custom-label',
+                    'style' => 'color: black; font-weight: bold; text-align: center; margin-left: 40%;',
+                ],
+            ])
+
+        ;
+
 
         $builder->addEventListener(
             FormEvents::PRE_SET_DATA,

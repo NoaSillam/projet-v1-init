@@ -102,11 +102,11 @@ class TrancheFiscalRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('tranchefiscal')
             ->join('tranchefiscal.nbPersonne', 'p')
-            ->join('tranchefiscal.Region', 'r')
+            ->join('tranchefiscal.Regions', 'r')
             ->Where('p.nbPersonne = :nbPersonne')
-            ->andWhere('r.id = :Region')
+            ->andWhere('r.id = :Regions')
             ->setParameter('nbPersonne', $nbPersonne)
-            ->setParameter('Region', $Region)
+            ->setParameter('Regions', $Region)
             ->getQuery()
             ->getResult();
     }

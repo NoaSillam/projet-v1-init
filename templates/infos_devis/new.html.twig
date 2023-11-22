@@ -89,8 +89,6 @@
 
 
 
-
-
 document.addEventListener('DOMContentLoaded', function () {
     var nbPersonneField = document.getElementById('infos_devis_nbPersonne');
     var nbRegionField = document.getElementById('infos_devis_Regions');
@@ -109,16 +107,21 @@ document.addEventListener('DOMContentLoaded', function () {
             isAjaxInProgress = true;
 
             var selectedPersonneId = nbPersonneField.value;
-            var selectedRegionId = nbRegionField.value; // Correction ici
+            var selectedRegionId = nbRegionField.value;
+
+            console.log('nbPersonneId:', selectedPersonneId);
+            console.log('regionId:', selectedRegionId);
 
             $.ajax({
                 url: '{{ path('app_infos_devis_tranches') }}',
                 type: 'GET',
                 data: {
                     nbPersonneId: selectedPersonneId,
-                    nbRegionsId: selectedRegionId // Correction ici
+                    regionId: selectedRegionId
                 },
+
                 success: function (data) {
+                    console.log('AJAX response:', data);
                     try {
                         trancheFiscalField.innerHTML = '';
 
@@ -132,9 +135,12 @@ document.addEventListener('DOMContentLoaded', function () {
                         console.error('Error processing AJAX response:', e);
                     }
                 },
-                error: function (error) {
+                error: function (xhr, status, error) {
                     console.error('AJAX error:', error);
+                    console.log('Status:', status);
+                    console.log('XHR:', xhr);
                 },
+
                 complete: function () {
                     isAjaxInProgress = false;
                 }
@@ -146,6 +152,7 @@ document.addEventListener('DOMContentLoaded', function () {
         nbRegionField.addEventListener('change', triggerAjaxRequest);
     }
 });
+
 
 
 /*

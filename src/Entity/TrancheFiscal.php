@@ -30,6 +30,9 @@ class TrancheFiscal
     #[ORM\OneToMany(mappedBy: 'TrancheFiscal', targetEntity: InfosDevis::class, orphanRemoval: true)]
     private Collection $infosDevis;
 
+    #[ORM\ManyToOne(inversedBy: 'trancheFiscals')]
+    private ?Regions $Regions = null;
+
     public function __construct()
     {
         $this->tranches = new ArrayCollection();
@@ -144,6 +147,18 @@ class TrancheFiscal
             return $this->getDebut().' > ';
         }
         return $this->getDebut().' - '.$this->getFin(); // Remplacez 'description' par le nom de la propriété que vous souhaitez afficher
+    }
+
+    public function getRegions(): ?Regions
+    {
+        return $this->Regions;
+    }
+
+    public function setRegions(?Regions $Regions): static
+    {
+        $this->Regions = $Regions;
+
+        return $this;
     }
 
 }
