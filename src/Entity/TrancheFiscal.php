@@ -148,6 +148,15 @@ class TrancheFiscal
         }
         return $this->getDebut().' - '.$this->getFin(); // Remplacez 'description' par le nom de la propriété que vous souhaitez afficher
     }
+    public function __toString(): string
+    {
+        if ($this->getFin() == null)
+        {
+            return $this->getDebut().' > ';
+        }
+        return $this->getDebut().' - '.$this->getFin(); // Remplacez 'description' par le nom de la propriété que vous souhaitez afficher
+    }
+
 
     public function getRegions(): ?Regions
     {

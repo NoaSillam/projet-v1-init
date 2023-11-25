@@ -52,6 +52,27 @@ class TrancheFiscalRepository extends ServiceEntityRepository
             ->getResult();
     }*/
 
+//    public function findTrancheFiscalChoicesByPersonne(?Personne $personne)
+//    {
+//        if ($personne === null) {
+//            return []; // ou une autre valeur par défaut selon vos besoins
+//        }
+//
+//        $tranchesFiscales = $this->createQueryBuilder('tf')
+//            ->andWhere('tf.nbPersonne = :val')
+//            ->setParameter('val', $personne)
+//            ->orderBy('tf.nbPersonne', 'ASC')
+//            ->getQuery()
+//            ->getResult();
+//
+//        $choices = [];
+//        foreach ($tranchesFiscales as $tranche) {
+//            $choices[$tranche->getId()] = $tranche->__toString();
+//        }
+//
+//        return $choices;
+//    }
+
     public function findTrancheFiscalChoicesByPersonne(?Personne $personne)
     {
         if ($personne === null) {
@@ -67,12 +88,14 @@ class TrancheFiscalRepository extends ServiceEntityRepository
 
         $choices = [];
         foreach ($tranchesFiscales as $tranche) {
-            $choices[$tranche->getId()] = $tranche->__toString();
+            $choices[] = [
+                'value' => $tranche->getId(),
+                'label' => $tranche->__toString(),
+            ];
         }
 
         return $choices;
     }
-
 
 
 

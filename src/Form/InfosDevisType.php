@@ -62,14 +62,7 @@ class InfosDevisType extends AbstractType{
                     'style' => 'color: black; font-weight : bold; text-align : center; margin-left: 43%;'],
                 ])
 
-         /*   ->add('nbPersonne', EntityType::class, [
-                'class' => Personne::class,
-                'choice_label' => 'nbPersonne',
-                'label' => 'Nombre de Personne dans le Foyer',
-                'placeholder' => 'Choisir le nombre de personne à charge dans votre foyer',
-                'attr' => ['class' => 'form-control', 'style' => 'color:black; margin-bottom: 20px;'],
-                'label_attr' => ['class' => 'custom-label', 'style' => 'color: black; font-weight : bold; text-align : center; margin-left: 30%;'],
-            ])*/
+
          ->add('nbPersonne', EntityType::class, [
              'class' => Personne::class,
              'choice_label' => 'nbPersonne',
@@ -194,19 +187,25 @@ class InfosDevisType extends AbstractType{
             return;
         }
 
-        $tranchesFiscales = $this->trancheFiscalRepository->findTrancheFiscalChoicesByPersonne($personne);
+        // Utilisez directement le résultat de la requête
+        $tranchesFiscales = $this->trancheFiscalRepository->findByNbPersonne(
+            $personne->getNbPersonne()
+        );
 
         $form->remove('TrancheFiscal');
         $form->add('TrancheFiscal', EntityType::class, [
             'class' => TrancheFiscal::class,
             'choices' => $tranchesFiscales,
             'choice_label' => 'label',
-            'label' => 'Tranche fiscale',
+            'label' => 'Tranche Fiscale (€)',
             'attr' => ['class' => 'form-control', 'style' => 'color:black; margin-bottom: 20px;'],
-            'label_attr' => ['class' => 'custom-label', 'style' => 'color: black; font-weight: bold; text-align: center; margin-left: 45%;'],
-            'placeholder' => 'Choisir une Tranche Fiscale', // Ajoutez une option de placeholder
+            'label_attr' => ['class' => 'custom-label', 'style' => 'color: black; font-weight: bold; text-align: center; margin-left: 40%;'],
+            'placeholder' => 'Choisir une Tranche Fiscale',
         ]);
     }
+
+
+
 
 
     public function configureOptions(OptionsResolver $resolver): void

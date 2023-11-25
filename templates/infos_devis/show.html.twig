@@ -17,10 +17,10 @@
 
     <table class="table">
         <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ infos_devi.id }}</td>
-            </tr>
+{#            <tr>#}
+{#                <th>Id</th>#}
+{#                <td>{{ infos_devi.id }}</td>#}
+{#            </tr>#}
             <tr>
                 <th>Nom</th>
                 <td>{{ infos_devi.Nom }}</td>
@@ -34,8 +34,40 @@
                 <td>{{ infos_devi.Mail }}</td>
             </tr>
             <tr>
-                <th>Num_fiscal</th>
-                <td>{{ infos_devi.NumFiscal }}</td>
+                <th>Tél</th>
+                <td>{{ infos_devi.telephone }}</td>
+            </tr>
+            <tr>
+                <th>Personnes dans le Foyer</th>
+                <td>{{ infos_devi.nbPersonne.nbPersonne | default('N/A')}}</td>
+            </tr>
+            <tr>
+                <th>Numéro Fiscal</th>
+                <td>{{ infos_devi.NumFiscal }} €</td>
+            </tr>
+            <tr>
+                <th>Tranche Fiscale</th>
+                <td>{{ infos_devi.TrancheFiscal is not null ? infos_devi.TrancheFiscal.Debut ~ '€' : 'N/A' }} - {{ infos_devi.TrancheFiscal is not null ? infos_devi.TrancheFiscal.Fin ~ '€' : 'N/A' }}</td>
+            </tr>
+            <tr>
+                <th>Région</th>
+                <td>{{ infos_devi.Regions.Nom  | default('N/A')}}</td>
+            </tr>
+            <tr>
+                <th>Propriété</th>
+                <td>{{ infos_devi.proprieter }}</td>
+            </tr>
+            <tr>
+                <th>Surface (m²)</th>
+                <td>{{ infos_devi.surfaceHabitable }}</td>
+            </tr>
+            <tr>
+                <th>Chauffage</th>
+                <td>{{ infos_devi.typeChauffage }}</td>
+            </tr>
+            <tr>
+                <th>Résidence</th>
+                <td>{{ infos_devi.residencePrincipale }}</td>
             </tr>
             <tr>
                 <th>Modifier :</th>
@@ -51,6 +83,12 @@
 
     </div>
 </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
 
 {% endblock %}
    {%block javascripts %}
