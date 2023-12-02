@@ -12,6 +12,7 @@
         "doctrine/orm": "^2.16",
         "eckinox/tinymce-bundle": "^0.1.5",
         "mobiledetect/mobiledetectlib": "^4.8",
+        "phpoffice/phpspreadsheet": "^1.29",
         "symfony/asset": "6.3.*",
         "symfony/console": "6.3.*",
         "symfony/dotenv": "6.3.*",

@@ -1,0 +1,282 @@
+{% block stylesheets %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <style>
+
+    </style>
+{% endblock %}
+
+
+{% block body %}
+    {{ include('base.html.twig') }}
+    <br>
+
+    <h1 style="text-align:center;">Demander votre devis</h1>
+
+    {{ include('infos_devis/_form.html.twig') }}
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+
+
+
+{% endblock %}
+      {%block javascripts %}
+
+          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+          <script>
+
+              /*
+                   document.addEventListener('DOMContentLoaded', function () {
+                       var nbPersonneField = document.getElementById('infos_devis_nbPersonne');
+                       var trancheFiscalField = document.getElementById('infos_devis_TrancheFiscal');
+
+                       var isAjaxInProgress = false;
+
+                       nbPersonneField.addEventListener('change', function () {
+                           if (isAjaxInProgress) {
+                               return;
+                           }
+
+                           isAjaxInProgress = true;
+
+                           var selectedPersonneId = nbPersonneField.value;
+
+                           $.ajax({
+                               url: '{{ path('app_infos_devis_tranches') }}',
+                 type: 'GET',
+                 data: { nbPersonneId: selectedPersonneId },
+                 success: function (data) {
+                     try {
+                         trancheFiscalField.innerHTML = '';
+
+                         data.forEach(function (option) {
+                             var newOption = document.createElement('option');
+                             newOption.value = option.value;
+                             newOption.text = option.label;
+                             trancheFiscalField.add(newOption);
+                         });
+                     } catch (e) {
+                         console.error('Error processing AJAX response:', e);
+                     }
+                 },
+                 error: function (error) {
+                     console.error('AJAX error:', error);
+                 },
+                 complete: function () {
+                     isAjaxInProgress = false;
+                 }
+             });
+         });
+     });*/
+
+
+
+
+
+              document.addEventListener('DOMContentLoaded', function () {
+                  var nbPersonneField = document.getElementById('infos_devis_nbPersonne');
+                  var nbRegionField = document.getElementById('infos_devis_Regions');
+                  var trancheFiscalField = document.getElementById('infos_devis_TrancheFiscal');
+
+                  // Vérifier si l'élément existe avant d'ajouter l'écouteur d'événements
+                  if (nbPersonneField && nbRegionField) {
+                      var isAjaxInProgress = false;
+
+                      // Fonction pour déclencher la requête AJAX
+                      function triggerAjaxRequest() {
+                          if (isAjaxInProgress) {
+                              return;
+                          }
+
+                          isAjaxInProgress = true;
+
+                          var selectedPersonneId = nbPersonneField.value;
+                          var selectedRegionId = nbRegionField.value;
+
+                          console.log('nbPersonneId:', selectedPersonneId);
+                          console.log('regionId:', selectedRegionId);
+
+                          $.ajax({
+                              url: '{{ path('app_infos_devis_tranches') }}',
+                              type: 'GET',
+                              data: {
+                                  nbPersonneId: selectedPersonneId,
+                                  regionId: selectedRegionId
+                              },
+
+                              success: function (data) {
+                                  console.log('AJAX response:', data);
+                                  try {
+                                      trancheFiscalField.innerHTML = '';
+
+                                      data.forEach(function (option) {
+                                          var newOption = document.createElement('option');
+                                          newOption.value = option.value;
+                                          newOption.text = option.label;
+                                          trancheFiscalField.add(newOption);
+                                      });
+                                  } catch (e) {
+                                      console.error('Error processing AJAX response:', e);
+                                  }
+                              },
+                              error: function (xhr, status, error) {
+                                  console.error('AJAX error:', error);
+                                  console.log('Status:', status);
+                                  console.log('XHR:', xhr);
+                              },
+
+                              complete: function () {
+                                  isAjaxInProgress = false;
+                              }
+                          });
+                      }
+
+                      // Ajouter des écouteurs d'événements pour les champs nbPersonne et nbRegion
+                      nbPersonneField.addEventListener('change', triggerAjaxRequest);
+                      nbRegionField.addEventListener('change', triggerAjaxRequest);
+                  }
+              });
+
+
+
+              /*
+
+              document.addEventListener('DOMContentLoaded', function () {
+                  var nbPersonneField = document.getElementById('infos_devis_nbPersonne');
+                  var nbRegionField = document.getElementById('infos_devis_Regions');
+                  var trancheFiscalField = document.getElementById('infos_devis_TrancheFiscal');
+
+                  if (nbPersonneField && nbRegionField && trancheFiscalField) {
+                      var isAjaxInProgress = false;
+
+                      function triggerAjaxRequest() {
+                          if (isAjaxInProgress) {
+                              return;
+                          }
+
+                          isAjaxInProgress = true;
+
+                          var selectedPersonneId = nbPersonneField.value;
+                          var selectedRegionId = nbRegionField.value;
+
+                          $.ajax({
+                              url: '{{ path('app_infos_devis_tranches') }}',
+                type: 'GET',
+                data: {
+                    nbPersonneId: selectedPersonneId,
+                    nbRegionsId: selectedRegionId
+                },
+                success: function (data) {
+                    try {
+                        trancheFiscalField.innerHTML = '';
+
+                        data.forEach(function (option) {
+                            var newOption = document.createElement('option');
+                            newOption.value = option.value;
+                            newOption.text = option.label;
+                            trancheFiscalField.add(newOption);
+                        });
+                    } catch (e) {
+                        console.error('Error processing AJAX response:', e);
+                    }
+                },
+                error: function (error) {
+                    console.error('AJAX error:', error);
+                },
+                complete: function () {
+                    isAjaxInProgress = false;
+                }
+            });
+        }
+
+        nbPersonneField.addEventListener('change', triggerAjaxRequest);
+        nbRegionField.addEventListener('change', triggerAjaxRequest);
+    }
+});
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              /*
+
+              document.addEventListener('DOMContentLoaded', function () {
+                  var nbPersonneField = document.getElementById('infos_devis_nbPersonne');
+                  var nbRegionField = document.getElementById('infos_devis_Region');
+                  var trancheFiscalField = document.getElementById('infos_devis_TrancheFiscal');
+                  var isAjaxInProgress = false;
+
+                  if (nbPersonneField && nbRegionField && trancheFiscalField) {
+                      function updateTranches() {
+                          if (isAjaxInProgress) {
+                              return;
+                          }
+
+                          isAjaxInProgress = true;
+
+                          var selectedPersonneId = nbPersonneField.value;
+                          var selectedRegionId = nbRegionField.value;
+
+                          $.ajax({
+                              url: '{{ path('app_infos_devis_tranches') }}',
+                type: 'GET',
+                data: {nbPersonneId: selectedPersonneId, nbRegionId: selectedRegionId },
+                success: function (data) {
+                    try {
+                        trancheFiscalField.innerHTML = '';
+
+                        data.forEach(function (option) {
+                            var newOption = document.createElement('option');
+                            newOption.value = option.value;
+                            newOption.text = option.label;
+                            trancheFiscalField.add(newOption);
+                        });
+                    } catch (e) {
+                        console.error('Error processing AJAX response:', e);
+                    }
+                },
+                error: function (error) {
+                    console.error('AJAX error:', error);
+                },
+                complete: function () {
+                    isAjaxInProgress = false;
+                }
+            });
+        }
+
+        nbPersonneField.addEventListener('change', updateTranches);
+        nbRegionField.addEventListener('change', updateTranches);
+    }
+});
+*/
+
+
+          </script>
+      {%endblock%}

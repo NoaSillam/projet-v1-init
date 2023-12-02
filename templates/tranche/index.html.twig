@@ -37,8 +37,8 @@
                 <td>{{ tranche.TrancheFiscal is not null ? tranche.TrancheFiscal.Debut ~ '€' : 'N/A' }}</td>
                 <td>{{ tranche.TrancheFiscal is not null ? tranche.TrancheFiscal.Fin ~ '€' : 'N/A' }}</td>
                 <td>{{ tranche.Menage.Nom }}</td>
-                <td>{{ tranche.Region.Nom }}</td>
-                <td>{{ tranche.nbPersonne.nbPersonne }}</td>
+                <td>{{ tranche.TrancheFiscal.Regions.Nom }}</td>
+                <td>{{ tranche.TrancheFiscal.nbPersonne.nbPersonne }}</td>
                 <td>{{ tranche.Prime.Nom }}</td>
                 <td>{{ tranche.Aide }}€</td>
                 <td>{{ tranche.TypeDevis.Nom | default('N/A') }}</td>

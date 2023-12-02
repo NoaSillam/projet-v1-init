@@ -144,7 +144,7 @@ class TrancheFiscal
     {
         if ($this->getFin() == null)
         {
-            return $this->getDebut().' > ';
+            return ' > '.$this->getDebut();
         }
         return $this->getDebut().' - '.$this->getFin(); // Remplacez 'description' par le nom de la propriété que vous souhaitez afficher
     }
@@ -152,7 +152,7 @@ class TrancheFiscal
     {
         if ($this->getFin() == null)
         {
-            return $this->getDebut().' > ';
+            return ' > '.$this->getDebut();
         }
         return $this->getDebut().' - '.$this->getFin(); // Remplacez 'description' par le nom de la propriété que vous souhaitez afficher
     }

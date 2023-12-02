@@ -1,32 +1,18 @@
 <?php
 namespace App\Form;
 use App\Entity\InfosDevis;
-
 use App\Entity\Personne;
-
 use App\Entity\Regions;
-
-
 use App\Entity\TrancheFiscal;
-
 use App\Repository\TrancheFiscalRepository;
-
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-
 use Symfony\Component\Form\AbstractType;
-
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-
 use Symfony\Component\Form\FormBuilderInterface;
-
 use Symfony\Component\Form\FormEvent;
-
 use Symfony\Component\Form\FormEvents;
-
 use Symfony\Component\Form\FormInterface;
-
 use Symfony\Component\OptionsResolver\OptionsResolver;
-
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class InfosDevisType extends AbstractType{
@@ -66,15 +52,17 @@ class InfosDevisType extends AbstractType{
          ->add('nbPersonne', EntityType::class, [
              'class' => Personne::class,
              'choice_label' => 'nbPersonne',
+             'disabled' => $options['is_edit'],
              'label' => 'Nombre de Personne dans le Foyer',
              'placeholder' => 'Choisir le nombre de personne à charge dans votre foyer',
-             'attr' => ['class' => 'form-control', 'style' => 'color:black; margin-bottom: 20px;'],
+             'attr' => [ 'class' => 'form-control', 'style' => 'color:black; margin-bottom: 20px;'],
              'label_attr' => ['class' => 'custom-label', 'style' => 'color: black; font-weight : bold; text-align : center; margin-left: 30%;'],
          ])
 
             ->add('Regions', EntityType::class, [
                 'class' => Regions::class,
                 'choice_label' => 'Nom',
+                'disabled' => $options['is_edit'],
                 'label' => 'Régions',
                 'placeholder' => 'Choisir une région',
                 'attr' => ['class' => 'form-control', 'style' => 'color:black; margin-bottom: 20px;'],
@@ -157,7 +145,7 @@ class InfosDevisType extends AbstractType{
         ;
 
 
-        $builder->addEventListener(
+    /*    $builder->addEventListener(
             FormEvents::PRE_SET_DATA,
             function (FormEvent $event) {
                 $form = $event->getForm();
@@ -166,6 +154,7 @@ class InfosDevisType extends AbstractType{
                 if ($data instanceof InfosDevis) {
                     $this->addTrancheFiscalField($form, $data->getNbPersonne());
                 }
+
             }
         );
 
@@ -176,6 +165,38 @@ class InfosDevisType extends AbstractType{
                 $data = $event->getData();
 
                 $this->addTrancheFiscalField($form, $data);
+            }
+        );*/
+
+        $isEdit = $options['is_edit'];
+
+        $builder->addEventListener(
+            FormEvents::PRE_SET_DATA,
+            function (FormEvent $event) use ($isEdit) {
+                $form = $event->getForm();
+                $data = $event->getData();
+
+                if ($data instanceof InfosDevis) {
+                    if ($isEdit) {
+                        $this->editTrancheFiscalField($form, $data->getNbPersonne(), $data->getRegions());
+                    } else {
+                        $this->addTrancheFiscalField($form, $data->getNbPersonne());
+                    }
+                }
+            }
+        );
+
+        $builder->get('nbPersonne')->addEventListener(
+            FormEvents::POST_SUBMIT,
+            function (FormEvent $event) use ($isEdit) {
+                $form = $event->getForm()->getParent();
+                $data = $event->getData();
+
+                if ($isEdit) {
+                    $this->editTrancheFiscalField($form, $data, $data->getRegion());
+                } else {
+                    $this->addTrancheFiscalField($form, $data);
+                }
             }
         );
     }
@@ -203,7 +224,29 @@ class InfosDevisType extends AbstractType{
             'placeholder' => 'Choisir une Tranche Fiscale',
         ]);
     }
+    private function editTrancheFiscalField(FormInterface $form, $personne, $region): void
+    {
+        if (!$personne instanceof Personne) {
+            return;
+        }
 
+        // Utilisez directement le résultat de la requête
+        $tranchesFiscales = $this->trancheFiscalRepository->findByNbPersonneByRegions(
+            $personne->getNbPersonne(),
+            $region
+        );
+
+        $form->remove('TrancheFiscal');
+        $form->add('TrancheFiscal', EntityType::class, [
+            'class' => TrancheFiscal::class,
+            'choices' => $tranchesFiscales,
+            'choice_label' => 'label',
+            'label' => 'Tranche Fiscale (€)',
+            'attr' => ['class' => 'form-control', 'style' => 'color:black; margin-bottom: 20px;'],
+            'label_attr' => ['class' => 'custom-label', 'style' => 'color: black; font-weight: bold; text-align: center; margin-left: 40%;'],
+            'placeholder' => 'Choisir une Tranche Fiscale',
+        ]);
+    }
 
 
 
@@ -212,7 +255,9 @@ class InfosDevisType extends AbstractType{
     {
         $resolver->setDefaults([
             'data_class' => InfosDevis::class,
-            'tranchesFiscales' => [], // Ajoutez cette ligne pour définir l'option tranchesFiscales
+            'tranchesFiscales' => [],
+            'is_edit' => false,
+            //  'is_edit' => false,// Ajoutez cette ligne pour définir l'option tranchesFiscales
         ]);
     }
 }

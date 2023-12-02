@@ -19,9 +19,6 @@
             <tr>
                 <th>Id</th>
                 <th>Nom</th>
-                <th>Aide</th>
-                <th>Ménage</th>
-                <th>Type de chauffage</th>
                 <th style="text-align: center;">Actions</th>
             </tr>
         </thead>
@@ -30,9 +27,6 @@
             <tr>
                 <td>{{ prime.id }}</td>
                 <td>{{ prime.Nom }}</td>
-                <td>{{ prime.aide }}</td>
-                <td>{{ prime.Menage.Nom }}</td>
-                <td>{{ prime.Type_chauffage.Nom }}</td>
                 <td style="display: flex; align-items: center; justify-content: center;  " >
 
                     <a class="btn btn-success" href="{{ path('app_prime_show', {'id': prime.id}) }}" style="width:60px;  height:40px; margin-right: 10px;"><img src="{{asset( 'assets/images/plus.png') }}" class="card-img-top" style="width:25px;" alt=""></a>

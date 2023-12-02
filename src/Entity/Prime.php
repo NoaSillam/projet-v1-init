@@ -18,16 +18,7 @@ class Prime
     #[ORM\Column(length: 255)]
     private ?string $Nom = null;
 
-    #[ORM\ManyToOne(inversedBy: 'primes')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?TypeDevis $Type_chauffage = null;
 
-    #[ORM\ManyToOne(inversedBy: 'primes')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Menage $Menage = null;
-
-    #[ORM\Column]
-    private ?int $aide = null;
 
     #[ORM\OneToMany(mappedBy: 'Prime', targetEntity: Tranche::class, orphanRemoval: true)]
     private Collection $tranches;
@@ -54,41 +45,9 @@ class Prime
         return $this;
     }
 
-    public function getType_Chauffage(): ?TypeDevis
-    {
-        return $this->Type_chauffage;
-    }
 
-    public function setType_Chauffage(?TypeDevis $Type_chauffage): static
-    {
-        $this->Type_chauffage = $Type_chauffage;
 
-        return $this;
-    }
 
-    public function getMenage(): ?Menage
-    {
-        return $this->Menage;
-    }
-
-    public function setMenage(?Menage $Menage): static
-    {
-        $this->Menage = $Menage;
-
-        return $this;
-    }
-
-    public function getAide(): ?int
-    {
-        return $this->aide;
-    }
-
-    public function setAide(int $aide): static
-    {
-        $this->aide = $aide;
-
-        return $this;
-    }
 
     /**
      * @return Collection<int, Tranche>

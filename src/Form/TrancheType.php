@@ -78,7 +78,7 @@ class TrancheType extends AbstractType
                         'style' => 'color: black; font-weight : bold; text-align : center; margin-left: 45%;', // Ajoutez des styles CSS personnalisés pour les labels
                     ],
                 ])
-            ->add('Region', EntityType::class,
+  /*          ->add('Region', EntityType::class,
                 ['class'=>Regions::class,
                     'choice_label' => 'Nom',
                     'label' => 'Régions' ,
@@ -103,7 +103,7 @@ class TrancheType extends AbstractType
                         'class' => 'custom-label', // Ajoutez votre classe personnalisée pour les labels
                         'style' => 'color: black; font-weight : bold; text-align : center; margin-left: 45%;', // Ajoutez des styles CSS personnalisés pour les labels
                     ],
-                ])
+                ])*/
             ->add('Prime', EntityType::class,
                 ['class'=>Prime::class,
                     'choice_label' => 'Nom',

@@ -21,15 +21,14 @@ class TypeDevis
     #[ORM\Column]
     private ?int $metre_carre = null;
 
-    #[ORM\OneToMany(mappedBy: 'Type_chauffage', targetEntity: Prime::class, orphanRemoval: true)]
-    private Collection $primes;
+
 
     #[ORM\OneToMany(mappedBy: 'TypeDevis', targetEntity: Tranche::class, orphanRemoval: true)]
     private Collection $tranches;
 
     public function __construct()
     {
-        $this->primes = new ArrayCollection();
+
         $this->tranches = new ArrayCollection();
     }
 
@@ -62,35 +61,6 @@ class TypeDevis
         return $this;
     }
 
-    /**
-     * @return Collection<int, Prime>
-     */
-    public function getPrimes(): Collection
-    {
-        return $this->primes;
-    }
-
-    public function addPrime(Prime $prime): static
-    {
-        if (!$this->primes->contains($prime)) {
-            $this->primes->add($prime);
-            $prime->setType_Chauffage($this);
-        }
-
-        return $this;
-    }
-
-    public function removePrime(Prime $prime): static
-    {
-        if ($this->primes->removeElement($prime)) {
-            // set the owning side to null (unless already changed)
-            if ($prime->getType_Chauffage() === $this) {
-                $prime->setType_Chauffage(null);
-            }
-        }
-
-        return $this;
-    }
 
     /**
      * @return Collection<int, Tranche>

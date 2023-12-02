@@ -9,17 +9,19 @@
     {{ include('base.html.twig') }}
     <br>
     <h1 style="text-align:center;">Les devis</h1>
-<div style="margin: auto; width: 95%;">
+<div style="margin: auto; width: 120%;">
     <div style="margin-left:auto; margin-right:auto;">
         <a href="{{ path('app_infos_devis_new')}}" class="btn btn-secondary" style="margin-left: 5%;">Ajouter un nouveau devis</a>
+        <a href="{{ path('app_generate_excel') }}" style="float: right; margin-right: 400px;" class="btn btn-primary">Télécharger Excel</a>
+
         <br>
         <br>
-    <table class="table">
+    <table class="table" style=" margin-right: 5%;">
         <thead>
         <tr>
             <th style="text-align: center;">Nom</th>
             <th style="text-align: center;">Prénom</th>
-            <th style="text-align: center;">Mail</th>
+            <th style="text-align: center; ">Mail</th>
             <th style="text-align: center;">Tél.</th>
             <th style="text-align: center; ">Personnes dans le Foyer</th>
             <th style="text-align: center;">Numéro Fiscal</th>
@@ -29,24 +31,48 @@
             <th style="text-align: center;">Surface (m²)</th>
             <th style="text-align: center;">Chauffage</th>
             <th style="text-align: center;">Résidence</th>
+            <th style="text-align: center;">Aide</th>
+            <th style="text-align: center;">Prime</th>
             <th style="text-align: center;">Actions</th>
         </tr>
         </thead>
         <tbody>
         {% for infos_devi in infos_devis %}
             <tr>
-                <td style="text-align: center;">{{ infos_devi.Nom }}</td>
-                <td style="text-align: center;">{{ infos_devi.Prenom }}</td>
-                <td style="text-align: center;">{{ infos_devi.Mail }}</td>
-                <td style="text-align: center;">0{{ infos_devi.telephone }}</td>
-                <td style="text-align: center;">{{ infos_devi.nbPersonne.nbPersonne | default('N/A')}}</td>
-                <td style="text-align: center;">{{ infos_devi.NumFiscal }} €</td>
-                <td style="text-align: center;">{{ infos_devi.TrancheFiscal is not null ? infos_devi.TrancheFiscal.Debut ~ '€' : 'N/A' }} - {{ infos_devi.TrancheFiscal is not null ? infos_devi.TrancheFiscal.Fin ~ '€' : 'N/A' }}</td>
-                <td style="text-align: center;">{{ infos_devi.Regions.Nom  | default('N/A')}}</td>
-                <td style="text-align: center;">{{ infos_devi.proprieter }}</td>
-                <td style="text-align: center;">{{ infos_devi.surfaceHabitable }}</td>
-                <td style="text-align: center;">{{ infos_devi.typeChauffage }}</td>
-                <td style="text-align: center;">{{ infos_devi.residencePrincipale }}</td>
+                <td style="text-align: center; font-size: 15px;">{{ infos_devi.Nom }}</td>
+                <td style="text-align: center; font-size: 15px;">{{ infos_devi.Prenom }}</td>
+                <td style="text-align: center; font-size: 15px;">{{ infos_devi.Mail }}</td>
+                <td style="text-align: center; font-size: 15px;">0{{ infos_devi.telephone }}</td>
+                <td style="text-align: center; font-size: 15px;">{{ infos_devi.nbPersonne.nbPersonne | default('N/A')}}</td>
+                <td style="text-align: center; font-size: 15px;">{{ infos_devi.NumFiscal }} €</td>
+                <td style="text-align: center; font-size: 15px;">      {% if infos_devi.TrancheFiscal.Fin == null %}
+                  >  {{ infos_devi.TrancheFiscal.Debut }} €
+                    {% else %}
+                        {{ infos_devi.TrancheFiscal is not null ? infos_devi.TrancheFiscal.Debut ~ '€' : 'N/A' }} - {{ infos_devi.TrancheFiscal is not null ? infos_devi.TrancheFiscal.Fin ~ '€' : 'N/A' }}
+                    {% endif %}</td>
+                <td style="text-align: center; font-size: 15px;">{{ infos_devi.Regions.Nom  | default('N/A')}}</td>
+                <td style="text-align: center; font-size: 15px;">{{ infos_devi.proprieter }}</td>
+                <td style="text-align: center; font-size: 15px;">{{ infos_devi.surfaceHabitable }}</td>
+                <td style="text-align: center; font-size: 15px;">{{ infos_devi.typeChauffage }}</td>
+                <td style="text-align: center; font-size: 15px;">{{ infos_devi.residencePrincipale }}</td>
+                <td style="text-align: center; font-size: 15px;">
+                    {% if infos_devi.validations == 1 %}
+                        0ui
+                    {% else %}
+                        Non
+                    {% endif %}
+                </td>
+                <td style="text-align: center; color: red; font-size: 15px;">
+                    {% if infos_devi.validations == 1 %}
+                        {% set totalAide = 0 %}
+                        {% for tranche in infos_devi.TrancheFiscal.tranches %}
+                            {% set totalAide = totalAide + (tranche.Aide is not null ? tranche.Aide : 0) %}
+                        {% endfor %}
+                        {{ totalAide }}
+                    {% else %}
+                        0
+                    {% endif %}
+                </td>
 
                 <td style="display: flex; align-items: center; justify-content: center;  " >
 

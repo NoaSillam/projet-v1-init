@@ -157,33 +157,40 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
-            {#  <li class="nav-item">
-                <a class="nav-link active" style="font-size:20px; color: white;" aria-current="page" href="{{path ('main_accueil_user')}}">Accueil</a>       
-               </li>#}
+                <li class="nav-item dropdown nav-item-space">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-size:20px; color: white;">
+                        Isolation
+                    </a>
+                    <ul class="dropdown-menu" >
+                        <li><a class="dropdown-item" style="color: #1D4851; background-color: white;" href="{{path ('app_article_index_2')}}">Isolation</a></li>
+                        <li><a class="dropdown-item" style="color: #1D4851; background-color: white;" href="{{path ('app_article_index_2')}}">Isolation Intérieur</a></li>
+                        <li><a class="dropdown-item" style="color: #1D4851; background-color: white;" href="{{path ('app_article_index_2')}}">Isolation Exterieur</a></li>
+                        <li><a class="dropdown-item" style="color: #1D4851; background-color: white;" href="{{path ('app_article_index_2')}}">Isolation Comble</a></li>
+                        <li><a class="dropdown-item" style="color: #1D4851; background-color: white;" href="{{path ('app_article_index_2')}}">Isolation Sous-sol / Garage</a></li>
+                    </ul>
+                </li>
 
-              <li class="nav-item dropdown nav-item-space" >
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-size:20px; color: white;">
-                  Isolation
-                </a>
-                <ul class="dropdown-menu" >
-                  <li><a class="dropdown-item" style="color: #1D4851;" href="{{path ('app_article_index_2')}}">Isolation Accueil</a></li>
-                </ul>
-              </li>
 
-              <li class="nav-item dropdown nav-item-space">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-size:20px; color: white;">
-                  Pompe à chaleur
-                </a>
-                <ul class="dropdown-menu" >
-                  <li><a class="dropdown-item" style="color: #1D4851;" href="{{path ('app_article_index_3')}}">Pompe à chaleur</a></li>
-                </ul>
-              </li>
+                <li class="nav-item dropdown nav-item-space">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-size:20px; color: white;">
+                        Pompe à chaleur
+                    </a>
+                    <ul class="dropdown-menu" >
+                        <li><a class="dropdown-item" style="color: #1D4851; background-color: white;" href="{{path ('app_article_index_3')}}"> Pompe à chaleur Air / Air</a></li>
+                        <li><a class="dropdown-item" style="color: #1D4851; background-color: white;" href="{{path ('app_article_index_3')}}">Pompe à chaleur Air / Eau</a></li>
+                        <li><a class="dropdown-item" style="color: #1D4851; background-color: white;" href="{{path ('app_article_index_3')}}">Poile à bois</a></li>
+                        <li><a class="dropdown-item" style="color: #1D4851; background-color: white;" href="{{path ('app_article_index_3')}}">Poile à granulet</a></li>
+                    </ul>
+                </li>
+
+
+
               <li class="nav-item dropdown nav-item-space">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-size:20px; color: white;">
                   Solaire & Photovoltaique
                 </a>
                 <ul class="dropdown-menu" >
-                  <li><a class="dropdown-item" style="color: #1D4851;" href="{{path ('app_article_index_4')}}">presentation</a></li>
+                  <li><a class="dropdown-item" style="color: #1D4851; background-color: white;" href="{{path ('app_article_index_4')}}">presentation</a></li>
                 </ul>
               </li>
 
@@ -191,11 +198,11 @@
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-size:20px; color: white;">
                   Aides & primes
                 </a>
-                <ul class="dropdown-menu" >
-                  <li><a class="dropdown-item" style="color: #1D4851;" href="{{path ('app_article_index_5')}}">Aide</a></li>
-                  <li><a class="dropdown-item" style="color: #1D4851;" href="#">Another action</a></li>
+                <ul class="dropdown-menu" style="background-color: #1D4851;">
+                  <li><a class="dropdown-item" style="color: white; background-color: #1D4851;" href="{{path ('app_article_index_5')}}">Aide</a></li>
+                  <li><a class="dropdown-item" style="color: white; background-color: #1D4851;" href="#">Another action</a></li>
                   <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" style="color: #1D4851;" href="#">Something else here</a></li>
+                  <li><a class="dropdown-item" style="color: white; background-color: #1D4851;" href="#">Something else here</a></li>
                 </ul>
               </li>
 
@@ -218,7 +225,7 @@
             </ul>
 
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0 "  >
-             <a href="{{path ('app_infos_devis_new')}}"> <button type="button" class="btn btn-primary" style="width:200px; height:50px; margin-right:4%; border-radius:50px; background: linear-gradient(to right,#004d00, #66ff66); font-size:15px;  border-color: #1D4851;" ><strong>{{"Demander un devis" | upper}}</strong></button></a>
+             <a href="{{path ('app_infos_devis_new_client')}}"> <button type="button" class="btn btn-primary" style="width:200px; height:50px; margin-right:4%; border-radius:50px; background: linear-gradient(to right,#004d00, #66ff66); font-size:15px;  border-color: #1D4851;" ><strong>{{"Demander un devis" | upper}}</strong></button></a>
             </ul>
            {#  <form class="d-flex" role="search"> #}
            {#     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">#}

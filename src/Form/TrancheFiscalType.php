@@ -46,7 +46,7 @@ class TrancheFiscalType extends AbstractType
                         'style' => 'color: black; font-weight : bold; text-align : center; margin-left: 45%;', // Ajoutez des styles CSS personnalisés pour les labels
                     ],
                 ])
-            ->add('Region', EntityType::class,
+            ->add('Regions', EntityType::class,
                 ['class'=>Regions::class,
                     'choice_label' => 'Nom',
                     'label' => 'Régions' ,

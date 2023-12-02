@@ -26,11 +26,11 @@ class Tranche
     private ?Menage $Menage = null;
 
     #[ORM\ManyToOne(inversedBy: 'tranches')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?Regions $Region = null;
 
     #[ORM\ManyToOne(inversedBy: 'tranches')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?Personne $nbPersonne = null;
 
     #[ORM\ManyToOne(inversedBy: 'tranches')]

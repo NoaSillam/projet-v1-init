@@ -30,7 +30,7 @@
                 <td style="text-align: center;">{{ tranche_fiscal.Debut }}€</td>
                 <td style="text-align: center;">{{ tranche_fiscal.Fin | default('N/A') }}€</td>
                 <td style="text-align: center;">{{ tranche_fiscal.nbPersonne.nbPersonne | default('N/A')}}</td>
-                <td style="text-align: center;">{{ tranche_fiscal.Region.Nom | default('N/A') }}</td>
+                <td style="text-align: center;">{{ tranche_fiscal.Regions.Nom | default('N/A') }}</td>
                 <td style="display: flex; align-items: center; justify-content: center;  " >
 
                     <a class="btn btn-success" href="{{ path('app_tranche_fiscal_show', {'id': tranche_fiscal.id}) }}" style="width:60px;  height:40px; margin-right: 10px;"><img src="{{asset( 'assets/images/plus.png') }}" class="card-img-top" style="width:25px;" alt=""></a>

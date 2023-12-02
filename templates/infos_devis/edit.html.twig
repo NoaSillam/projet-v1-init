@@ -13,13 +13,16 @@
 <div style="float:right; margin-right:3%; height: 50px;"> {{ include('infos_devis/_delete_form.html.twig') }}</div>
 
 <h1 style="text-align:center;">Editer un devis</h1>
-
-
     {{ include('infos_devis/_form.html.twig', {'button_label': 'Enregistrer'}) }}
 
-
-
-
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
 {% endblock %}
   {%block javascripts %}
 
@@ -95,68 +98,78 @@
 {#    });#}
 {#</script>#}
 
-    document.addEventListener('DOMContentLoaded', function () {
-    var nbPersonneField = document.getElementById('infos_devis_nbPersonne');
-    var nbRegionField = document.getElementById('infos_devis_Regions');
-    var trancheFiscalField = document.getElementById('infos_devis_TrancheFiscal');
 
-    // Vérifier si l'élément existe avant d'ajouter l'écouteur d'événements
-    if (nbPersonneField && nbRegionField) {
-    var isAjaxInProgress = false;
 
-    // Fonction pour déclencher la requête AJAX
-    function triggerAjaxRequest() {
-    if (isAjaxInProgress) {
-    return;
-}
 
-    isAjaxInProgress = true;
 
-    var selectedPersonneId = nbPersonneField.value;
-    var selectedRegionId = nbRegionField.value;
 
-    console.log('Selected nbPersonneId:', selectedPersonneId);
-    console.log('Selected regionId:', selectedRegionId);
 
-    $.ajax({
-    url: '{{ path('app_infos_devis_tranches') }}',
-    type: 'GET',
-    data: {
-    nbPersonneId: selectedPersonneId,
-    regionId: selectedRegionId
-},
-    success: function (data) {
-    console.log('AJAX response:', data);
 
-    try {
-    trancheFiscalField.innerHTML = '';
 
-    data.forEach(function (option) {
-    var newOption = document.createElement('option');
-    newOption.value = option.value;
-    newOption.text = option.label;
-    trancheFiscalField.add(newOption);
-});
-} catch (e) {
-    console.error('Error processing AJAX response:', e);
-}
-},
-    error: function (xhr, status, error) {
-    console.error('AJAX error:', error);
-    console.log('Status:', status);
-    console.log('XHR:', xhr);
-},
-    complete: function () {
-    isAjaxInProgress = false;
-}
-});
-}
 
-    // Ajouter des écouteurs d'événements pour les champs nbPersonne et nbRegion
-    nbPersonneField.addEventListener('change', triggerAjaxRequest);
-    nbRegionField.addEventListener('change', triggerAjaxRequest);
-}
-});
+
+{#    document.addEventListener('DOMContentLoaded', function () {#}
+{#    var nbPersonneField = document.getElementById('infos_devis_nbPersonne');#}
+{#    var nbRegionField = document.getElementById('infos_devis_Regions');#}
+{#    var trancheFiscalField = document.getElementById('infos_devis_TrancheFiscal');#}
+
+{#    // Vérifier si l'élément existe avant d'ajouter l'écouteur d'événements#}
+{#    if (nbPersonneField && nbRegionField) {#}
+{#    var isAjaxInProgress = false;#}
+
+{#    // Fonction pour déclencher la requête AJAX#}
+{#    function triggerAjaxRequest() {#}
+{#    if (isAjaxInProgress) {#}
+{#    return;#}
+{#}#}
+
+{#    isAjaxInProgress = true;#}
+
+{#    var selectedPersonneId = nbPersonneField.value;#}
+{#    var selectedRegionId = nbRegionField.value;#}
+
+{#    console.log('Selected nbPersonneId:', selectedPersonneId);#}
+{#    console.log('Selected regionId:', selectedRegionId);#}
+
+{#    $.ajax({#}
+{#    url: '{{ path('app_infos_devis_tranches') }}',#}
+{#    type: 'GET',#}
+{#    data: {#}
+{#    nbPersonneId: selectedPersonneId,#}
+{#    regionId: selectedRegionId#}
+{#},#}
+{#    success: function (data) {#}
+{#    console.log('AJAX response:', data);#}
+
+{#    try {#}
+{#    trancheFiscalField.innerHTML = '';#}
+
+{#    data.forEach(function (option) {#}
+{#    var newOption = document.createElement('option');#}
+{#    newOption.value = option.value;#}
+{#    newOption.text = option.label;#}
+{#    trancheFiscalField.add(newOption);#}
+{#});#}
+{#} catch (e) {#}
+{#    console.error('Error processing AJAX response:', e);#}
+{#}#}
+{#},#}
+{#    error: function (xhr, status, error) {#}
+{#    console.error('AJAX error:', error);#}
+{#    console.log('Status:', status);#}
+{#    console.log('XHR:', xhr);#}
+{#},#}
+{#    complete: function () {#}
+{#    isAjaxInProgress = false;#}
+{#}#}
+{#});#}
+{#}#}
+
+{#    // Ajouter des écouteurs d'événements pour les champs nbPersonne et nbRegion#}
+{#    nbPersonneField.addEventListener('change', triggerAjaxRequest);#}
+{#    nbRegionField.addEventListener('change', triggerAjaxRequest);#}
+{#}#}
+{#});#}
 </script>
   {%endblock%}
 

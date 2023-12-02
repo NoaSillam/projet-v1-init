@@ -6,6 +6,7 @@ use App\Repository\InfosDevisRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: InfosDevisRepository::class)]
 class InfosDevis
@@ -55,11 +56,27 @@ class InfosDevis
     #[ORM\Column(length: 255)]
     private ?string $residencePrincipale = null;
 
+    #[ORM\Column]
+    private ?bool $validations = false;
+
     public function __construct()
     {
        // $this->nbPersonne = null; // Initialisez avec null
     }
 
+
+    #[Assert\Callback(callback: 'validateNumFiscal')]
+    public function validateNumFiscal($context): void
+    {
+        $trancheFiscal = $this->getTrancheFiscal();
+        $numFiscal = $this->getNumFiscal();
+
+        if ($trancheFiscal && ($numFiscal < $trancheFiscal->getDebut() || $numFiscal > $trancheFiscal->getFin())) {
+            $context->buildViolation('Le numéro fiscal doit être compris entre le début et la fin de la tranche fiscale choisie.')
+                ->atPath('Num_fiscal')
+                ->addViolation();
+        }
+    }
 
     public function getId(): ?int
     {
@@ -213,6 +230,18 @@ class InfosDevis
     public function setResidencePrincipale(string $residencePrincipale): static
     {
         $this->residencePrincipale = $residencePrincipale;
+
+        return $this;
+    }
+
+    public function isValidations(): ?bool
+    {
+        return $this->validations;
+    }
+
+    public function setValidations(bool $validations): static
+    {
+        $this->validations = $validations;
 
         return $this;
     }
