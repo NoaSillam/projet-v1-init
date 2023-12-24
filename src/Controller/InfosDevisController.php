@@ -44,12 +44,12 @@ class InfosDevisController extends AbstractController
         $sheet = $spreadsheet->getActiveSheet();
 
         // Ajoutez les en-têtes de colonne
-        $columnHeaders = ['Nom', 'Prénom', 'Mail', 'Tél.', 'Personnes dans le Foyer', 'Numéro Fiscal', 'Tranche Fiscale', 'Région', 'Propriété', 'Surface (m²)', 'Chauffage', 'Résidence', 'Aide', 'Prime'/* ... autres en-têtes ... */];
+        $columnHeaders = ['Nom', 'Prénom', 'Mail', 'Tél.', 'Personnes dans le Foyer', 'Numéro Fiscal', 'Tranche Fiscale', 'Région', 'Propriété', 'Surface (m²)', 'Chauffage', 'Résidence', 'Aide', 'Prime', 'Ménages'/* ... autres en-têtes ... */];
         foreach ($columnHeaders as $colIdx => $header) {
             $colRef = chr(65 + $colIdx); // Convertit l'index en lettre (A, B, C, ...)
             $sheet->setCellValue($colRef . '1', $header);
             // Définir la largeur de la colonne à 30 pour la colonne C, sinon 20
-            $width = ($colRef === 'C') ? 30 : 15;
+            $width = ($colRef === 'C' || $colRef === 'O') ? 35 : 15;
             $sheet->getColumnDimension($colRef)->setWidth($width);
             // Appliquer le style au titre de la colonne
             $sheet->getStyle($colRef . '1')->applyFromArray([
@@ -85,15 +85,236 @@ class InfosDevisController extends AbstractController
             $sheet->setCellValue('K' . $rowIdx, $infos_devi->getTypeChauffage());
             $sheet->setCellValue('L' . $rowIdx, $infos_devi->getResidencePrincipale());
             $sheet->setCellValue('M' . $rowIdx, $infos_devi->isValidations());
-            $totalAide = 0;
+            $lastTotalAideFinale = 0;
+
             if ($infos_devi->isValidations()) {
                 foreach ($infos_devi->getTrancheFiscal()->getTranches() as $tranche) {
-                    $totalAide += ($tranche->getAide() !== null) ? $tranche->getAide() : 0;
+                    if ($tranche->getMenage()->getNom() == 'Ménages très modestes' && $infos_devi->getInstallations() == 'BTD') {
+                        $lastTotalAideFinale = 1307;
+                    } elseif ($tranche->getMenage()->getNom() == 'Ménages modestes' && $infos_devi->getInstallations() == 'BTD') {
+                        $lastTotalAideFinale = 894;
+                    } elseif ($tranche->getMenage()->getNom() == 'Ménages aux revenus intermédiaires' && $infos_devi->getInstallations() == 'BTD') {
+                        $lastTotalAideFinale = 494;
+                    } elseif ($tranche->getMenage()->getNom() == 'Ménages aux revenus les plus élevés' && $infos_devi->getInstallations() == 'BTD') {
+                        $lastTotalAideFinale = 85;
+                    } elseif ($tranche->getMenage()->getNom() == 'Ménages très modestes' && $infos_devi->getInstallations() == 'pacAirAirBTD') {
+                        $lastTotalAideFinale = 1307;
+                    } elseif ($tranche->getMenage()->getNom() == 'Ménages modestes' && $infos_devi->getInstallations() == 'pacAirAirBTD') {
+                        $lastTotalAideFinale = 894;
+                    } elseif ($tranche->getMenage()->getNom() == 'Ménages aux revenus intermédiaires' && $infos_devi->getInstallations() == 'pacAirAirBTD') {
+                        $lastTotalAideFinale = 494;
+                    } elseif ($tranche->getMenage()->getNom() == 'Ménages aux revenus les plus élevés' && $infos_devi->getInstallations() == 'pacAirAirBTD') {
+                        $lastTotalAideFinale = 85;
+                    } elseif ($tranche->getMenage()->getNom() == 'Ménages très modestes' && $infos_devi->getInstallations() == 'pacAirEauBTD') {
+                        $lastTotalAideFinale = 9307;
+                    } elseif ($tranche->getMenage()->getNom() == 'Ménages modestes' && $infos_devi->getInstallations() == 'pacAirEauBTD') {
+                        $lastTotalAideFinale = 7894;
+                    } elseif ($tranche->getMenage()->getNom() == 'Ménages aux revenus intermédiaires' && $infos_devi->getInstallations() == 'pacAirEauBTD') {
+                        $lastTotalAideFinale = 4994;
+                    } elseif ($tranche->getMenage()->getNom() == 'Ménages aux revenus les plus élevés' && $infos_devi->getInstallations() == 'pacAirEauBTD') {
+                        $lastTotalAideFinale = 2585;
+                    } elseif ($tranche->getMenage()->getNom() == 'Ménages très modestes' && $infos_devi->getInstallations() == 'pacAirEau') {
+                        $lastTotalAideFinale = 8000;
+                    } elseif ($tranche->getMenage()->getNom() == 'Ménages modestes' && $infos_devi->getInstallations() == 'pacAirEau') {
+                        $lastTotalAideFinale = 7000;
+                    } elseif ($tranche->getMenage()->getNom() == 'Ménages aux revenus intermédiaires' && $infos_devi->getInstallations() == 'pacAirEau') {
+                        $lastTotalAideFinale = 4500;
+                    } elseif ($tranche->getMenage()->getNom() == 'Ménages aux revenus les plus élevés' && $infos_devi->getInstallations() == 'pacAirEau') {
+                        $lastTotalAideFinale = 2500;
+                    } elseif ($tranche->getMenage()->getNom() == 'Ménages très modestes' && $infos_devi->getInstallations() == 'ITE') {
+                        if($infos_devi->getSurfaceHabitable()<=100)
+                        {
+                            $lastTotalAideFinale =75*$infos_devi->getSurfaceHabitable();
+                        }else{
+                            $lastTotalAideFinale =75*100;
+                        }
+                    } elseif ($tranche->getMenage()->getNom() == 'Ménages modestes' && $infos_devi->getInstallations() == 'ITE') {
+                        if($infos_devi->getSurfaceHabitable()<=100)
+                        {
+                            $lastTotalAideFinale =60*$infos_devi->getSurfaceHabitable();
+                        }else{
+                            $lastTotalAideFinale =60*100;
+                        }
+                    } elseif ($tranche->getMenage()->getNom() == 'Ménages aux revenus intermédiaires' && $infos_devi->getInstallations() == 'ITE') {
+                        if($infos_devi->getSurfaceHabitable()<=100)
+                        {
+                            $lastTotalAideFinale =40*$infos_devi->getSurfaceHabitable();
+                        }else{
+                            $lastTotalAideFinale =40*100;
+                        }
+                    } elseif ($tranche->getMenage()->getNom() == 'Ménages aux revenus les plus élevés' && $infos_devi->getInstallations() == 'ITE') {
+                        if($infos_devi->getSurfaceHabitable()<=100)
+                        {
+                            $lastTotalAideFinale =15*$infos_devi->getSurfaceHabitable();
+                        }else{
+                            $lastTotalAideFinale =15*100;
+                        }
+                    } elseif ($tranche->getMenage()->getNom() == 'Ménages très modestes' && $infos_devi->getInstallations() == 'pacAirAir') {
+                        $lastTotalAideFinale = 0;
+                    } elseif ($tranche->getMenage()->getNom() == 'Ménages modestes' && $infos_devi->getInstallations() == 'pacAirAir') {
+                        $lastTotalAideFinale = 0;
+                    } elseif ($tranche->getMenage()->getNom() == 'Ménages aux revenus intermédiaires' && $infos_devi->getInstallations() == 'pacAirAir') {
+                        $lastTotalAideFinale = 0;
+                    } elseif ($tranche->getMenage()->getNom() == 'Ménages aux revenus les plus élevés' && $infos_devi->getInstallations() == 'pacAirAir') {
+                        $lastTotalAideFinale = 0;
+                    } elseif ($tranche->getMenage()->getNom() == 'Ménages très modestes' && $infos_devi->getInstallations() == 'pacAirAirBTDITE') {
+                        if($infos_devi->getSurfaceHabitable()<=100)
+                        {
+                            $lastTotalAideFinale =1307+75*$infos_devi->getSurfaceHabitable();
+                        }else{
+                            $lastTotalAideFinale =1307+75*100;
+                        }
+                    } elseif ($tranche->getMenage()->getNom() == 'Ménages modestes' && $infos_devi->getInstallations() == 'pacAirAirBTDITE') {
+                        if($infos_devi->getSurfaceHabitable()<=100)
+                        {
+                            $lastTotalAideFinale =894+60*$infos_devi->getSurfaceHabitable();
+                        }else{
+                            $lastTotalAideFinale =894+60*100;
+                        }
+                    } elseif ($tranche->getMenage()->getNom() == 'Ménages aux revenus intermédiaires' && $infos_devi->getInstallations() == 'pacAirAirBTDITE') {
+                        if($infos_devi->getSurfaceHabitable()<=100)
+                        {
+                            $lastTotalAideFinale =494+40*$infos_devi->getSurfaceHabitable();
+                        }else{
+                            $lastTotalAideFinale =494+40*100;
+                        }
+                    } elseif ($tranche->getMenage()->getNom() == 'Ménages aux revenus les plus élevés' && $infos_devi->getInstallations() == 'pacAirAirBTDITE') {
+                        if($infos_devi->getSurfaceHabitable()<=100)
+                        {
+                            $lastTotalAideFinale =85+15*$infos_devi->getSurfaceHabitable();
+                        }else{
+                            $lastTotalAideFinale =85+15*100;
+                        }
+                    } elseif ($tranche->getMenage()->getNom() == 'Ménages très modestes' && $infos_devi->getInstallations() == 'pacAirEauIte') {
+                        if($infos_devi->getSurfaceHabitable()<=100)
+                        {
+                            $lastTotalAideFinale =8000+75*$infos_devi->getSurfaceHabitable();
+                        }else{
+                            $lastTotalAideFinale =8000+75*100;
+                        }
+                    } elseif ($tranche->getMenage()->getNom() == 'Ménages modestes' && $infos_devi->getInstallations() == 'pacAirEauIte') {
+                        if($infos_devi->getSurfaceHabitable()<=100)
+                        {
+                            $lastTotalAideFinale =7000+60*$infos_devi->getSurfaceHabitable();
+                        }else{
+                            $lastTotalAideFinale =7000+60*100;
+                        }
+                    } elseif ($tranche->getMenage()->getNom() == 'Ménages aux revenus intermédiaires' && $infos_devi->getInstallations() == 'pacAirEauIte') {
+                        if($infos_devi->getSurfaceHabitable()<=100)
+                        {
+                            $lastTotalAideFinale =4500+40*$infos_devi->getSurfaceHabitable();
+                        }else{
+                            $lastTotalAideFinale =4500+40*100;
+                        }
+                    } elseif ($tranche->getMenage()->getNom() == 'Ménages aux revenus les plus élevés' && $infos_devi->getInstallations() == 'pacAirEauIte') {
+                        if($infos_devi->getSurfaceHabitable()<=100)
+                        {
+                            $lastTotalAideFinale =2500+15*$infos_devi->getSurfaceHabitable();
+                        }else{
+                            $lastTotalAideFinale =2500+15*100;
+                        }
+                    } elseif ($tranche->getMenage()->getNom() == 'Ménages très modestes' && $infos_devi->getInstallations() == 'pacAirAirIte') {
+                        if($infos_devi->getSurfaceHabitable()<=100)
+                        {
+                            $lastTotalAideFinale =75*$infos_devi->getSurfaceHabitable();
+                        }else{
+                            $lastTotalAideFinale =75*100;
+                        }
+                    } elseif ($tranche->getMenage()->getNom() == 'Ménages modestes' && $infos_devi->getInstallations() == 'pacAirAirIte') {
+                        if($infos_devi->getSurfaceHabitable()<=100)
+                        {
+                            $lastTotalAideFinale =60*$infos_devi->getSurfaceHabitable();
+                        }else{
+                            $lastTotalAideFinale =60*100;
+                        }
+                    } elseif ($tranche->getMenage()->getNom() == 'Ménages aux revenus intermédiaires' && $infos_devi->getInstallations() == 'pacAirAirIte') {
+                        if($infos_devi->getSurfaceHabitable()<=100)
+                        {
+                            $lastTotalAideFinale =40*$infos_devi->getSurfaceHabitable();
+                        }else{
+                            $lastTotalAideFinale =40*100;
+                        }
+                    } elseif ($tranche->getMenage()->getNom() == 'Ménages aux revenus les plus élevés' && $infos_devi->getInstallations() == 'pacAirAirIte') {
+                        if($infos_devi->getSurfaceHabitable()<=100)
+                        {
+                            $lastTotalAideFinale =15*$infos_devi->getSurfaceHabitable();
+                        }else{
+                            $lastTotalAideFinale =15*100;
+                        }
+                    } elseif ($tranche->getMenage()->getNom() == 'Ménages très modestes' && $infos_devi->getInstallations() == 'pacAirEauBTDITE') {
+                        if($infos_devi->getSurfaceHabitable()<=100)
+                        {
+                            $lastTotalAideFinale =8000+1307+75*$infos_devi->getSurfaceHabitable();
+                        }else{
+                            $lastTotalAideFinale =8000+1307+75*100;
+                        }
+                    } elseif ($tranche->getMenage()->getNom() == 'Ménages modestes' && $infos_devi->getInstallations() == 'pacAirEauBTDITE') {
+                        if($infos_devi->getSurfaceHabitable()<=100)
+                        {
+                            $lastTotalAideFinale =7000+894+60*$infos_devi->getSurfaceHabitable();
+                        }else{
+                            $lastTotalAideFinale =7000+894+60*100;
+                        }
+                    } elseif ($tranche->getMenage()->getNom() == 'Ménages aux revenus intermédiaires' && $infos_devi->getInstallations() == 'pacAirEauBTDITE') {
+                        if($infos_devi->getSurfaceHabitable()<=100)
+                        {
+                            $lastTotalAideFinale =4500+494+40*$infos_devi->getSurfaceHabitable();
+                        }else{
+                            $lastTotalAideFinale =4500+494+40*100;
+                        }
+                    } elseif ($tranche->getMenage()->getNom() == 'Ménages aux revenus les plus élevés' && $infos_devi->getInstallations() == 'pacAirEauBTDITE') {
+                        if($infos_devi->getSurfaceHabitable()<=100)
+                        {
+                            $lastTotalAideFinale =2500+85+15*$infos_devi->getSurfaceHabitable();
+                        }else{
+                            $lastTotalAideFinale =2500+85+15*100;
+                        }
+                    }
+                    elseif ($tranche->getMenage()->getNom() == 'Ménages très modestes' && $infos_devi->getInstallations() == 'ITEBTD') {
+                        if($infos_devi->getSurfaceHabitable()<=100)
+                        {
+                            $lastTotalAideFinale =1307+75*$infos_devi->getSurfaceHabitable();
+                        }else{
+                            $lastTotalAideFinale =1307+75*100;
+                        }
+                    } elseif ($tranche->getMenage()->getNom() == 'Ménages modestes' && $infos_devi->getInstallations() == 'ITEBTD') {
+                        if($infos_devi->getSurfaceHabitable()<=100)
+                        {
+                            $lastTotalAideFinale =894+60*$infos_devi->getSurfaceHabitable();
+                        }else{
+                            $lastTotalAideFinale =894+60*100;
+                        }
+                    } elseif ($tranche->getMenage()->getNom() == 'Ménages aux revenus intermédiaires' && $infos_devi->getInstallations() == 'ITEBTD') {
+                        if($infos_devi->getSurfaceHabitable()<=100)
+                        {
+                            $lastTotalAideFinale =494+40*$infos_devi->getSurfaceHabitable();
+                        }else{
+                            $lastTotalAideFinale =494+40*100;
+                        }
+                    } elseif ($tranche->getMenage()->getNom() == 'Ménages aux revenus les plus élevés' && $infos_devi->getInstallations() == 'ITEBTD') {
+                        if($infos_devi->getSurfaceHabitable()<=100)
+                        {
+                            $lastTotalAideFinale =85+15*$infos_devi->getSurfaceHabitable();
+                        }else{
+                            $lastTotalAideFinale =85+15*100;
+                        }
+                    }
+
                 }
+                if ($infos_devi->getInstallations() == 'pacAirAir') {
+                    $lastTotalAideFinale = 0;
+                }
+
+                $sheet->setCellValue('N' . $rowIdx, $lastTotalAideFinale . '€');
+            } else {
+                $sheet->setCellValue('N' . $rowIdx, '0€');
             }
-            $sheet->setCellValue('N' . $rowIdx, $totalAide);
             // Ajoutez d'autres colonnes en fonction de votre modèle
             // ...
+            if ($infos_devi->getTrancheFiscal()->getTranches()->count() > 0) {
+                $menage = $infos_devi->getTrancheFiscal()->getTranches()[0]->getMenage();
+                $sheet->setCellValue('O' . $rowIdx, $menage->getNom());
+            }
 
             $rowIdx++;
         }
@@ -186,11 +407,19 @@ class InfosDevisController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             // Ajoutez la logique pour mettre à jour le champ "validations"
-            if ($infosDevi->getProprieter() === "Proprietaire" && $infosDevi->getResidencePrincipale() === "Oui") {
+            if ($infosDevi->getProprieter() === "Proprietaire" && $infosDevi->getResidencePrincipale() === "Oui" && $infosDevi->getTypeChauffage() != 'electricite' ) {
                 $infosDevi->setValidations(true);
             } else {
                 $infosDevi->setValidations(false); // ou la valeur par défaut que vous souhaitez
             }
+            if($infosDevi->getTypeChauffage() != 'electricite')
+            {
+                $infosDevi->setValidationCEE(true);
+            }
+            else{
+                $infosDevi->setValidationCEE(false);
+            }
+
 
             $entityManager->persist($infosDevi);
             $entityManager->flush();
@@ -255,10 +484,18 @@ class InfosDevisController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             // Ajoutez la logique pour mettre à jour le champ "validations"
-            if ($infosDevi->getProprieter() === "Proprietaire" && $infosDevi->getResidencePrincipale() === "Oui") {
+            if ($infosDevi->getProprieter() === "Proprietaire" && $infosDevi->getResidencePrincipale() === "Oui" && $infosDevi->getTypeChauffage() != 'electricite') {
                 $infosDevi->setValidations(true);
             } else {
                 $infosDevi->setValidations(false); // ou la valeur par défaut que vous souhaitez
+            }
+
+            if($infosDevi->getTypeChauffage() != 'electricite')
+            {
+                $infosDevi->setValidationCEE(true);
+            }
+            else{
+                $infosDevi->setValidationCEE(false);
             }
 
             $entityManager->persist($infosDevi);
@@ -385,11 +622,19 @@ class InfosDevisController extends AbstractController
         // Traitement du formulaire
         if ($form->isSubmitted() && $form->isValid()) {
             // Ajoutez la logique pour mettre à jour le champ "validations"
-            if ($infosDevi->getProprieter() === "Proprietaire" && $infosDevi->getResidencePrincipale() === "Oui") {
+            if ($infosDevi->getProprieter() === "Proprietaire" && $infosDevi->getResidencePrincipale() === "Oui" && $infosDevi->getTypeChauffage() != 'electricite') {
                 $infosDevi->setValidations(true);
             } else {
                 $infosDevi->setValidations(false); // ou la valeur par défaut que vous souhaitez
             }
+            if($infosDevi->getTypeChauffage() != 'electricite')
+            {
+                $infosDevi->setValidationCEE(true);
+            }
+            else{
+                $infosDevi->setValidationCEE(false);
+            }
+
 
             $entityManager->persist($infosDevi);
             $entityManager->flush();

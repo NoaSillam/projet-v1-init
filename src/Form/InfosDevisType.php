@@ -141,6 +141,28 @@ class InfosDevisType extends AbstractType{
                     'style' => 'color: black; font-weight: bold; text-align: center; margin-left: 40%;',
                 ],
             ])
+            ->add('installations',  ChoiceType::class, [
+                'choices' => ['Pompes à chaleur Air/Eau (PAC Air/Eau)' => 'pacAirEau',
+                    'Pompes à chaleur Air/Air (PAC Air/Air)' => 'pacAirAir',
+                    'Ballon thermodynamique (BTD)' => 'BTD',
+                    'Isolation thermique des murs exterieur (ITE) ' => 'ITE',
+                    'PAC Air/Eau + ITE' => 'pacAirEauIte',
+                    'PAC Air/Air + ITE' => 'pacAirAirIte',
+                    'PAC Air/Air + BTD' => 'pacAirAirBTD',
+                    'PAC Air/Eau + BTD' => 'pacAirEauBTD',
+                    'PAC Air/Air + BTD + ITE' => 'pacAirAirBTDITE',
+                    'PAC Air/Eau + BTD + ITE' => 'pacAirEauBTDITE',
+                    'ITE + BTD' => 'ITEBTD',
+                ],
+                'label' => 'Type d\'installation',
+                'placeholder' => 'Choisir le type d\'installation',
+                'attr' => ['class' => 'form-control',
+                    'style' => 'color:black; margin-bottom: 20px;'],
+                'label_attr' => ['class' => 'custom-label',
+                    'style' => 'color: black; 
+                    font-weight : bold; 
+                    text-align : center; margin-left: 40%;'],
+            ])
 
         ;
 

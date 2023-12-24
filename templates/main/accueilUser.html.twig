@@ -126,6 +126,62 @@
     .assistance:hover{
         background-color:#FFEFD5;
     }
+
+
+
+
+    .pompeAChaleur{
+        width: 270px;
+        height: 260px;
+        background-color: white;
+        border: 1px solid #D3D3D3;
+        border-radius: 50px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .pompeAChaleur:hover
+    {
+        background-color: #ADD8E6;
+    }
+    .ballonThermodynamique
+    {
+        width: 270px;
+        height: 260px;
+        background-color: white;
+        border-radius: 50px;
+        border: 1px solid #D3D3D3;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .ballonThermodynamique:hover
+    {
+        background-color:#FFB6C1;
+    }
+    .isolationExterieurInterieur
+    {
+        width: 270px;
+        height: 260px;
+        background-color: white;
+        border-radius: 50px;
+        border: 1px solid #D3D3D3;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .isolationExterieurInterieur:hover{
+        background-color: #8FBC8F;
+    }
+
+
+
+
+
+
 </style>
 {% endblock %}
 
@@ -139,7 +195,69 @@
 <br>
 {#    <img src="{{ asset('assets/images/homme-casque-blanc-pres-panneau-solaire.jpg') }}" class="img-top" style="height: 50%; margin-left: 20%;">
     <br>#}
+    <div style="margin: auto; width: 70%; ">
+        <div style="width: 100%; height: 550px; border-radius: 50px; text-align: center; background-color: #f5f5f5; overflow: hidden; border-color: gray;">
+            <div style="width: 100%; height: 100%; background-image: url('{{ asset("assets/images/maison-style-contemporain-construction.jpg") }}'); background-size: cover; background-position: center; background-repeat: repeat; border-radius: 50px; margin: 0 auto; padding: 20px; box-sizing: border-box; border-color: gray;">
+                <h2 style="color: #1D4851;"><b>Rénovation global</b></h2>
+                <h4 style="color: RED;"><b>Aide à 1€</b></h4>
+{#                <b style="color: #1D4851;">Pompe à chaleur Air/Air ou Air/Eau</b>#}
+{#                <b style="color: #1D4851;">Ballon thermodynamique</b>#}
+{#                <b style="color: #1D4851;">Isolations thermiques par l'extérieur ou Isolations thermiques intérieures</b>#}
+                <br>
 
+
+                <div style="display: flex; align-items: center; justify-content: center;">
+                    <div style="display: flex; flex-direction: row; align-items: center; justify-content: space-around; width: 100%; ">
+                <a href="#" style="text-decoration:none; color: black;">
+                    <div class="pompeAChaleur">
+                        <img src="{{ asset('assets/images/pompe-a-chaleur-removebg-preview.png') }}" style="width: 70%;" class="img-top">
+                        <p style="font-size: 15px;"><b>Pompe à chaleur Air/Air ou Air/Eau</b></p>
+                    </div>
+                </a>
+
+                <a href="#" style="text-decoration:none; color: black;">
+                    <div class="ballonThermodynamique">
+                        <img src="{{ asset('assets/images/systeme-pompe-chaleur-economie-energie-pompe-chaleur-schematique-energie-verte-geothermie_580339-217.avif') }}" style="width: 70%;" class="img-top">
+                        <p style="font-size: 15px;"><b>Ballon thermodynamique</b></p>
+                    </div>
+                </a>
+
+                <a href="#" style="text-decoration:none; color: black;">
+                    <div class="isolationExterieurInterieur">
+                        <img src="{{ asset('assets/images/concept-chantier-construction-maison_1308-109483.avif') }}" style="width: 70%; height: 160px;" class="img-top">
+                        <p style="font-size:14px;"><b>Isolations thermiques par l'extérieur <br> ou <br> Isolations thermiques intérieures</b></p>
+                    </div>
+                </a>
+
+
+            </div>
+        </div>
+                <br>
+                <br>
+                <a href="#">  <button type="button" class="btn btn-primary" style="width:300px; height:70px; margin-right:4%; border-radius:50px; background: linear-gradient(to right,#004d00, #66ff66); font-size:15px;  border-color: white;" ><strong>{{"Demander un devis pour une rénovation global" | upper}}</strong></button></a>
+    </div>
+
+
+        </div>
+    </div>
+
+
+{#<br>#}
+
+{#    <div style="margin: auto; width: 70%;">#}
+{#        <div style="width: 100%; height: 250px; border-radius: 50px; text-align: center; background-color: #f5f5f5; overflow: hidden;">#}
+{#            <div style="width: 150%; height: 100%; background-image: url('{{ asset("assets/images/maison-style-contemporain-construction.jpg") }}');  background-position: center; border-radius: 50px; margin: 0 auto; padding: 20px; box-sizing: border-box;">#}
+{#                <h3 style="color: black;">Rénovation global</h3>#}
+{#                <br>#}
+{#                <h4 style="color: black;">Aide à 1€</h4>#}
+{#                <b style="color: black;">Pompe à chaleur Air/Air ou Air/Eau</b>#}
+{#                <b style="color: black;">Ballon thermodynamique</b>#}
+{#                <b style="color: black;">Isolations thermiques par l'extérieur ou Isolations thermiques intérieures</b>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+<br>
+    <br>
 <div style="margin: auto; width: 70%; ">
     <div style="width: 100%; height: 300px;  border-radius: 50px; text-align: center; background-color: #f5f5f5; ">
         <br>

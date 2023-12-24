@@ -35,7 +35,7 @@
             </tr>
             <tr>
                 <th>Tél</th>
-                <td>{{ infos_devi.telephone }}</td>
+                <td>0{{ infos_devi.telephone }}</td>
             </tr>
             <tr>
                 <th>Personnes dans le Foyer</th>
@@ -47,7 +47,11 @@
             </tr>
             <tr>
                 <th>Tranche Fiscale</th>
-                <td>{{ infos_devi.TrancheFiscal is not null ? infos_devi.TrancheFiscal.Debut ~ '€' : 'N/A' }} - {{ infos_devi.TrancheFiscal is not null ? infos_devi.TrancheFiscal.Fin ~ '€' : 'N/A' }}</td>
+                <td>{% if infos_devi.TrancheFiscal.Fin == null %}
+                        >  {{ infos_devi.TrancheFiscal.Debut }} €
+                    {% else %}
+                        {{ infos_devi.TrancheFiscal is not null ? infos_devi.TrancheFiscal.Debut ~ '€' : 'N/A' }} - {{ infos_devi.TrancheFiscal is not null ? infos_devi.TrancheFiscal.Fin ~ '€' : 'N/A' }}
+                    {% endif %}</td>
             </tr>
             <tr>
                 <th>Région</th>
@@ -68,6 +72,33 @@
             <tr>
                 <th>Résidence</th>
                 <td>{{ infos_devi.residencePrincipale }}</td>
+            </tr>
+            <tr>
+                 <th>Aide</th>
+                 <td> {% if infos_devi.validations == 1 %}
+                         Oui
+                     {% else %}
+                         Non
+                     {% endif %}</td>
+            </tr>
+            <tr>
+                <th>Prime</th>
+                <td> {% if infos_devi.validations == 1 %}
+                        {% set aideITE = 0 %}
+                        {% set totalAide = 0 %}
+                        {% for tranche in infos_devi.TrancheFiscal.tranches %}
+                            {% if tranche.Prime.nom == 'ITE (jusqu\'à 100m2)' %}
+                                {% set aideITE = aideITE + (tranche.Aide is not null ? tranche.Aide : 0) %}
+                            {% else %}
+                                {% set totalAide = totalAide + (tranche.Aide is not null ? tranche.Aide : 0) %}
+                            {% endif %}
+                        {% endfor %}
+                        {% set surfaceHabitable100 = infos_devi.surfaceHabitable > 100 ? 100 : infos_devi.surfaceHabitable %}
+                        {% set totalAideFinale = (aideITE * surfaceHabitable100) + totalAide %}
+                        <div style="color: green;">{{ totalAideFinale }}€</div>
+                    {% else %}
+                        <div style="color: red;">0€</div>
+                    {% endif %}</td>
             </tr>
             <tr>
                 <th>Modifier :</th>

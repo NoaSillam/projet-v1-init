@@ -1,0 +1,125 @@
+
+
+    {% block stylesheets %}
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+        <style>
+        </style>
+    {% endblock %}
+{% block body %}
+    {{ include('base.html.twig') }}
+    <br>
+    <h1 style="text-align:center;">Devis Renovation Globale</h1>
+<div style="margin: auto; width: 120%;">
+    <div style="margin-left:auto; margin-right:auto;">
+        <a href="{{ path('app_devis_reno_global_new') }}" class="btn btn-secondary" style="margin-left: 5%;">Ajouter un nouveau devis en renovation globale</a>
+        <br>
+        <br>
+    <table class="table" style="margin-right: 5%;">
+        <thead>
+            <tr>
+                <th style="text-align: center;">Nom</th>
+                <th style="text-align: center;">Prénom</th>
+                <th style="text-align: center; ">Mail</th>
+                <th style="text-align: center;">Tél.</th>
+                <th style="text-align: center; ">Personnes dans le Foyer</th>
+                <th style="text-align: center;">Numéro Fiscal</th>
+                <th style="text-align: center;">Tranche Fiscale</th>
+                <th style="text-align: center;">Région</th>
+                <th style="text-align: center;">Propriété</th>
+                <th style="text-align: center;">Surface (m²)</th>
+                <th style="text-align: center;">Chauffage</th>
+                <th style="text-align: center;">Résidence</th>
+                <th style="text-align: center;">Validations</th>
+                <th style="text-align: center;">Installations</th>
+                <th style="text-align: center;">Prime</th>
+                <th style="text-align: center;">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for devis_reno_global in devis_reno_globals %}
+            <tr>
+
+                <td style="text-align: center; font-size: 15px;">{{ devis_reno_global.Nom }}</td>
+                <td style="text-align: center; font-size: 15px;">{{ devis_reno_global.Prenom }}</td>
+                <td style="text-align: center; font-size: 15px;">{{ devis_reno_global.Mail }}</td>
+                <td style="text-align: center; font-size: 15px;">0{{ devis_reno_global.telephone }}</td>
+                <td style="text-align: center; font-size: 15px;">{{ devis_reno_global.nbPersonne.nbPersonne | default('N/A')}}</td>
+                <td style="text-align: center; font-size: 15px;">{{ devis_reno_global.NumFiscal }}</td>
+                <td style="text-align: center; font-size: 15px;">      {% if devis_reno_global.TrancheFiscal.Fin == null %}
+                        >  {{ devis_reno_global.TrancheFiscal.Debut }} €
+                    {% else %}
+                        {{ devis_reno_global.TrancheFiscal is not null ? devis_reno_global.TrancheFiscal.Debut ~ '€' : 'N/A' }} - {{ devis_reno_global.TrancheFiscal is not null ? devis_reno_global.TrancheFiscal.Fin ~ '€' : 'N/A' }}
+                    {% endif %}</td>
+                <td style="text-align: center; font-size: 15px;">{{ devis_reno_global.Regions.Nom  | default('N/A')}}</td>
+                <td style="text-align: center; font-size: 15px;">{{ devis_reno_global.proprieter }}</td>
+                <td style="text-align: center; font-size: 15px;">{{ devis_reno_global.surfaceHabitable }}</td>
+
+                <td style="text-align: center; font-size: 15px;">{{ devis_reno_global.typeChauffage }}</td>
+                <td style="text-align: center; font-size: 15px;">{{ devis_reno_global.residencePrincipale }}</td>
+                <td style="text-align: center; font-size: 15px;">
+                    {% if devis_reno_global.validations == 1 %}
+                        0ui
+                    {% else %}
+                        Non
+                    {% endif %}
+                </td>
+                <td style="text-align: center; font-size: 15px;">
+                    {%if devis_reno_global.installations=='pacAirEau' %}
+                        PAC Air/Eau
+                    {% elseif devis_reno_global.installations=='pacAirAir' %}
+                        PAC Air/Air
+                    {% elseif devis_reno_global.installations=='BTD' %}
+                        BTD
+                    {% elseif devis_reno_global.installations=='ITE' %}
+                        ITE
+                    {% elseif devis_reno_global.installations=='pacAirEauIte' %}
+                        PAC Air/Eau + ITE
+                    {% elseif devis_reno_global.installations=='pacAirAirIte' %}
+                        PAC Air/Air + ITE
+                    {% elseif devis_reno_global.installations=='pacAirAirBTD' %}
+                        PAC Air/Air + BTD
+                    {% elseif devis_reno_global.installations=='pacAirEauBTD' %}
+                        PAC Air/Eau + BTD
+                    {% elseif devis_reno_global.installations=='pacAirAirBTDITE' %}
+                        PAC Air/Air + BTD + ITE
+                    {% elseif devis_reno_global.installations=='pacAirEauBTDITE' %}
+                        PAC Air/Eau + BTD + ITE
+                    {% elseif devis_reno_global.installations=='ITEBTD' %}
+                        ITE + BTD
+                    {% endif %}
+                </td>
+
+                <td style="text-align: center; font-size: 15px;">Aide</td>
+                <td style="display: flex; align-items: center; justify-content: center;  " >
+
+                    <a class="btn btn-success" href="{{ path('app_devis_reno_global_show', {'id': devis_reno_global.id}) }}" style="width:60px;  height:40px; margin-right: 10px;"><img src="{{asset( 'assets/images/plus.png') }}" class="card-img-top" style="width:25px;" alt=""></a>
+                    <a class="btn btn-info" href="{{ path('app_devis_reno_global_edit', {'id': devis_reno_global.id}) }}" style="width:60px;  height:40px; margin-right: 10px;"><img src="{{asset( 'assets/images/modifier.png') }}" class="card-img-top" style="width:25px;" alt=""></a>
+                    <div style="  height:40px;">  {{ include('devis_reno_global/_delete_form.html.twig') }}</div>
+
+                </td>
+
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="14">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+        <br>
+        <br>
+        <br>
+        <br>
+
+    </div>
+</div>
+
+
+{% endblock %}
+      {%block javascripts %}
+
+          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+      {%endblock%}

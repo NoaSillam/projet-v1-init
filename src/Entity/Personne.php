@@ -27,11 +27,15 @@ class Personne
     #[ORM\OneToMany(mappedBy: 'nbPersonne', targetEntity: TrancheFiscal::class, orphanRemoval: true)]
     private Collection $trancheFiscals;
 
+    #[ORM\OneToMany(mappedBy: 'nbPersonne', targetEntity: DevisRenoGlobal::class)]
+    private Collection $devisRenoGlobals;
+
     public function __construct()
     {
         $this->tranches = new ArrayCollection();
         $this->infosDevis = new ArrayCollection();
         $this->trancheFiscals = new ArrayCollection();
+        $this->devisRenoGlobals = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -135,6 +139,36 @@ class Personne
             // set the owning side to null (unless already changed)
             if ($trancheFiscal->getNbPersonne() === $this) {
                 $trancheFiscal->setNbPersonne(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, DevisRenoGlobal>
+     */
+    public function getDevisRenoGlobals(): Collection
+    {
+        return $this->devisRenoGlobals;
+    }
+
+    public function addDevisRenoGlobal(DevisRenoGlobal $devisRenoGlobal): static
+    {
+        if (!$this->devisRenoGlobals->contains($devisRenoGlobal)) {
+            $this->devisRenoGlobals->add($devisRenoGlobal);
+            $devisRenoGlobal->setNbPersonne($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDevisRenoGlobal(DevisRenoGlobal $devisRenoGlobal): static
+    {
+        if ($this->devisRenoGlobals->removeElement($devisRenoGlobal)) {
+            // set the owning side to null (unless already changed)
+            if ($devisRenoGlobal->getNbPersonne() === $this) {
+                $devisRenoGlobal->setNbPersonne(null);
             }
         }
 

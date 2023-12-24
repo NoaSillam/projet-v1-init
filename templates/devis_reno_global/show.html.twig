@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}DevisRenoGlobal{% endblock %}
+
+{% block body %}
+    <h1>DevisRenoGlobal</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ devis_reno_global.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ devis_reno_global.Nom }}</td>
+            </tr>
+            <tr>
+                <th>Prenom</th>
+                <td>{{ devis_reno_global.Prenom }}</td>
+            </tr>
+            <tr>
+                <th>Mail</th>
+                <td>{{ devis_reno_global.Mail }}</td>
+            </tr>
+            <tr>
+                <th>Num_fiscal</th>
+                <td>{{ devis_reno_global.NumFiscal }}</td>
+            </tr>
+            <tr>
+                <th>Proprieter</th>
+                <td>{{ devis_reno_global.proprieter }}</td>
+            </tr>
+            <tr>
+                <th>SurfaceHabitable</th>
+                <td>{{ devis_reno_global.surfaceHabitable }}</td>
+            </tr>
+            <tr>
+                <th>Telephone</th>
+                <td>{{ devis_reno_global.telephone }}</td>
+            </tr>
+            <tr>
+                <th>TypeChauffage</th>
+                <td>{{ devis_reno_global.typeChauffage }}</td>
+            </tr>
+            <tr>
+                <th>ResidencePrincipale</th>
+                <td>{{ devis_reno_global.residencePrincipale }}</td>
+            </tr>
+            <tr>
+                <th>Validations</th>
+                <td>{{ devis_reno_global.validations ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Installations</th>
+                <td>{{ devis_reno_global.installations }}</td>
+            </tr>
+            <tr>
+                <th>ValidationCEE</th>
+                <td>{{ devis_reno_global.validationCEE ? 'Yes' : 'No' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_devis_reno_global_index') }}">back to list</a>
+
+    <a href="{{ path('app_devis_reno_global_edit', {'id': devis_reno_global.id}) }}">edit</a>
+
+    {{ include('devis_reno_global/_delete_form.html.twig') }}
+{% endblock %}

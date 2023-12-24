@@ -27,6 +27,9 @@ class Regions
     #[ORM\OneToMany(mappedBy: 'Regions', targetEntity: TrancheFiscal::class)]
     private Collection $trancheFiscals;
 
+    #[ORM\OneToMany(mappedBy: 'Regions', targetEntity: DevisRenoGlobal::class)]
+    private Collection $devisRenoGlobals;
+
 
 
     public function __construct()
@@ -34,6 +37,7 @@ class Regions
         $this->tranches = new ArrayCollection();
         $this->infosDevis = new ArrayCollection();
         $this->trancheFiscals = new ArrayCollection();
+        $this->devisRenoGlobals = new ArrayCollection();
 
     }
 
@@ -138,6 +142,36 @@ class Regions
             // set the owning side to null (unless already changed)
             if ($trancheFiscal->getRegions() === $this) {
                 $trancheFiscal->setRegions(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, DevisRenoGlobal>
+     */
+    public function getDevisRenoGlobals(): Collection
+    {
+        return $this->devisRenoGlobals;
+    }
+
+    public function addDevisRenoGlobal(DevisRenoGlobal $devisRenoGlobal): static
+    {
+        if (!$this->devisRenoGlobals->contains($devisRenoGlobal)) {
+            $this->devisRenoGlobals->add($devisRenoGlobal);
+            $devisRenoGlobal->setRegions($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDevisRenoGlobal(DevisRenoGlobal $devisRenoGlobal): static
+    {
+        if ($this->devisRenoGlobals->removeElement($devisRenoGlobal)) {
+            // set the owning side to null (unless already changed)
+            if ($devisRenoGlobal->getRegions() === $this) {
+                $devisRenoGlobal->setRegions(null);
             }
         }
 

@@ -32,7 +32,9 @@
             <th style="text-align: center;">Chauffage</th>
             <th style="text-align: center;">Résidence</th>
             <th style="text-align: center;">Aide</th>
+            <th style="text-align: center;">Installations</th>
             <th style="text-align: center;">Prime</th>
+            <th style="text-align: center;">Menages</th>
             <th style="text-align: center;">Actions</th>
         </tr>
         </thead>
@@ -62,15 +64,253 @@
                         Non
                     {% endif %}
                 </td>
-                <td style="text-align: center; color: red; font-size: 15px;">
+
+                <td style="text-align: center; font-size: 15px;">
+                    {%if infos_devi.installations=='pacAirEau' %}
+                    PAC Air/Eau
+                    {% elseif infos_devi.installations=='pacAirAir' %}
+                        PAC Air/Air
+                    {% elseif infos_devi.installations=='BTD' %}
+                        BTD
+                    {% elseif infos_devi.installations=='ITE' %}
+                        ITE
+                    {% elseif infos_devi.installations=='pacAirEauIte' %}
+                        PAC Air/Eau + ITE
+                    {% elseif infos_devi.installations=='pacAirAirIte' %}
+                        PAC Air/Air + ITE
+                    {% elseif infos_devi.installations=='pacAirAirBTD' %}
+                        PAC Air/Air + BTD
+                    {% elseif infos_devi.installations=='pacAirEauBTD' %}
+                        PAC Air/Eau + BTD
+                    {% elseif infos_devi.installations=='pacAirAirBTDITE' %}
+                        PAC Air/Air + BTD + ITE
+                    {% elseif infos_devi.installations=='pacAirEauBTDITE' %}
+                        PAC Air/Eau + BTD + ITE
+                    {% elseif infos_devi.installations=='ITEBTD' %}
+                            ITE + BTD
+                    {% endif %}
+                </td>
+
+                <td style="text-align: center; font-size: 15px;">
+            {% if infos_devi.TrancheFiscal.tranches[0].Menage.Nom %}
+                    {% set aideITE = 0 %}
+                    {% set totalAide = 0 %}
+                    {% set lastTotalAideFinale = 0 %}
+
                     {% if infos_devi.validations == 1 %}
-                        {% set totalAide = 0 %}
                         {% for tranche in infos_devi.TrancheFiscal.tranches %}
-                            {% set totalAide = totalAide + (tranche.Aide is not null ? tranche.Aide : 0) %}
+
+
+                            {% if tranche.Menage.Nom == 'Ménages très modestes' and infos_devi.installations == 'BTD' %}
+                                {% set lastTotalAideFinale = 1307 %}
+                            {% elseif tranche.Menage.Nom == 'Ménages modestes' and infos_devi.installations == 'BTD' %}
+                                {% set lastTotalAideFinale = 894 %}
+                            {% elseif tranche.Menage.Nom == 'Ménages aux revenus intermédiaires' and infos_devi.installations == 'BTD' %}
+                                {% set lastTotalAideFinale = 494 %}
+                            {% elseif tranche.Menage.Nom == 'Ménages aux revenus les plus élevés' and infos_devi.installations == 'BTD' %}
+                                {% set lastTotalAideFinale = 85 %}
+                            {% elseif tranche.Menage.Nom == 'Ménages très modestes' and infos_devi.installations == 'pacAirAirBTD' %}
+                                {% set lastTotalAideFinale = 1307 %}
+                            {% elseif tranche.Menage.Nom == 'Ménages modestes' and infos_devi.installations == 'pacAirAirBTD' %}
+                                {% set lastTotalAideFinale = 894 %}
+                            {% elseif tranche.Menage.Nom == 'Ménages aux revenus intermédiaires' and infos_devi.installations == 'pacAirAirBTD' %}
+                                {% set lastTotalAideFinale = 494 %}
+                            {% elseif tranche.Menage.Nom == 'Ménages aux revenus les plus élevés' and infos_devi.installations == 'pacAirAirBTD' %}
+                                {% set lastTotalAideFinale = 85 %}
+                            {% elseif tranche.Menage.Nom == 'Ménages très modestes' and infos_devi.installations == 'pacAirEauBTD' %}
+                                {% set lastTotalAideFinale = 9307 %}
+                            {% elseif tranche.Menage.Nom == 'Ménages modestes' and infos_devi.installations == 'pacAirEauBTD' %}
+                                {% set lastTotalAideFinale = 7894 %}
+                            {% elseif tranche.Menage.Nom == 'Ménages aux revenus intermédiaires' and infos_devi.installations == 'pacAirEauBTD' %}
+                                {% set lastTotalAideFinale = 4994 %}
+                            {% elseif tranche.Menage.Nom == 'Ménages aux revenus les plus élevés' and infos_devi.installations == 'pacAirEauBTD' %}
+                                {% set lastTotalAideFinale = 2585 %}
+                            {% elseif tranche.Menage.Nom == 'Ménages très modestes' and infos_devi.installations == 'pacAirEau' %}
+                                {% set lastTotalAideFinale = 8000 %}
+                            {% elseif tranche.Menage.Nom == 'Ménages modestes' and infos_devi.installations == 'pacAirEau' %}
+                                {% set lastTotalAideFinale = 7000 %}
+                            {% elseif tranche.Menage.Nom == 'Ménages aux revenus intermédiaires' and infos_devi.installations == 'pacAirEau' %}
+                                {% set lastTotalAideFinale = 4500 %}
+                            {% elseif tranche.Menage.Nom == 'Ménages aux revenus les plus élevés' and infos_devi.installations == 'pacAirEau' %}
+                                {% set lastTotalAideFinale = 2500 %}
+                            {% elseif tranche.Menage.Nom == 'Ménages très modestes' and infos_devi.installations == 'ITE' %}
+                                {% if infos_devi.surfaceHabitable <= 100 %}
+                                    {% set lastTotalAideFinale = 75 * infos_devi.surfaceHabitable %}
+                                {% else %}
+                                    {% set lastTotalAideFinale = 75 * 100 %}  {# Plafonner la surface à 100m2 #}
+                                {% endif %}
+                            {% elseif tranche.Menage.Nom == 'Ménages modestes' and infos_devi.installations == 'ITE' %}
+                                {% if infos_devi.surfaceHabitable <= 100 %}
+                                    {% set lastTotalAideFinale = 60 * infos_devi.surfaceHabitable %}
+                                {% else %}
+                                    {% set lastTotalAideFinale = 60 * 100 %}  {# Plafonner la surface à 100m2 #}
+                                {% endif %}
+                            {% elseif tranche.Menage.Nom == 'Ménages aux revenus intermédiaires' and infos_devi.installations == 'ITE' %}
+                                {% if infos_devi.surfaceHabitable <= 100 %}
+                                    {% set lastTotalAideFinale = 40 * infos_devi.surfaceHabitable %}
+                                {% else %}
+                                    {% set lastTotalAideFinale = 40 * 100 %}  {# Plafonner la surface à 100m2 #}
+                                {% endif %}
+                            {% elseif tranche.Menage.Nom == 'Ménages aux revenus les plus élevés' and infos_devi.installations == 'ITE' %}
+                                {% if infos_devi.surfaceHabitable <= 100 %}
+                                    {% set lastTotalAideFinale = 15 * infos_devi.surfaceHabitable %}
+                                {% else %}
+                                    {% set lastTotalAideFinale = 15 * 100 %}  {# Plafonner la surface à 100m2 #}
+                                {% endif %}
+                            {% elseif tranche.Menage.Nom == 'Ménages très modestes' and infos_devi.installations == 'pacAirAir' %}
+                                {% set lastTotalAideFinale = 0 %}
+                            {% elseif tranche.Menage.Nom == 'Ménages modestes' and infos_devi.installations == 'pacAirAir' %}
+                                {% set lastTotalAideFinale = 0 %}
+                            {% elseif tranche.Menage.Nom == 'Ménages aux revenus intermédiaires' and infos_devi.installations == 'pacAirAir' %}
+                                {% set lastTotalAideFinale = 0 %}
+                            {% elseif tranche.Menage.Nom == 'Ménages aux revenus les plus élevés' and infos_devi.installations == 'pacAirAir' %}
+                                {% set lastTotalAideFinale = 0 %}
+                            {% elseif tranche.Menage.Nom == 'Ménages très modestes' and infos_devi.installations == 'pacAirAirBTDITE' %}
+                                {% if infos_devi.surfaceHabitable <= 100 %}
+                                    {% set lastTotalAideFinale = 1307+75 * infos_devi.surfaceHabitable %}
+                                {% else %}
+                                    {% set lastTotalAideFinale =1307+ 75 * 100 %}  {# Plafonner la surface à 100m2 #}
+                                {% endif %}
+                            {% elseif tranche.Menage.Nom == 'Ménages modestes' and infos_devi.installations == 'pacAirAirBTDITE' %}
+
+                                {% if infos_devi.surfaceHabitable <= 100 %}
+                                    {% set lastTotalAideFinale = 894+60 * infos_devi.surfaceHabitable %}
+                                {% else %}
+                                    {% set lastTotalAideFinale =894+ 60 * 100 %}  {# Plafonner la surface à 100m2 #}
+                                {% endif %}
+                            {% elseif tranche.Menage.Nom == 'Ménages aux revenus intermédiaires' and infos_devi.installations == 'pacAirAirBTDITE' %}
+                                {% if infos_devi.surfaceHabitable <= 100 %}
+                                    {% set lastTotalAideFinale = 494+40 * infos_devi.surfaceHabitable %}
+                                {% else %}
+                                    {% set lastTotalAideFinale = 494+ 40 * 100 %}  {# Plafonner la surface à 100m2 #}
+                                {% endif %}
+                            {% elseif tranche.Menage.Nom == 'Ménages aux revenus les plus élevés' and infos_devi.installations == 'pacAirAirBTDITE' %}
+                                {% if infos_devi.surfaceHabitable <= 100 %}
+                                    {% set lastTotalAideFinale = 85+15 * infos_devi.surfaceHabitable %}
+                                {% else %}
+                                    {% set lastTotalAideFinale = 85+15 * 100 %}  {# Plafonner la surface à 100m2 #}
+                                {% endif %}
+                            {% elseif tranche.Menage.Nom == 'Ménages très modestes' and infos_devi.installations == 'pacAirEauIte' %}
+                                {% if infos_devi.surfaceHabitable <= 100 %}
+                                    {% set lastTotalAideFinale = 8000+75 * infos_devi.surfaceHabitable %}
+                                {% else %}
+                                    {% set lastTotalAideFinale = 8000+75 * 100 %}  {# Plafonner la surface à 100m2 #}
+                                {% endif %}
+                            {% elseif tranche.Menage.Nom == 'Ménages modestes' and infos_devi.installations == 'pacAirEauIte' %}
+                                {% if infos_devi.surfaceHabitable <= 100 %}
+                                    {% set lastTotalAideFinale = 7000+60 * infos_devi.surfaceHabitable %}
+                                {% else %}
+                                    {% set lastTotalAideFinale = 7000+60 * 100 %}  {# Plafonner la surface à 100m2 #}
+                                {% endif %}
+                            {% elseif tranche.Menage.Nom == 'Ménages aux revenus intermédiaires' and infos_devi.installations == 'pacAirEauIte' %}
+                                {% if infos_devi.surfaceHabitable <= 100 %}
+                                    {% set lastTotalAideFinale = 4500+40 * infos_devi.surfaceHabitable %}
+                                {% else %}
+                                    {% set lastTotalAideFinale = 4500+40 * 100 %}  {# Plafonner la surface à 100m2 #}
+                                {% endif %}
+                            {% elseif tranche.Menage.Nom == 'Ménages aux revenus les plus élevés' and infos_devi.installations == 'pacAirEauIte' %}
+                                {% if infos_devi.surfaceHabitable <= 100 %}
+                                    {% set lastTotalAideFinale = 2500+15 * infos_devi.surfaceHabitable %}
+                                {% else %}
+                                    {% set lastTotalAideFinale =2500+ 15 * 100 %}  {# Plafonner la surface à 100m2 #}
+                                {% endif %}
+                            {% elseif tranche.Menage.Nom == 'Ménages très modestes' and infos_devi.installations == 'pacAirAirIte' %}
+                                {% if infos_devi.surfaceHabitable <= 100 %}
+                                    {% set lastTotalAideFinale = 75 * infos_devi.surfaceHabitable %}
+                                {% else %}
+                                    {% set lastTotalAideFinale = 75 * 100 %}  {# Plafonner la surface à 100m2 #}
+                                {% endif %}
+                            {% elseif tranche.Menage.Nom == 'Ménages modestes' and infos_devi.installations == 'pacAirAirIte' %}
+                                {% if infos_devi.surfaceHabitable <= 100 %}
+                                    {% set lastTotalAideFinale = 60 * infos_devi.surfaceHabitable %}
+                                {% else %}
+                                    {% set lastTotalAideFinale = 60 * 100 %}  {# Plafonner la surface à 100m2 #}
+                                {% endif %}
+                            {% elseif tranche.Menage.Nom == 'Ménages aux revenus intermédiaires' and infos_devi.installations == 'pacAirAirIte' %}
+                                {% if infos_devi.surfaceHabitable <= 100 %}
+                                    {% set lastTotalAideFinale = 40 * infos_devi.surfaceHabitable %}
+                                {% else %}
+                                    {% set lastTotalAideFinale = 40 * 100 %}  {# Plafonner la surface à 100m2 #}
+                                {% endif %}
+                            {% elseif tranche.Menage.Nom == 'Ménages aux revenus les plus élevés' and infos_devi.installations == 'pacAirAirIte' %}
+                                {% if infos_devi.surfaceHabitable <= 100 %}
+                                    {% set lastTotalAideFinale = 15 * infos_devi.surfaceHabitable %}
+                                {% else %}
+                                    {% set lastTotalAideFinale = 15 * 100 %}  {# Plafonner la surface à 100m2 #}
+                                {% endif %}
+                            {% elseif tranche.Menage.Nom == 'Ménages très modestes' and infos_devi.installations == 'pacAirEauBTDITE' %}
+                                {% if infos_devi.surfaceHabitable <= 100 %}
+                                    {% set lastTotalAideFinale = 8000+1307+75 * infos_devi.surfaceHabitable %}
+                                {% else %}
+                                    {% set lastTotalAideFinale = 8000+1307+75 * 100 %}  {# Plafonner la surface à 100m2 #}
+                                {% endif %}
+                            {% elseif tranche.Menage.Nom == 'Ménages modestes' and infos_devi.installations == 'pacAirEauBTDITE' %}
+                                {% if infos_devi.surfaceHabitable <= 100 %}
+                                    {% set lastTotalAideFinale = 7000+894+60 * infos_devi.surfaceHabitable %}
+                                {% else %}
+                                    {% set lastTotalAideFinale = 7000+894+60 * 100 %}  {# Plafonner la surface à 100m2 #}
+                                {% endif %}
+                            {% elseif tranche.Menage.Nom == 'Ménages aux revenus intermédiaires' and infos_devi.installations == 'pacAirEauBTDITE' %}
+                                {% if infos_devi.surfaceHabitable <= 100 %}
+                                    {% set lastTotalAideFinale = 4500+494+40 * infos_devi.surfaceHabitable %}
+                                {% else %}
+                                    {% set lastTotalAideFinale = 4500+494+ 40 * 100 %}  {# Plafonner la surface à 100m2 #}
+                                {% endif %}
+                            {% elseif tranche.Menage.Nom == 'Ménages aux revenus les plus élevés' and infos_devi.installations == 'pacAirEauBTDITE' %}
+                                {% if infos_devi.surfaceHabitable <= 100 %}
+                                    {% set lastTotalAideFinale = 2500+85+15 * infos_devi.surfaceHabitable %}
+                                {% else %}
+                                    {% set lastTotalAideFinale = 2500+85+15 * 100 %}  {# Plafonner la surface à 100m2 #}
+                                {% endif %}
+                            {% elseif tranche.Menage.Nom == 'Ménages très modestes' and infos_devi.installations == 'ITEBTD' %}
+                                {% if infos_devi.surfaceHabitable <= 100 %}
+                                    {% set lastTotalAideFinale = 1307+75 * infos_devi.surfaceHabitable %}
+                                {% else %}
+                                    {% set lastTotalAideFinale = 1307+75 * 100 %}  {# Plafonner la surface à 100m2 #}
+                                {% endif %}
+                            {% elseif tranche.Menage.Nom == 'Ménages modestes' and infos_devi.installations == 'ITEBTD' %}
+                                {% if infos_devi.surfaceHabitable <= 100 %}
+                                    {% set lastTotalAideFinale = 894+60 * infos_devi.surfaceHabitable %}
+                                {% else %}
+                                    {% set lastTotalAideFinale = 894+60 * 100 %}  {# Plafonner la surface à 100m2 #}
+                                {% endif %}
+                            {% elseif tranche.Menage.Nom == 'Ménages aux revenus intermédiaires' and infos_devi.installations == 'ITEBTD' %}
+                                {% if infos_devi.surfaceHabitable <= 100 %}
+                                    {% set lastTotalAideFinale = 494+40 * infos_devi.surfaceHabitable %}
+                                {% else %}
+                                    {% set lastTotalAideFinale = 494+40 * 100 %}  {# Plafonner la surface à 100m2 #}
+                                {% endif %}
+                            {% elseif tranche.Menage.Nom == 'Ménages aux revenus les plus élevés' and infos_devi.installations == 'ITEBTD' %}
+                                {% if infos_devi.surfaceHabitable <= 100 %}
+                                    {% set lastTotalAideFinale = 85+15 * infos_devi.surfaceHabitable %}
+                                {% else %}
+                                    {% set lastTotalAideFinale = 85+15 * 100 %}  {# Plafonner la surface à 100m2 #}
+                                {% endif %}
+
+                            {% endif %}
+
                         {% endfor %}
-                        {{ totalAide }}
+
+                        {% if infos_devi.installations == 'pacAirAir' %}
+                            {% set lastTotalAideFinale = 0 %}
+                        {% endif %}
+
+                        <div style="color: green;">{{ lastTotalAideFinale }}€</div>
+
                     {% else %}
-                        0
+                        <div style="color: red;">0€</div>
+                    {% endif %}
+                    {% else %}
+                    {# Le ménage du devis n'est pas le même que celui de la tranche fiscale, ne faites rien ou affichez un message d'erreur si nécessaire #}
+            <tr>
+                <td colspan="6">Ménage non valide pour cette tranche fiscale</td>
+            </tr>
+        {% endif %}
+                </td>
+                <td style="font-size: 10px;">
+                    {% if infos_devi.TrancheFiscal.tranches|length > 0 %}
+                        {% set Menages = infos_devi.TrancheFiscal.tranches[0].Menage.Nom %}
+                        <b>{{ Menages }}</b>
                     {% endif %}
                 </td>
 

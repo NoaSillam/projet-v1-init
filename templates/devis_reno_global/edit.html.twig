@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit DevisRenoGlobal{% endblock %}
+
+{% block body %}
+    <h1>Edit DevisRenoGlobal</h1>
+
+    {{ include('devis_reno_global/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_devis_reno_global_index') }}">back to list</a>
+
+    {{ include('devis_reno_global/_delete_form.html.twig') }}
+{% endblock %}

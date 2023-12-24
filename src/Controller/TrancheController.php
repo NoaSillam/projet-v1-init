@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Personne;
+use App\Entity\Regions;
 use App\Entity\Tranche;
 use App\Form\TrancheType;
 use App\Repository\TrancheRepository;

@@ -59,6 +59,12 @@ class InfosDevis
     #[ORM\Column]
     private ?bool $validations = false;
 
+    #[ORM\Column(length: 255)]
+    private ?string $installations = null;
+
+    #[ORM\Column]
+    private ?bool $validationCEE = null;
+
     public function __construct()
     {
        // $this->nbPersonne = null; // Initialisez avec null
@@ -71,10 +77,21 @@ class InfosDevis
         $trancheFiscal = $this->getTrancheFiscal();
         $numFiscal = $this->getNumFiscal();
 
-        if ($trancheFiscal && ($numFiscal < $trancheFiscal->getDebut() || $numFiscal > $trancheFiscal->getFin())) {
-            $context->buildViolation('Le numéro fiscal doit être compris entre le début et la fin de la tranche fiscale choisie.')
-                ->atPath('Num_fiscal')
-                ->addViolation();
+        if ($trancheFiscal) {
+            $debutTranche = $trancheFiscal->getDebut();
+            $finTranche = $trancheFiscal->getFin();
+
+            if ($debutTranche !== null && $numFiscal < $debutTranche) {
+                $context->buildViolation('Le numéro fiscal doit être supérieur ou égal au début de la tranche fiscale choisie.')
+                    ->atPath('Num_fiscal')
+                    ->addViolation();
+            }
+
+            if ($finTranche !== null && $numFiscal > $finTranche) {
+                $context->buildViolation('Le numéro fiscal doit être inférieur ou égal à la fin de la tranche fiscale choisie.')
+                    ->atPath('Num_fiscal')
+                    ->addViolation();
+            }
         }
     }
 
@@ -242,6 +259,30 @@ class InfosDevis
     public function setValidations(bool $validations): static
     {
         $this->validations = $validations;
+
+        return $this;
+    }
+
+    public function getInstallations(): ?string
+    {
+        return $this->installations;
+    }
+
+    public function setInstallations(string $installations): static
+    {
+        $this->installations = $installations;
+
+        return $this;
+    }
+
+    public function isValidationCEE(): ?bool
+    {
+        return $this->validationCEE;
+    }
+
+    public function setValidationCEE(bool $validationCEE): static
+    {
+        $this->validationCEE = $validationCEE;
 
         return $this;
     }
