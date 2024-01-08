@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\InfosDevisRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -64,6 +65,15 @@ class InfosDevis
 
     #[ORM\Column]
     private ?bool $validationCEE = null;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $datePropriete = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $isolationCombles = null;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $dateConstruct = null;
 
     public function __construct()
     {
@@ -283,6 +293,42 @@ class InfosDevis
     public function setValidationCEE(bool $validationCEE): static
     {
         $this->validationCEE = $validationCEE;
+
+        return $this;
+    }
+
+    public function getDatePropriete(): ?\DateTimeInterface
+    {
+        return $this->datePropriete;
+    }
+
+    public function setDatePropriete(?\DateTimeInterface $datePropriete): static
+    {
+        $this->datePropriete = $datePropriete;
+
+        return $this;
+    }
+
+    public function getIsolationCombles(): ?string
+    {
+        return $this->isolationCombles;
+    }
+
+    public function setIsolationCombles(?string $isolationCombles): static
+    {
+        $this->isolationCombles = $isolationCombles;
+
+        return $this;
+    }
+
+    public function getDateConstruct(): ?\DateTimeInterface
+    {
+        return $this->dateConstruct;
+    }
+
+    public function setDateConstruct(?\DateTimeInterface $dateConstruct): static
+    {
+        $this->dateConstruct = $dateConstruct;
 
         return $this;
     }

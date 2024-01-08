@@ -29,6 +29,23 @@ class InfosDevisRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function findAllExceptRenoGlobal()
+    {
+        return $this->createQueryBuilder('i')
+            ->where('i.installations != :renoGlobal')
+            ->setParameter('renoGlobal', 'renoGlobal')
+            ->getQuery()
+            ->getResult();
+    }
+    public function findExceptRenoGlobal()
+    {
+        return $this->createQueryBuilder('i')
+            ->where('i.installations = :renoGlobal')
+            ->setParameter('renoGlobal', 'renoGlobal')
+            ->getQuery()
+            ->getResult();
+    }
+
 //    /**
 //     * @return InfosDevis[] Returns an array of InfosDevis objects
 //     */

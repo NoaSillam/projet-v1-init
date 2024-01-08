@@ -15,6 +15,12 @@ class MainController extends AbstractController
         return $this->render('main/index.html.twig');
     }
 
+    #[Route('/navbar', name: 'index_main_navbar')]
+    public function navbarFooter(): Response
+    {
+        return $this->render('main/navbar.html.twig');
+    }
+
     #[Route('/profil', name: 'profil')]
     public function profil(): Response
     {

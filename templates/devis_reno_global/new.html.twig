@@ -1,11 +1,19 @@
-{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
-{% block title %}New DevisRenoGlobal{% endblock %}
+    <style>
+
+    </style>
+{% endblock %}
+
 
 {% block body %}
-    <h1>Create new DevisRenoGlobal</h1>
+    {{ include('base.html.twig') }}
+    <br>
+    <a href="{{ path('app_devis_reno_global_index') }}" class="btn btn-dark" style="margin-left:3%;">Retour</a>
+    <h1 style="text-align:center;">Crée un nouveau devis de rénovation global</h1>
 
     {{ include('devis_reno_global/_form.html.twig') }}
 
-    <a href="{{ path('app_devis_reno_global_index') }}">back to list</a>
+
 {% endblock %}

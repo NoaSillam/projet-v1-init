@@ -50,10 +50,6 @@ class DevisRenoGlobalController extends AbstractController
         }
 
 
-
-
-
-
         $form = $this->createForm(DevisRenoGlobalType::class, $devisRenoGlobal, ['tranchesFiscales' => $tranchesFiscales , 'is_edit' => false]);
         $form->handleRequest($request);
 
