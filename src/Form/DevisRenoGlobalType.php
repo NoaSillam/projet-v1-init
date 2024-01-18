@@ -129,7 +129,7 @@ class DevisRenoGlobalType extends AbstractType
                 'multiple' => false,
                 'choice_attr' => [
                     'Oui' => ['style' => 'margin-left: 50px; text-align:center;'],
-                    'Non' => ['style' => 'margin-left: 150px; text-align:center; margin-bottom:100px;'],
+                    'Non' => ['style' => 'margin-left: 150pxk; text-align:center; margin-bottom:100px;'],
                 ],
                 'attr' => [
                     'class' => 'form-control',

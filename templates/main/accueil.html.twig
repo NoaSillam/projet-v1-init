@@ -51,7 +51,7 @@
       <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted" style="color: white;"><p style="color: white;">Accueil</p></a></li>
       <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted" style="color: white;"><p style="color: white;">Isolation</p></a></li>
       <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted" style="color: white;"><p style="color: white;">Pompe à chaleur</p></a></li>
-      <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted" style="color: white;"><p style="color: white;">Solaire & Photovoltaique</p></a></li>
+      <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted" style="color: white;"><p style="color: white;">Solaire & photovoltaique</p></a></li>
       <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted" style="color: white;"><p style="color: white;">Aides & primes</p></a></li>
       <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted" style="color: white;"><p style="color: white;">Actualités</p></a></li>
     </ul>
@@ -62,10 +62,11 @@
     <h5>Informations</h5>
     <br>
     <ul class="nav flex-column">
-      <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted" style="color: white;"><p style="color: white;">Mentions légales</p></a></li>
-      <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted" style="color: white;"><p style="color: white;">CGV</p></a></li>
-      <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted" style="color: white;"><p style="color: white;">CGU</p></a></li>
+      <li class="nav-item mb-2"><a href="{{ path('main_accueil_mention_legale') }}" class="nav-link p-0 text-muted" style="color: white;"><p style="color: white;">Mentions légales</p></a></li>
+      <li class="nav-item mb-2"><a href="{{ path('main_accueil_cgv') }}" class="nav-link p-0 text-muted" style="color: white;"><p style="color: white;">Conditions Générales de Vente (CGV)</p></a></li>
+      <li class="nav-item mb-2"><a href="{{ path('main_accueil_cgu') }}" class="nav-link p-0 text-muted" style="color: white;"><p style="color: white;">Conditions Générales d'Utilisation (CGU)</p></a></li>
       <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted" style="color: white;"><p style="color: white;">Politique des cookies</p></a></li>
+        <li class="nav-item mb-2"><a href="{{ path('app_contact_new_client') }}" class="nav-link p-0 text-muted" style="color: white;"><p style="color: white;">Nous contacter</p></a></li>
  
     </ul>
   </div>
