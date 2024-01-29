@@ -19,7 +19,7 @@ class UserArticle
 
     #[ORM\ManyToOne(inversedBy: 'ArticleNewsletter')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?articleNewsletter $articleNewsletter = null;
+    private ?ArticleNewsletter $articleNewsletter = null;
 
     public function getId(): ?int
     {

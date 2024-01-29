@@ -29,6 +29,14 @@ class ArticleRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+    public function findByTypeArt(array $typeIds): array
+    {
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.type_article IN (:typeIds)')
+            ->setParameter('typeIds', $typeIds)
+            ->getQuery()
+            ->getResult();
+    }
 
 //    /**
 //     * @return Article[] Returns an array of Article objects

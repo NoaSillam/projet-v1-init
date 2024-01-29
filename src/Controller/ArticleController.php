@@ -23,10 +23,11 @@ class ArticleController extends AbstractController
             'articles' => $articleRepository->findAll(),
         ]);
     }
-    #[Route('/Isolation', name: 'app_article_index_2', methods: ['GET'])]
+
+    #[Route('/isolation', name: 'app_article_index_2', methods: ['GET'])]
     public function isolation(Request $request, ArticleRepository $articleRepository): Response
     {
-        $articles = $articleRepository->findByType(1);
+        $articles = $articleRepository->findByTypeArt([1, 5, 6, 7]);
         $screenWidth = $request->query->get('screen_width');
 
         // Définissez les variables en fonction de la largeur de l'écran
@@ -38,7 +39,85 @@ class ArticleController extends AbstractController
             'articles' => $articles,
             'isDesktop' => $isDesktop,
             'isMobile' => $isMobile,
+            // 'isMobile' => $isMobile,
+        ]);
+    }
+
+    #[Route('/isolation-interieur', name: 'isolation_interieur', methods: ['GET'])]
+    public function isolation_interieur(Request $request, ArticleRepository $articleRepository): Response
+    {
+        $articles = $articleRepository->findByType(1);
+        $screenWidth = $request->query->get('screen_width');
+
+        // Définissez les variables en fonction de la largeur de l'écran
+        $isDesktop = $screenWidth > 768;
+        $isMobile = $screenWidth <= 768;
+
+        // $isMobile = $this->detectMobile();
+        return $this->render('article/isolation_interieur.html.twig', [
+            'articles' => $articles,
+            'isDesktop' => $isDesktop,
+            'isMobile' => $isMobile,
         // 'isMobile' => $isMobile,
+        ]);
+    }
+
+
+
+
+    #[Route('/isolation-exterieur', name: 'isolation_exterieur', methods: ['GET'])]
+    public function isolation_exterieur(Request $request, ArticleRepository $articleRepository): Response
+    {
+        $articles = $articleRepository->findByType(5);
+        $screenWidth = $request->query->get('screen_width');
+
+        // Définissez les variables en fonction de la largeur de l'écran
+        $isDesktop = $screenWidth > 768;
+        $isMobile = $screenWidth <= 768;
+
+        // $isMobile = $this->detectMobile();
+        return $this->render('article/isolation_exterieur.html.twig', [
+            'articles' => $articles,
+            'isDesktop' => $isDesktop,
+            'isMobile' => $isMobile,
+            // 'isMobile' => $isMobile,
+        ]);
+    }
+    #[Route('/isolation-comble', name: 'isolation_comble', methods: ['GET'])]
+    public function isolation_comble(Request $request, ArticleRepository $articleRepository): Response
+    {
+        $articles = $articleRepository->findByType(6);
+        $screenWidth = $request->query->get('screen_width');
+
+        // Définissez les variables en fonction de la largeur de l'écran
+        $isDesktop = $screenWidth > 768;
+        $isMobile = $screenWidth <= 768;
+
+        // $isMobile = $this->detectMobile();
+        return $this->render('article/isolation_comble.html.twig', [
+            'articles' => $articles,
+            'isDesktop' => $isDesktop,
+            'isMobile' => $isMobile,
+            // 'isMobile' => $isMobile,
+        ]);
+    }
+
+    #[Route('/isolation-garage', name: 'isolation_garage', methods: ['GET'])]
+    public function isolation_garage(Request $request, ArticleRepository $articleRepository): Response
+    {
+        $articles = $articleRepository->findByType(7);
+        $screenWidth = $request->query->get('screen_width');
+
+        // Définissez les variables en fonction de la largeur de l'écran
+        $isDesktop = $screenWidth > 768;
+        $isMobile = $screenWidth <= 768;
+
+        // $isMobile = $this->detectMobile();
+        return $this->render('article/isolation_garage.html.twig', [
+            'articles' => $articles,
+            'isDesktop' => $isDesktop,
+            'isMobile' => $isMobile,
+            // 'isMobile' => $isMobile,
         ]);
     }
 
