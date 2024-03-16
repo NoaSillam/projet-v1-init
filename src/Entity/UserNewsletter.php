@@ -21,11 +21,12 @@ class UserNewsletter
     #[ORM\Column(length: 255)]
     private ?string $prenom = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, unique: true)]
     private ?string $adresseMail = null;
 
-    #[ORM\OneToMany(mappedBy: 'UserNewsletter', targetEntity: UserArticle::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'userNewsletter', targetEntity: UserArticle::class, orphanRemoval: true, cascade: ["remove"])]
     private Collection $userArticles;
+
 
     #[ORM\Column]
     private ?int $numTelephone = null;
@@ -84,6 +85,28 @@ class UserNewsletter
         return $this->userArticles;
     }
 
+//    public function addUserArticle(UserArticle $userArticle): static
+//    {
+//        if (!$this->userArticles->contains($userArticle)) {
+//            $this->userArticles->add($userArticle);
+//            $userArticle->setUserNewsletter($this);
+//        }
+//
+//        return $this;
+//    }
+//
+//    public function removeUserArticle(UserArticle $userArticle): static
+//    {
+//        if ($this->userArticles->removeElement($userArticle)) {
+//            // set the owning side to null (unless already changed)
+//            if ($userArticle->getUserNewsletter() === $this) {
+//                $userArticle->setUserNewsletter(null);
+//            }
+//        }
+//
+//        return $this;
+//    }
+
     public function addUserArticle(UserArticle $userArticle): static
     {
         if (!$this->userArticles->contains($userArticle)) {
@@ -105,6 +128,8 @@ class UserNewsletter
 
         return $this;
     }
+
+
 
     public function getNumTelephone(): ?int
     {

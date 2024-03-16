@@ -8,6 +8,9 @@ parameters:
     app.jwtsecret: '%env(JWT_SECRET)%'
 
 services:
+    App\Form\RolesTransformer:
+        tags:
+            - { name: 'form.type', alias: 'roles_transformer' }
     # default configuration for services in *this* file
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.

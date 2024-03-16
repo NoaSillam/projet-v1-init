@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/type_devis')]
 class TypeDevisController extends AbstractController
 {
-    #[Route('/', name: 'app_type_devis_index', methods: ['GET'])]
+    #[Route('', name: 'app_type_devis_index', methods: ['GET'])]
     public function index(TypeDevisRepository $typeDevisRepository): Response
     {
         return $this->render('type_devis/index.html.twig', [

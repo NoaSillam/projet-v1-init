@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/tranche')]
 class TrancheController extends AbstractController
 {
-    #[Route('/', name: 'app_tranche_index', methods: ['GET'])]
+    #[Route('', name: 'app_tranche_index', methods: ['GET'])]
     public function index(TrancheRepository $trancheRepository): Response
     {
         return $this->render('tranche/index.html.twig', [

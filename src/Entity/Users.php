@@ -48,6 +48,7 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     public function __construct()
     {
         $this->created_at = new DateTimeImmutable();
+        $this->roles = ['ROLE_USER'];
     }
 
     public function getId(): ?int
@@ -91,7 +92,11 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function setRoles(array $roles): static
     {
-        $this->roles = $roles;
+        // Assurez-vous que le tableau de rôles n'est pas vide
+        if (!empty($roles)) {
+            // Obtenez le premier élément du tableau et affectez-le à $roles
+            $this->roles = [$roles[0]];
+        }
 
         return $this;
     }

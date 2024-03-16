@@ -19,46 +19,46 @@
     <table class="table" style=" margin-right: 5%;">
         <thead>
         <tr>
-            <th style="text-align: center;">Nom</th>
-            <th style="text-align: center;">Prénom</th>
-            <th style="text-align: center; ">Mail</th>
-            <th style="text-align: center;">Tél.</th>
-            <th style="text-align: center; ">Personnes dans le Foyer</th>
-            <th style="text-align: center;">Numéro Fiscal</th>
-            <th style="text-align: center;">Tranche Fiscale</th>
-            <th style="text-align: center;">Région</th>
-            <th style="text-align: center;">Propriété</th>
-            <th style="text-align: center;">Surface (m²)</th>
-            <th style="text-align: center;">Chauffage</th>
-            <th style="text-align: center;">Résidence</th>
-            <th style="text-align: center;">Aide</th>
-            <th style="text-align: center;">Installations</th>
-            <th style="text-align: center;">Date de la construction</th>
-            <th style="text-align: center;">Prime</th>
-            <th style="text-align: center;">Menages</th>
-            <th style="text-align: center;">Actions</th>
+            <th style="text-align: center; font-size: 14px;">Nom</th>
+            <th style="text-align: center; font-size: 14px;">Prénom</th>
+            <th style="text-align: center; font-size: 14px;">Mail</th>
+            <th style="text-align: center; font-size: 14px;">Tél.</th>
+            <th style="text-align: center; font-size: 14px; ">Personnes dans le Foyer</th>
+            <th style="text-align: center; font-size: 14px;">Numéro Fiscal</th>
+            <th style="text-align: center; font-size: 14px;">Tranche Fiscale</th>
+            <th style="text-align: center; font-size: 14px;">Région</th>
+            <th style="text-align: center; font-size: 14px;">Propriété</th>
+            <th style="text-align: center; font-size: 14px;">Surface (m²)</th>
+            <th style="text-align: center; font-size: 14px;">Chauffage</th>
+            <th style="text-align: center; font-size: 14px;">Résidence</th>
+            <th style="text-align: center; font-size: 14px;">Aide</th>
+            <th style="text-align: center; font-size: 14px;">Installations</th>
+            <th style="text-align: center; font-size: 14px;">Date de la construction</th>
+            <th style="text-align: center; font-size: 14px;">Prime</th>
+            <th style="text-align: center; font-size: 14px;">Menages</th>
+            <th style="text-align: center; font-size: 14px;">Actions</th>
         </tr>
         </thead>
         <tbody>
         {% for infos_devi in infos_devis %}
             <tr>
-                <td style="text-align: center; font-size: 15px;">{{ infos_devi.Nom }}</td>
-                <td style="text-align: center; font-size: 15px;">{{ infos_devi.Prenom }}</td>
-                <td style="text-align: center; font-size: 15px;">{{ infos_devi.Mail }}</td>
-                <td style="text-align: center; font-size: 15px;">0{{ infos_devi.telephone }}</td>
-                <td style="text-align: center; font-size: 15px;">{{ infos_devi.nbPersonne.nbPersonne | default('N/A')}}</td>
-                <td style="text-align: center; font-size: 15px;">{{ infos_devi.NumFiscal }} €</td>
-                <td style="text-align: center; font-size: 15px;">      {% if infos_devi.TrancheFiscal.Fin == null %}
+                <td style="text-align: center; font-size: 13px;">{{ infos_devi.Nom }}</td>
+                <td style="text-align: center; font-size: 13px;">{{ infos_devi.Prenom }}</td>
+                <td style="text-align: center; font-size: 13px;">{{ infos_devi.Mail }}</td>
+                <td style="text-align: center; font-size: 13px;">0{{ infos_devi.telephone }}</td>
+                <td style="text-align: center; font-size: 13px;">{{ infos_devi.nbPersonne.nbPersonne | default('N/A')}}</td>
+                <td style="text-align: center; font-size: 13px;">{{ infos_devi.NumFiscal }} €</td>
+                <td style="text-align: center; font-size: 13px;">      {% if infos_devi.TrancheFiscal.Fin == null %}
                   >  {{ infos_devi.TrancheFiscal.Debut }} €
                     {% else %}
                         {{ infos_devi.TrancheFiscal is not null ? infos_devi.TrancheFiscal.Debut ~ '€' : 'N/A' }} - {{ infos_devi.TrancheFiscal is not null ? infos_devi.TrancheFiscal.Fin ~ '€' : 'N/A' }}
                     {% endif %}</td>
-                <td style="text-align: center; font-size: 15px;">{{ infos_devi.Regions.Nom  | default('N/A')}}</td>
-                <td style="text-align: center; font-size: 15px;">{{ infos_devi.proprieter }}</td>
-                <td style="text-align: center; font-size: 15px;">{{ infos_devi.surfaceHabitable }}</td>
-                <td style="text-align: center; font-size: 15px;">{{ infos_devi.typeChauffage }}</td>
-                <td style="text-align: center; font-size: 15px;">{{ infos_devi.residencePrincipale }}</td>
-                <td style="text-align: center; font-size: 15px;">
+                <td style="text-align: center; font-size: 13px;">{{ infos_devi.Regions.Nom  | default('N/A')}}</td>
+                <td style="text-align: center; font-size: 13px;">{{ infos_devi.proprieter }}</td>
+                <td style="text-align: center; font-size: 13px;">{{ infos_devi.surfaceHabitable }}</td>
+                <td style="text-align: center; font-size: 13px;">{{ infos_devi.typeChauffage }}</td>
+                <td style="text-align: center; font-size: 13px;">{{ infos_devi.residencePrincipale }}</td>
+                <td style="text-align: center; font-size: 13px;">
                     {% if infos_devi.validations == 1 %}
                         0ui
                     {% else %}
@@ -66,7 +66,7 @@
                     {% endif %}
                 </td>
 
-                <td style="text-align: center; font-size: 15px;">
+                <td style="text-align: center; font-size: 13px;">
                     {%if infos_devi.installations=='pacAirEau' %}
                     PAC Air/Eau
                     {% elseif infos_devi.installations=='pacAirAir' %}
@@ -91,7 +91,7 @@
                             ITE + BTD
                     {% endif %}
                 </td>
-            <td style="text-align: center; font-size: 15px;">
+            <td style="text-align: center; font-size: 13px;">
                 {% if infos_devi.dateConstruct is not null %}
                     {{ infos_devi.dateConstruct|date('Y-m-d') }}
                 {% else %}
@@ -99,7 +99,7 @@
                 {% endif %}
             </td>
 
-                <td style="text-align: center; font-size: 15px;">
+                <td style="text-align: center; font-size: 13px;">
             {% if infos_devi.TrancheFiscal.tranches[0].Menage.Nom %}
                     {% set aideITE = 0 %}
                     {% set totalAide = 0 %}
@@ -316,7 +316,7 @@
             </tr>
         {% endif %}
                 </td>
-                <td style="font-size: 10px;">
+                <td style="font-size: 11px;">
                     {% if infos_devi.TrancheFiscal.tranches|length > 0 %}
                         {% set Menages = infos_devi.TrancheFiscal.tranches[0].Menage.Nom %}
                         <b>{{ Menages }}</b>
@@ -353,22 +353,22 @@
           <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
           <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
           <script>
-              $(document).ready(function() {
-                  // Récupérer le nom de la route de la page actuelle
-                  var currentRoute = "{{ app.request.attributes.get('_route') }}";
+              {#$(document).ready(function() {#}
+              {#    // Récupérer le nom de la route de la page actuelle#}
+              {#    var currentRoute = "{{ app.request.attributes.get('_route') }}";#}
 
-                  // Supprimer la classe "active" de tous les liens de la barre de navigation
-                  $('.navbar-nav a').removeClass('active');
+              {#    // Supprimer la classe "active" de tous les liens de la barre de navigation#}
+              {#    $('.navbar-nav a').removeClass('active');#}
 
-                  // Trouver l'élément de la barre de navigation correspondant à la page actuelle
-                  console.log("Current Route:", currentRoute);
+              {#    // Trouver l'élément de la barre de navigation correspondant à la page actuelle#}
+              {#    console.log("Current Route:", currentRoute);#}
 
-                  $('.navbar-nav a').each(function() {
-                      var href = $(this).attr('href');
-                      var linkRoute = href.split('/').slice(-1)[0];
-                      console.log("Checking linkRoute:", linkRoute);
-                      $(this).toggleClass('active', currentRoute === linkRoute);
-                  });
-              });
+              {#    $('.navbar-nav a').each(function() {#}
+              {#        var href = $(this).attr('href');#}
+              {#        var linkRoute = href.split('/').slice(-1)[0];#}
+              {#        console.log("Checking linkRoute:", linkRoute);#}
+              {#        $(this).toggleClass('active', currentRoute === linkRoute);#}
+              {#    });#}
+              {#});#}
           </script>
       {%endblock%}

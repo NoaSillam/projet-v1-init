@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/type')]
 class TypeController extends AbstractController
 {
-    #[Route('/', name: 'app_type_index', methods: ['GET'])]
+    #[Route('', name: 'app_type_index', methods: ['GET'])]
     public function index(TypeRepository $typeRepository): Response
     {
         return $this->render('type/index.html.twig', [

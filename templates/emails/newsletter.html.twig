@@ -21,6 +21,11 @@
 </div>
 </div>
 
+    <p>{{ userEmail }}</p>
+    <p>{{ userId }}</p>
+
+    Si vous souhaitez vous désabonner à notre newsletter cliquée sur le lien <a href="http://127.0.0.1:8000{{ path('app_user_newsletter_desb', {'userId': userId}) }}" target="_blank">se désabonner</a>.
+
 
 {% endblock %}
 

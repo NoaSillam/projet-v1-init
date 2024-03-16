@@ -25,7 +25,7 @@ class ArticleNewsletter
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $annonce = null;
 
-    #[ORM\OneToMany(mappedBy: 'ArticleNewsletter', targetEntity: ArticleNewsletter::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'articleNewsletter',targetEntity: UserArticle::class, orphanRemoval: true)]
     private Collection $userArticles;
 
 
@@ -83,6 +83,29 @@ class ArticleNewsletter
         return $this->userArticles;
     }
 
+//    public function addUserArticle(UserArticle $userArticle): static
+//    {
+//        if (!$this->userArticles->contains($userArticle)) {
+//            $this->userArticles->add($userArticle);
+//            $userArticle->setArticleNewsletter($this);
+//        }
+//
+//        return $this;
+//    }
+//
+//    public function removeUserArticle(UserArticle $userArticle): static
+//    {
+//        if ($this->userArticles->removeElement($userArticle)) {
+//            // set the owning side to null (unless already changed)
+//            if ($userArticle->getArticleNewsletter() === $this) {
+//                $userArticle->setArticleNewsletter(null);
+//            }
+//        }
+//
+//        return $this;
+//    }
+
+
     public function addUserArticle(UserArticle $userArticle): static
     {
         if (!$this->userArticles->contains($userArticle)) {
@@ -104,6 +127,7 @@ class ArticleNewsletter
 
         return $this;
     }
+
 
 
 

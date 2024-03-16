@@ -143,25 +143,26 @@
         <div style="margin-left:auto; margin-right:auto;">
             <section class="section_1" style="display: flex; justify-content: space-between;">
                 <article class="articlePresentation" >
-                    <h3 style="text-align:center; color: #1D4851;"><b>Isoler votre maison</b></h3>
+                    <h3 style="text-align:center; color: #1D4851;"><b>Optimiser le confort et l'efficacité énergétique grâce à l'isolation des combles</b></h3>
                     <br>
                     <p style="font-size:18px;">
                         Isoler sa maison offre une multitude d'avantages significatifs.
 
                         <br>
-                    <h5 style="color: #1D4851;"><b>L'Étape Cruciale : Isolation des Combles</b></h5>
-                    L'isolation des combles représente une étape essentielle dans l'amélioration de l'efficacité énergétique d'une maison. En utilisant des matériaux isolants, cette démarche permet de prévenir les déperditions de chaleur vers l'extérieur, créant ainsi un environnement intérieur plus confortable et économique.
+                    <h5 style="color: #1D4851;"><b>Réduire les pertes thermiques</b></h5>
+                    L'isolation des combles est une étape essentielle pour réduire les pertes thermiques dans un bâtiment. En empêchant la chaleur de s'échapper par le toit, elle permet de maintenir une température intérieure constante, réduisant ainsi la dépendance aux systèmes de chauffage et de climatisation. Une isolation adéquate des combles peut entraîner des économies significatives sur les factures d'énergie. <br>
                     <br>
-                    <br>
-                    <h5 style=" color: #1D4851;"><b>Confort Accru et Économies Durables</b></h5>
-                    Optimiser l'isolation des combles offre des avantages tangibles, allant au-delà de la simple réduction des factures énergétiques. En conservant la chaleur en hiver et en limitant les surchauffes estivales, cette solution améliore le confort thermique tout au long de l'année. De plus, en réduisant la consommation d'énergie, elle contribue à des économies durables tout en participant à la préservation de l'environnement.
-                    <br>
+                    <h5 style=" color: #1D4851;"><b>Améliorer le confort et la qualité de vie</b></h5>
+                    En plus de ses avantages économiques, l'isolation des combles améliore également le confort des occupants. En créant une barrière thermique efficace, elle permet de maintenir une température agréable dans les espaces habitables, été comme hiver. De plus, une meilleure isolation contribue à réduire les courants d'air et l'humidité, créant ainsi un environnement intérieur plus sain et plus confortable. <br>
                     </p>
                 </article>
                 <br>
                 <br>
                 <article class="articlePresentation articlePresentation_2">
-                    <iframe class="iframePresentation" src="https://www.youtube.com/embed/3sip7GsijQs?si=BFcSA5Z_lGcZ68dI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" class="card-img-top" allowfullscreen></iframe>
+{#                    <iframe class="iframePresentation" src="https://www.youtube.com/embed/3sip7GsijQs?si=BFcSA5Z_lGcZ68dI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" class="card-img-top" allowfullscreen></iframe>#}
+
+                    <img src="{{ asset('assets/images/6410292-removebg-preview.png') }}" class="img-top" style="width: 600px; height: 600px; margin-top: -130px;">
+                    <p style="color: grey; font-size: 11px; margin-left: 35%;"><a style="color: grey; font-size: 11px; text-decoration: underline;" href="https://fr.freepik.com/vecteurs-libre/illustration-conception-toit-realiste_21559859.htm#fromView=search&page=1&position=8&uuid=1a3d67d8-40fa-422c-8b58-1b41fece53d2">Image de pikisuperstar</a> sur Freepik </p>
 
                 </article>
             </section>
@@ -195,9 +196,14 @@
                                 <div class="imgCard-isolation">
                                     <img src="{{ asset('assets/images/' ~ article.Image ) }}" class="card-img-top imgCarousel" alt="...">
                                 </div>
-                                <div class="card-body " style="height: 250px;" >
-                                    <h5 class="card-title">{{ article.Nom }}</h5>
-                                    <div class="card-text" style="max-height: 180px; overflow: hidden;">
+{#                                <div class="card-body " style="height: 250px;" >#}
+{#                                    <h5 class="card-title">{{ article.Nom }}</h5>#}
+{#                                    <div class="card-text" style="max-height: 180px; overflow: hidden;">#}
+{#                                        <p>{{ article.Annonce|raw }}</p></div>...#}
+{#                                </div>#}
+                                <div class="card-body " style="height: 270px; " >
+                                    <h5 class="card-title" style="font-size: 16.5px;">{{ article.Nom }}</h5>
+                                    <div class="card-text" style="max-height: 190px; overflow: hidden; font-size: 15px; margin-top: -17px;">
                                         <p>{{ article.Annonce|raw }}</p></div>...
                                 </div>
                                 <div class="card-footer" style="display: flex; align-items: center; justify-content: center; ">

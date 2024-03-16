@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}UserArticle{% endblock %}
+
+{% block body %}
+    <h1>UserArticle</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ user_article.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_user_article_index') }}">back to list</a>
+
+    <a href="{{ path('app_user_article_edit', {'id': user_article.id}) }}">edit</a>
+
+    {{ include('user_article/_delete_form.html.twig') }}
+{% endblock %}

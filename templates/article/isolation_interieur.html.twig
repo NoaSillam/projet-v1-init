@@ -143,18 +143,18 @@
         <div style="margin-left:auto; margin-right:auto;">
             <section class="section_1" style="display: flex; justify-content: space-between;">
                 <article class="articlePresentation" >
-                    <h3 style="text-align:center; color: #1D4851;"><b>Isoler votre maison</b></h3>
+                    <h3 style="text-align:center; color: #1D4851;"><b>Maximiser le confort de votre maison avec une isolation intérieure éfficace</b></h3>
                     <br>
                     <p style="font-size:18px;">
                         Isoler sa maison offre une multitude d'avantages significatifs.
 
                         <br>
-                    <h5 style="color: #1D4851;"><b>L'Essentiel de l'Isolation Intérieure </b></h5>
-                    L'isolation intérieure joue un rôle clé dans la création d'un environnement intérieur confortable et économe en énergie. En utilisant des matériaux isolants modernes tels que la laine de roche ou les panneaux en polystyrène, cette méthode contribue à maintenir une température stable à l'intérieur des habitations, réduisant ainsi la dépendance aux systèmes de chauffage et de climatisation.
+                    <h5 style="color: #1D4851;"><b>Créer un cocon thermique </b></h5>
+                    L'isolation intérieure est bien plus qu'une simple barrière contre les températures extérieures. Elle crée un cocon thermique, préservant la chaleur en hiver et la fraîcheur en été. En utilisant des matériaux isolants de qualité, on peut réduire significativement la déperdition d'énergie, assurant ainsi un confort optimal tout au long de l'année.
                     <br>
                     <br>
-                    <h5 style=" color: #1D4851;"><b>Les Avantages Pratiques</b></h5>
-                    Opter pour une isolation intérieure présente des avantages pratiques significatifs. Non seulement elle améliore l'efficacité énergétique, mais elle atténue également les bruits indésirables, créant ainsi un espace de vie paisible. De plus, cette approche offre une flexibilité architecturale en préservant l'esthétique des espaces intérieurs tout en offrant des économies durables sur les coûts énergétiques.
+                    <h5 style=" color: #1D4851;"><b>Améliorer l'acoustique et la confidentialité</b></h5>
+                    Outre ses avantages thermiques, l'isolation intérieure contribue également à améliorer l'acoustique des espaces habitables. En réduisant la propagation du bruit, elle crée des environnements plus paisibles et propices à la concentration. De plus, elle offre une certaine confidentialité en limitant la transmission des sons à travers les murs, préservant ainsi l'intimité des occupants.
                     <br>
 
                     </p>
@@ -162,8 +162,10 @@
                 <br>
                 <br>
                 <article class="articlePresentation articlePresentation_2">
-                    <iframe class="iframePresentation" src="https://www.youtube.com/embed/3sip7GsijQs?si=BFcSA5Z_lGcZ68dI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" class="card-img-top" allowfullscreen></iframe>
-
+{#                    <iframe class="iframePresentation" src="https://www.youtube.com/embed/3sip7GsijQs?si=BFcSA5Z_lGcZ68dI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" class="card-img-top" allowfullscreen></iframe>#}
+                    <img src="{{ asset('assets/images/1912.i121.041.P.m005.c33.isometric_repairs_set-07-removebg-preview.png') }}" class="img-top" style="width: 600px; height: 600px; margin-top: -70px;">
+                    <br>
+                   <p style="color: grey; font-size: 11px; margin-left: 35%;"><a style="color: grey; font-size: 11px; text-decoration: underline;" href="https://fr.freepik.com/vecteurs-libre/composition-reparations-isometriques-vue-salon-personnage-reparateur-renovant-illustration-vectorielle-mur_23547802.htm#fromView=search&page=1&position=3&uuid=b35d7ef3-6c54-479e-9844-cd72ef09e850">Image de macrovector</a> sur Freepik</p>
                 </article>
             </section>
         </div>
@@ -196,9 +198,9 @@
                                 <div class="imgCard-isolation">
                                     <img src="{{ asset('assets/images/' ~ article.Image ) }}" class="card-img-top imgCarousel" alt="...">
                                 </div>
-                                <div class="card-body " style="height: 250px;" >
-                                    <h5 class="card-title">{{ article.Nom }}</h5>
-                                    <div class="card-text" style="max-height: 180px; overflow: hidden;">
+                                <div class="card-body " style="height: 270px; " >
+                                    <h5 class="card-title" style="font-size: 16.5px;">{{ article.Nom }}</h5>
+                                    <div class="card-text" style="max-height: 190px; overflow: hidden; font-size: 15px; margin-top: -17px;">
                                         <p>{{ article.Annonce|raw }}</p></div>...
                                 </div>
                                 <div class="card-footer" style="display: flex; align-items: center; justify-content: center; ">

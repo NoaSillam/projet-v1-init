@@ -1,131 +1,977 @@
 
 
+
+
+
+
+
+
+
 {% block stylesheets %}
 
-<style>
-  .card {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
-  }
-  .vertical
-  {
-   
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
 
-      border:         none;
-      border-left:    1px solid white;
-      height:         350px;
-      width:          1px;       
-  
-  }
+        .card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
 
-</style>
+        .vertical {
+            border: none;
+            border-left: 1px solid white;
+            height: 350px;
+            width: 1px;
+        }
+
+        /*.active-link {*/
+        /*    color: #66ff66 !important; !* Couleur du texte pour la section active *!*/
+        /*}*/
+
+        a:hover
+        {
+            text-decoration: none;
+        }
+
+        .nav-link {
+            color: white;
+            transition: color 0.3s ease;  /* Ajoutez une transition à la couleur du texte */
+        }
+
+        .nav-title {
+            cursor: pointer;
+            position: relative;
+            display: inline-block;
+        }
+
+
+
+        .card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+
+        .vertical
+        {
+            margin-left: 35px;
+            border:         none;
+            border-left:    1px solid white;
+            height:         250px !important;
+            width:          1px;
+        }
+
+        .custom-btn {
+            width: 200px;
+            height: 50px;
+            margin-right: 4%;
+            border-radius: 50px;
+            background: linear-gradient(to right, #004D00FF, #66ff66FF);
+            font-size: 15px;
+            border-color: #1d512d;
+            transition: background 0.5s ease-in-out, transform 0.3s ease-in-out;
+        }
+
+        .custom-btn:hover {
+            background: linear-gradient(to right, #004D00FF, #66ff66FF);
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 767px) {
+            .footerHr
+            {
+                width: 0% !important;
+
+            }
+            .footerRespons{
+                margin-top: 20% !important;
+
+
+            }
+            .footerRespons2{
+                margin-top: 19% !important;
+
+            }
+            .link-dark
+            {
+                margin-left: -10% !important;
+            }
+            .vertical.test10
+            {
+                margin-left: 500px !important;
+                margin-top: -250px;
+            }
+            .test11
+            {
+                margin-left: 500px !important;
+                margin-top: -300px;
+            }
+            .infos_ment
+            {
+                width: 400px !important;
+                margin-left: 165px;
+                margin-top: 60px;
+            }
+            .nav_ment
+            {
+                margin-left: 30%;
+                margin-top: 60px;
+            }
+            .news_ment
+            {
+                margin-left: 145px;
+            }
+            .welcome-title
+            {
+                margin-left: 140px !important;
+            }
+            .footerRespons3
+            {
+                margin-top: 100px !important;
+            }
+
+        }
+
+        @media (min-width: 768px) and (max-width: 820px) {
+            .footerHr
+            {
+                width: 10% !important;
+
+            }
+            .footerHr2{
+                width: 25% !important;
+            }
+            .vertical.test10
+            {
+                margin-left: 150px !important;
+            }
+            .test11
+            {
+                margin-left: 150px !important;
+                margin-top: 60px;
+            }
+            .infos_ment
+            {
+                width: 400px !important;
+                margin-left: 390px;
+                margin-top: 60px;
+            }
+            .nav_ment
+            {
+                margin-left: 4%;
+            }
+            .news_ment
+            {
+                margin-left: 365px;
+            }
+            .welcome-title
+            {
+                margin-left: 10px !important;
+            }
+        }
+
+        @media (min-width: 820px) and (max-width: 900px) {
+            .footerHr
+            {
+                width: 12% !important;
+
+            }
+            .footerHr2{
+                width: 25% !important;
+            }
+            .test11
+            {
+                margin-left: 106px !important;
+                /*padding-left: 18px;*/
+            }
+            .infos_ment
+            {
+                width: 400px !important;
+                margin-left: -30px;
+
+            }
+           .test12
+           {
+               font-size: 13px !important;
+           }
+
+           .test10
+           {
+               margin-left: 100px !important;
+           }
+            .news_ment
+            {
+                margin-left: 215px;
+                margin-top: 30px;
+            }
+
+
+
+        }
+
+        @media (min-width: 901px) and (max-width: 970px) {
+            .footerHr
+            {
+                width: 14% !important;
+
+            }
+            .footerHr2{
+                width: 25% !important;
+            }
+            .test11
+            {
+                margin-left: 115px !important;
+                /*padding-left: 18px;*/
+            }
+            .infos_ment
+            {
+                width: 300px !important;
+                margin-left: -30px;
+
+            }
+            .test12
+            {
+                font-size: 13px !important;
+            }
+
+            .test10
+            {
+                margin-left: 100px !important;
+            }
+            .news_ment
+            {
+                margin-left: 195px;
+                margin-top: 30px;
+            }
+            .welcome-title{
+                margin-left: -85px !important;
+                border-radius: 10px !important;
+                padding: 13px !important;
+                width: 300px !important;
+                background: linear-gradient(45deg, #1D4851, #66FF66FF, #1D4851, #1D4851) !important;
+                background-size: 400% 400% !important;
+                height: 70px !important;
+                animation: gradientAnimation 8s infinite alternate !important;
+                margin-top: 15% !important;
+            }
+            .img-logo
+            {
+                margin-top: -22% !important;
+            }
+
+        }
+
+        @media (min-width: 971px) and (max-width: 991px) {
+            .footerHr
+            {
+                width: 16% !important;
+
+            }
+            .footerHr2{
+                width: 31% !important;
+            }
+            .test11
+            {
+                margin-left: 110px !important;
+                /*padding-left: 18px;*/
+            }
+            .infos_ment
+            {
+                width: 400px !important;
+                margin-left: -30px;
+
+            }
+            .test12
+            {
+                font-size: 13px !important;
+            }
+
+            .test10
+            {
+                margin-left: 100px !important;
+            }
+            .news_ment
+            {
+                margin-left: 215px;
+                margin-top: 30px;
+            }
+            .welcome-title{
+                margin-left: -105px !important;
+            }
+
+        }
+        @media (min-width: 992px) and (max-width: 1020px) {
+            .footerHr
+            {
+                width: 16% !important;
+
+            }
+            .footerHr2{
+                width: 31% !important;
+            }
+            .test11
+            {
+                margin-left: 95px !important;
+                /*padding-left: 18px;*/
+            }
+            .infos_ment
+            {
+                width: 400px !important;
+                margin-left: 5px;
+            }
+            .welcome-title{
+                margin-left: 2% !important;
+            }
+
+            .nav_ment
+            {
+                margin-left: 2%;
+            }
+            .test12
+            {
+                font-size: 15px !important;
+            }
+
+            .test10
+            {
+                margin-left: 90px !important;
+            }
+            .news_ment
+            {
+                margin-left: 365px;
+                margin-top: 40px;
+            }
+
+        }
+
+
+
+
+        @media (min-width: 1021px) and (max-width: 1110px) {
+            .footerHr
+            {
+                width: 18% !important;
+
+            }
+            .footerHr2{
+                width: 31% !important;
+            }
+            .vertical.test10
+            {
+                margin-left: 8% !important;
+            }
+            .vertical.test11
+            {
+                margin-left: 11.2% !important;
+            }
+            .infos_ment
+            {
+                width: 400px !important;
+                margin-left: 0.5%;
+            }
+            .nav_ment
+            {
+                margin-left: 4%;
+            }
+            .welcome-title
+            {
+                margin-left: 1% !important;
+            }
+            .news_ment
+            {
+                margin-left: 375px;
+                margin-top: 40px;
+            }
+        }
+
+        @media (min-width: 1111px) and (max-width: 1200px) {
+            .footerHr
+            {
+                width: 20% !important;
+
+            }
+            .footerHr2{
+                width: 31% !important;
+            }
+            .vertical.test10
+            {
+                margin-left: 8% !important;
+            }
+            .vertical.test11
+            {
+                margin-left: 11.2% !important;
+            }
+            .infos_ment
+            {
+                width: 400px !important;
+                margin-left: 0.5%;
+            }
+            .nav_ment
+            {
+                margin-left: 4%;
+            }
+            .welcome-title
+            {
+                margin-left: -3% !important;
+            }
+            .news_ment
+            {
+                margin-left: 335px;
+                margin-top: 40px;
+            }
+
+        }
+
+        @media (min-width: 1201px) and (max-width: 1300px) {
+            .footerHr
+            {
+                width: 23% !important;
+
+            }
+            .footerHr2{
+                width: 31% !important;
+            }
+
+            .vertical.test10
+            {
+                margin-left: 3% !important;
+            }
+            .vertical.test11
+            {
+                margin-left: 4% !important;
+            }
+            .infos_ment
+            {
+                width: 400px !important;
+                margin-left: -2%;
+            }
+            .nav_ment
+            {
+                margin-left: 1%;
+            }
+            .welcome-title
+            {
+                margin-left: -1% !important;
+            }
+            .test12
+            {
+                font-size: 13px !important;
+            }
+            .news_ment
+            {
+                margin-left: -49px;
+
+            }
+
+
+        }
+
+        @media (min-width: 1301px) and (max-width: 1400px) {
+            .footerHr
+            {
+                width: 24% !important;
+
+            }
+            .footerHr2{
+                width: 35% !important;
+            }
+            .news_ment
+            {
+                margin-left: -19.9px;
+
+            }
+            .welcome-title
+            {
+                margin-left: -6% !important;
+            }
+            .vertical.test10
+            {
+                margin-left: 4% !important;
+            }
+            .vertical.test11
+            {
+                margin-left: 12% !important;
+                padding-left: 1%;
+            }
+            .infos_ment
+            {
+                width: 300px !important;
+                margin-left: -9.5%;
+                padding-left: 9%;
+            }
+            .test12
+            {
+                font-size: 14px !important;
+            }
+            .nav_ment
+            {
+                margin-left: 2%;
+            }
+
+        }
+
+        @media (min-width: 1401px) and (max-width: 1500px) {
+            .footerHr
+            {
+                width: 26% !important;
+
+            }
+            .footerHr2{
+                width: 35% !important;
+            }
+
+        }
+
+        @media (min-width: 1501px) and (max-width: 1600px) {
+            .footerHr
+            {
+                width: 27% !important;
+
+            }
+            .footerHr2{
+                width: 35% !important;
+            }
+
+        }
+
+        @media (min-width: 1601px) and (max-width: 1700px) {
+            .footerHr
+            {
+                width: 28% !important;
+
+            }
+            .footerHr2{
+                width: 35% !important;
+            }
+
+        }
+
+        @media (min-width: 1701px) and (max-width: 1800px) {
+            .footerHr
+            {
+                width: 29% !important;
+
+            }
+            .footerHr2{
+                width: 35% !important;
+            }
+
+        }
+
+        @media (min-width: 1801px) and (max-width: 1900px) {
+            .footerHr
+            {
+                width: 30% !important;
+
+            }
+            .footerHr2{
+                width: 35% !important;
+            }
+
+        }
+
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            100% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .footerRespons
+        {
+            margin-top: -3%;
+
+        }
+        .footerRespons2{
+            margin-top: -4%;
+
+        }
+
+        .welcome-title {
+
+            border-radius: 10px;
+            padding: 13px;
+            width: 350px;
+            margin-left: -15%;
+            background: linear-gradient(45deg, #1D4851, #66FF66FF, #1D4851, #1D4851);
+            background-size: 400% 400%;
+            height: 70px;
+            animation: gradientAnimation 8s infinite alternate;
+            margin-top: 15%;
+        }
+        .nav-link:hover{
+            font-weight: bold;
+        }
+        .nav-title.dropdown-toggle.test::after {
+            margin: -95px 0 20px 190px !important;/* Couleur du soulignement au survol */
+        }
+        .nav-title.dropdown-toggle.test1::after {
+            margin: -217px 0 20px 190px !important;/* Couleur du soulignement au survol */
+        }
+        .nav-title.dropdown-toggle.test2::after {
+              margin: -217px 0 20px 190px !important;/* Couleur du soulignement au survol */
+          }
+        .nav-title.dropdown-toggle.test3::after {
+            margin: -217px 0 20px 190px !important;/* Couleur du soulignement au survol */
+        }
+        .nav-title.dropdown-toggle.test4::after {
+            margin: -217px 0 20px 190px !important;/* Couleur du soulignement au survol */
+        }
+        .dropdown-menu.test5
+        {
+            margin: -25px 0 0 0 !important;
+        }
+        .dropdown-menu.test6
+        {
+            margin: -25px 0 0 0 !important;
+        }
+        .dropdown-menu.test7
+        {
+            margin: -25px 0 0 0 !important;
+        }
+        .dropdown-menu.test8
+        {
+            margin: -25px 0 0 0 !important;
+        }
+        .dropdown-menu.test9
+        {
+            margin: -25px 0 0 0 !important;
+        }
+        .nav-title:hover
+        {
+            font-weight: bold;
+        }
+        .dropdown-item:hover
+        {
+            font-weight: bold;
+        }
+        .test11
+        {
+            margin-left: 110px;
+        }
+        .test10
+        {
+            margin-left: 5%;
+        }
+        .test1
+        {
+            font-size: 16px;
+        }
+        .test2
+        {
+            font-size: 16px;
+        }
+        .test3
+        {
+            font-size: 16px;
+        }
+        .test4
+        {
+            font-size: 16px;
+        }
+        .test12
+        {
+            font-size: 16px;
+        }
+        .img-logo
+        {
+            margin-top: -20%;
+        }
+
+    </style>
 {% endblock %}
-
 {%block body%}
-<br>
- <br>
- <br>
-<div style="width:100%; background-color: #1D4851; color: white;">
-<div class="container" style="width:100%; background-color: #1D4851; color: white;">
-    <footer class="py-5">
-      <div class="row">
-        {%if app.user%}
-        <div class="col-6 col-md-2 mb-3">
-          <h5 style="color: white;">Navigations</h5>
-          <br>
-          <ul class="nav flex-column" style="color: white;">
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted" style="color: white;" ><p style="color: white;">Accueil</p></a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted" style="color: white;"><p style="color: white;">Article</p></a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted" style="color: white;"><p style="color: white;">Type</p></a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted" style="color: white;"><p style="color: white;">Connexion</p></a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted" style="color: white;"><p style="color: white;">Inscription</p></a></li>
-          </ul>
-        </div>
-  {%else%}
-  <div class="col-6 col-md-2 mb-3">
-    <h5>Navigations</h5>
     <br>
-    <ul class="nav flex-column">
-      <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted" style="color: white;"><p style="color: white;">Accueil</p></a></li>
-      <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted" style="color: white;"><p style="color: white;">Isolation</p></a></li>
-      <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted" style="color: white;"><p style="color: white;">Pompe à chaleur</p></a></li>
-      <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted" style="color: white;"><p style="color: white;">Solaire & photovoltaique</p></a></li>
-      <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted" style="color: white;"><p style="color: white;">Aides & primes</p></a></li>
-      <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted" style="color: white;"><p style="color: white;">Actualités</p></a></li>
-    </ul>
-  </div>
-  {%endif%}
-<hr class="vertical">
-  <div class="col-6 col-md-2 mb-3">
-    <h5>Informations</h5>
     <br>
-    <ul class="nav flex-column">
-      <li class="nav-item mb-2"><a href="{{ path('main_accueil_mention_legale') }}" class="nav-link p-0 text-muted" style="color: white;"><p style="color: white;">Mentions légales</p></a></li>
-      <li class="nav-item mb-2"><a href="{{ path('main_accueil_cgv') }}" class="nav-link p-0 text-muted" style="color: white;"><p style="color: white;">Conditions Générales de Vente (CGV)</p></a></li>
-      <li class="nav-item mb-2"><a href="{{ path('main_accueil_cgu') }}" class="nav-link p-0 text-muted" style="color: white;"><p style="color: white;">Conditions Générales d'Utilisation (CGU)</p></a></li>
-      <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted" style="color: white;"><p style="color: white;">Politique des cookies</p></a></li>
-        <li class="nav-item mb-2"><a href="{{ path('app_contact_new_client') }}" class="nav-link p-0 text-muted" style="color: white;"><p style="color: white;">Nous contacter</p></a></li>
- 
-    </ul>
-  </div>
-      
-  
-        {#<div class="col-6 col-md-2 mb-3">#}
-         {# <h5>Section</h5>#}
-          {#<ul class="nav flex-column">#}
-           {# <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Home</a></li>#}
-            {#<li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Features</a></li>#}
-           {# <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Pricing</a></li>#}
-            {#<li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">FAQs</a></li>#}
-          {#  <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">About</a></li>#}
-         {# </ul>#}
-       {# </div>#}
-       <hr class="vertical">
-        <div class="col-md-5 offset-md-1 mb-3">
-         {# <form>#}
-            <h5>S'informer</h5>
-            <a href="{{path ('app_user_newsletter_new_user')}}">  <button type="button" class="btn btn-primary" style="width:300px; height:50px; margin-right:4%; border-radius:50px; background: linear-gradient(to right,#004d00, #66ff66); font-size:15px;  border-color: #1D4851;" ><strong>{{" S'inscrire à notre newsletters" | upper}}</strong></button></a>
+    <br>
+    <div style="width:100%; background-color:#1D4851; color: white;">
+        <div class="container" style="width:100%; background-color: #1D4851; color: white;">
+            <footer class="py-5">
+                <div class="row">
+                    <div class="welcome-title" >
+                        <h1  style="font-size: 2em; color: #fff; text-align: center; margin-left: 75px; font-weight: bold;">JS ENERGIE</h1>
+                        <img src="{{ asset('assets/images/LOGO_JS_ENERGIE_DEFINITIF2_3_copie-2.png') }}" class="img-logo"  width="80" height="76"><br>
+                    </div>
+                    {%if app.user%}
+                        <div class="col-7 col-md-2 mb-3" style=" height: 300px;">
+                            <h4 style="color:  white; text-decoration: underline;">Navigations</h4>
+                            <br>
+                            <ul class="nav flex-column" style="color: white;">
+                                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted" style="color: white;"><p style="color: white; font-size: 16px;" class="nav-title">Accueil</p></a></li>
+                                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted" style="color: white;"><p style="color: white; font-size: 16px;" class="nav-title">Article</p></a></li>
+                                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted" style="color: white;"><p style="color: white; font-size: 16px;" class="nav-title">Types</p></a></li>
+                                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted" style="color: white;"><p style="color: white; font-size: 16px;" class="nav-title">Connexion</p></a></li>
+                                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted" style="color: white;"><p style="color: white; font-size: 16px;" class="nav-title">Inscription</p></a></li>
+                            </ul>
+                        </div>
+                    {%else%}
+                        <div class="col-7 col-md-2 mb-3 nav_ment" style=" height: 300px;">
+                            <h4 style="text-decoration: underline;">Navigations</h4>
+                            <br>
+                            <ul class="nav flex-column">
+                                <li class="nav-item mb-2">
+                                    <a href="{{path ('main_accueil_user')}}" class="nav-link p-0 text-muted" style="color: white;  height: 48px;">
+                                        <p class="test12" style="color: white;  " class="nav-title">Accueil</p>
+                                    </a>
+                                </li>
 
-           
-            {#<p>Monthly digest of what's new and exciting from us.</p>#}
-           {# <div class="d-flex flex-column flex-sm-row w-100 gap-2">#}
-            {#  <label for="newsletter1" class="visually-hidden">Email address</label>#}
-            {#  <input id="newsletter1" type="text" class="form-control" placeholder="Adresse mail">#}
-             {# <button class="btn btn-primary" type="button">S'inscrire</button>#}
-            {#</div>#}
-             {# </form>#}
-     <br>
-     <br>
-     <br>
-       <ul class="navbar-nav ms-auto mb-2 mb-lg-0 "  >
-        <h5>Tester votre projet</h5>
-        <a href="{{path ('app_infos_devis_new_client')}}">  <button type="button" class="btn btn-primary" style="width:200px; height:50px; margin-right:4%; border-radius:50px; background: linear-gradient(to right,#004d00, #66ff66); font-size:15px;  border-color: #1D4851;" ><strong>{{"Demander un devis" | upper}}</strong></button></a>
-      </ul>
+                                <li class="nav-item dropdown nav-item-space" style="height: 48px;">
+                                    <a class="nav-title dropdown-toggle test" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="  color: white !important; height: 48px; ">
+                                        <p class="test12"  style=" height: 48px; margin-bottom: 28% !important; margin-top: -4%;">Isolation</p>
+                                    </a>
+                                    <ul class="dropdown-menu test5" style="background-color: #1D4851; ">
+                                        <li><a class="dropdown-item" style="color: white; background-color: #1D4851;" href="{{path ('app_article_index_2')}}">Isolation</a></li>
+                                        <li><a class="dropdown-item" style="color: white; background-color: #1D4851;;" href="{{path ('isolation_interieur')}}">Isolation Intérieur</a></li>
+                                        <li><a class="dropdown-item" style="color: white; background-color: #1D4851;" href="{{path ('isolation_exterieur')}}">Isolation Exterieur</a></li>
+                                        <li><a class="dropdown-item" style="color: white; background-color: #1D4851;" href="{{path ('isolation_comble')}}">Isolation Comble</a></li>
+                                        <li><a class="dropdown-item" style="color: white; background-color: #1D4851;" href="{{path ('isolation_garage')}}">Isolation Sous-sol / Garage</a></li>
+                                    </ul>
+                                </li>
+
+                                <li class="nav-item dropdown nav-item-space" style="height: 48px;">
+                                    <a class="nav-title dropdown-toggle test1" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: white !important; height: 48px;">
+                                        <p class="test12"  style=" height: 48px; margin-bottom: 90% !important; margin-top: -5%;"> Pompe à chaleur</p>
+                                    </a>
+                                    <ul class="dropdown-menu test6" style="background-color: #1D4851;">
+                                        <li><a class="dropdown-item" style="color: white; background-color: #1D4851;" href="{{path ('app_article_index_3')}}"> Pompe à chaleur Air / Air</a></li>
+                                        <li><a class="dropdown-item" style="color: white; background-color: #1D4851;" href="{{path ('app_article_index_3')}}">Pompe à chaleur Air / Eau</a></li>
+{#                                        <li><a class="dropdown-item" style="color: white; background-color: #1D4851;" href="{{path ('app_article_index_3')}}">Poile à bois</a></li>#}
+                                        <li><a class="dropdown-item" style="color: white; background-color: #1D4851;" href="{{path ('app_article_index_3')}}">Poile à granulet</a></li>
+                                        <li><a class="dropdown-item" style="color: white; background-color: #1D4851;" href="{{path ('chauffe_eau_thermodynamique')}}">Chauffe eau thermodynamique</a></li>
+                                    </ul>
+                                </li>
+
+{#                                <li class="nav-item dropdown nav-item-space" style="height: 48px;">#}
+{#                                    <a class=" nav-title dropdown-toggle test2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="  color: white !important; height: 48px;">#}
+{#                                        <p class="test12"  style=" width: 180px; height: 48px; margin-bottom: 90% !important; margin-top: -4%;">  Solaire & Photovoltaique</p>#}
+{#                                    </a>#}
+{#                                    <ul class="dropdown-menu test7" style="background-color: #1D4851;">#}
+{#                                        <li><a class="dropdown-item" style="color: white; background-color: #1D4851;" href="{{path ('app_article_index_4')}}">Panneau photovoltaique</a></li>#}
+{#                                        <li><a class="dropdown-item" style="color: white; background-color: #1D4851;" href="{{path ('app_article_index_4')}}">Ballon solaire thermique</a></li>#}
+{#                                    </ul>#}
+{#                                </li>#}
+                                <li class="nav-item mb-2" style="width: 300px; height: 40px;"><a href="{{ path('app_article_index_4') }}" class="nav-link p-0 text-muted" style="color: white;"><p  style="color: white; " class="nav-title test12"> Solaire & Photovoltaique</p></a></li>
+                                <li class="nav-item mb-2" style="width: 300px; height: 40px;"><a href="{{ path('app_article_index_5') }}" class="nav-link p-0 text-muted" style="color: white;"><p  style="color: white; " class="nav-title test12">Aide</p></a></li>
+                                <li class="nav-item mb-2" style="width: 300px; height: 40px;"><a href="{{ path('actualite') }}" class="nav-link p-0 text-muted" style="color: white;"><p  style="color: white; " class="nav-title test12">Actualités</p></a></li>
+                            </ul>
+                        </div>
+                    {%endif%}
+                    <hr class="vertical test10" >
+
+                    <div class="col-7 col-md-2 mb-3 infos_ment" style=" height: 300px;">
+                        <h4 style="text-decoration: underline;">Informations</h4>
+                        <br>
+                        <ul class="nav flex-column">
+                            <li class="nav-item mb-2" style="width: 300px; height: 40px;"><a href="{{ path('main_decret_tertiaire') }}" class="nav-link p-0 text-muted" style="color: white;"><p  style="color: white; " class="nav-title test12">Decret tertiaire</p></a></li>
+                            <li class="nav-item mb-2" style="width: 300px; height: 40px;"><a href="{{ path('main_accueil_mention_legale') }}" class="nav-link p-0 text-muted" style="color: white;"><p  style="color: white; " class="nav-title test12">Mentions légales</p></a></li>
+                            <li class="nav-item mb-2" style="width: 300px; height: 40px;"><a href="{{ path('main_accueil_cgv') }}" class="nav-link p-0 text-muted" style="color: white;"><p style="color: white; " class="nav-title test12">Conditions Générales de Vente</p></a></li>
+                            <li class="nav-item mb-2" style="width: 300px; height: 40px;"><a href="{{ path('main_accueil_cgu') }}" class="nav-link p-0 text-muted" style="color: white;"><p style="color: white; " class="nav-title test12">Conditions Générales d'Utilisation</p></a></li>
+                            <li class="nav-item mb-2" style="width: 300px; height: 40px;"><a href="#" class="nav-link p-0 text-muted" style="color: white;"><p style="color: white; ;" class="nav-title test12">Politique des cookies</p></a></li>
+                            <li class="nav-item mb-2" style="width: 300px; height: 40px;">
+                                <!-- Utilisez l'attribut data-toggle pour déclencher la modal sans JavaScript supplémentaire -->
+                                <a href="#" class="nav-link p-0 text-muted" style="color: white;" data-toggle="modal" data-target="#contactModal">
+                                    <p style="color: white;" class="nav-title test12">Nous Contacter</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <hr class="vertical test11">
+                    <div class="news_ment" style="width: 350px;">
+                    <div class="col-md-3 offset-md-1 mb-3" style="height: 300px; margin-left: 3%; "  >
+                        <br>
+                        <h4 style="color: #aeaeae; font-style: italic; text-decoration: underline;">S'informer</h4><br>
+                        <a href="{{ path('app_user_newsletter_new_user') }}" class="newsletter-btn">
+                            <button type="button" class="btn btn-primary custom-btn" style="width:300px; height:50px; margin-right:4%; border-radius:50px;   /*background: linear-gradient(to right, #1D4851, #004D00FF);*/ font-size:15px;  border-color: #1D4851;">
+                                <strong>{{" S'inscrire à notre newsletters" | upper}}</strong>
+                            </button>
+                        </a>
+                        <br>
+                        <br>
+                        <br>
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 ">
+                            <h4 style="color: #aeaeae; font-style: italic; text-decoration: underline; width: 250px;">Tester votre projet</h4>
+                            <br>
+                            <a href="{{ path('app_infos_devis_new_client') }}">
+                                <button type="button" class="btn btn-primary custom-btn" style="border-color: #1D4851;">
+                                    <strong>{{ "Demander un devis" | upper }}</strong>
+                                </button>
+                            </a>
+                        </ul>
+                    </div>
+                </div>
+                </div>
+            </footer>
+        </div>
+        <div style="position: relative;">
+            <hr class="footerHr" style="position: absolute; top: 23%; left: 0; width: 33%; z-index: 1; margin: 0; background: white">
+            <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4" style="position: relative; z-index: 2; margin: 0 auto; max-width: 500px;">
+                <ul class="list-unstyled d-flex" >
+
+                    <li class="ms-7 footerRespons3" style="text-align: center; width: 250px; margin-right: 15% !important; margin-top: -10px;">© 2023 - JS ENERGIE</li>
+
+                    <li class="ms-2 footerRespons" style="width: 30px; height: 30px; margin-left: 20px !important; "><a class="link-dark" href="#" style="height:48px; width:48px; "><svg fill="#FFFFFF" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 50 50" width="30px" height="30px">    <path d="M25,3C12.85,3,3,12.85,3,25c0,11.03,8.125,20.137,18.712,21.728V30.831h-5.443v-5.783h5.443v-3.848 c0-6.371,3.104-9.168,8.399-9.168c2.536,0,3.877,0.188,4.512,0.274v5.048h-3.612c-2.248,0-3.033,2.131-3.033,4.533v3.161h6.588 l-0.894,5.783h-5.694v15.944C38.716,45.318,47,36.137,47,25C47,12.85,37.15,3,25,3z"/></svg></a></li>
+                    <li class="ms-2 footerRespons2" style="width: 40px; height: 40px; margin-left: 20px !important;"><a class="link-dark" href="#" style=" height:48px; width:48px;"><svg fill="#FFFFFF" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 50 50" width="40px" height="40px"><path d="M 24.849609 10 C 11.077609 10 10 11.077609 10 24.849609 L 10 25.150391 C 10 38.922391 11.077609 40 24.849609 40 L 25.150391 40 C 38.922391 40 40 38.922391 40 25.150391 L 40 24.849609 C 40 11.077609 38.922391 10 25.150391 10 L 24.849609 10 z M 33.496094 15 C 34.325094 14.998 34.998 15.667094 35 16.496094 C 35.002 17.325094 34.332906 17.998 33.503906 18 C 32.674906 18.002 32.002 17.332906 32 16.503906 C 31.998 15.674906 32.667094 15.002 33.496094 15 z M 24.980469 17 C 29.398469 16.99 32.989 20.562469 33 24.980469 C 33.01 29.398469 29.437531 32.989 25.019531 33 C 20.601531 33.011 17.011 29.437531 17 25.019531 C 16.99 20.601531 20.562469 17.011 24.980469 17 z M 24.982422 18 C 21.116422 18.009 17.991 21.151578 18 25.017578 C 18.009 28.883578 21.151578 32.009 25.017578 32 C 28.883578 31.991 32.009 28.848422 32 24.982422 C 31.991 21.116422 28.848422 17.991 24.982422 18 z"/></svg></a></li>
+                    <li class="ms-2 footerRespons" style="width: 30px; height: 30px; margin-left: 20px !important;"><a class="link-dark" href="#" style="height:48px; width:48px;"><svg fill="#FFFFFF" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 50 50" width="30px" height="30px"><path d="M 44.898438 14.5 C 44.5 12.300781 42.601563 10.699219 40.398438 10.199219 C 37.101563 9.5 31 9 24.398438 9 C 17.800781 9 11.601563 9.5 8.300781 10.199219 C 6.101563 10.699219 4.199219 12.199219 3.800781 14.5 C 3.398438 17 3 20.5 3 25 C 3 29.5 3.398438 33 3.898438 35.5 C 4.300781 37.699219 6.199219 39.300781 8.398438 39.800781 C 11.898438 40.5 17.898438 41 24.5 41 C 31.101563 41 37.101563 40.5 40.601563 39.800781 C 42.800781 39.300781 44.699219 37.800781 45.101563 35.5 C 45.5 33 46 29.398438 46.101563 25 C 45.898438 20.5 45.398438 17 44.898438 14.5 Z M 19 32 L 19 18 L 31.199219 25 Z"/></svg></a></li>
+                    <li class="ms-2 footerRespons" style="width: 30px; height: 30px; margin-left: 20px !important;"><a class="link-dark" href="#" style="height:48px; width:48px; "><svg fill="#FFFFFF" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 50 50" width="30px" height="30px"><path d="M 6.9199219 6 L 21.136719 26.726562 L 6.2285156 44 L 9.40625 44 L 22.544922 28.777344 L 32.986328 44 L 43 44 L 28.123047 22.3125 L 42.203125 6 L 39.027344 6 L 26.716797 20.261719 L 16.933594 6 L 6.9199219 6 z"/></svg></a></li>
+
+                </ul>
+            </div>
+            <br>
+            <hr class="footerHr footerHr2" style="position: absolute; top: 23%; right: 0; width: 35%; z-index: 1; margin: 0;margin-left: 25%; background: white !important;">
+        </div>
     </div>
-      </div>
-  
-      <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
-        <p>© 2023 - JS ENERGIE</p>
-        <ul class="list-unstyled d-flex" >
-{#            <img src="{{ asset('assets/images/icons8-instagram.svg') }}" style="width: 30%;" class="img-top">#}
-          <li class="ms-3"><a class="link-dark" href="#" style="height:48px; width:48px;"><?xml version="1.0"?><svg fill="#FFFFFF" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 50 50" width="50px" height="50px">    <path d="M25,3C12.85,3,3,12.85,3,25c0,11.03,8.125,20.137,18.712,21.728V30.831h-5.443v-5.783h5.443v-3.848 c0-6.371,3.104-9.168,8.399-9.168c2.536,0,3.877,0.188,4.512,0.274v5.048h-3.612c-2.248,0-3.033,2.131-3.033,4.533v3.161h6.588 l-0.894,5.783h-5.694v15.944C38.716,45.318,47,36.137,47,25C47,12.85,37.15,3,25,3z"/></svg></a></li>
-          <li class="ms-3"><a class="link-dark" href="#" style="height:48px; width:48px;"><svg fill="#FFFFFF" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 50 50" width="50px" height="50px"><path d="M 24.849609 10 C 11.077609 10 10 11.077609 10 24.849609 L 10 25.150391 C 10 38.922391 11.077609 40 24.849609 40 L 25.150391 40 C 38.922391 40 40 38.922391 40 25.150391 L 40 24.849609 C 40 11.077609 38.922391 10 25.150391 10 L 24.849609 10 z M 33.496094 15 C 34.325094 14.998 34.998 15.667094 35 16.496094 C 35.002 17.325094 34.332906 17.998 33.503906 18 C 32.674906 18.002 32.002 17.332906 32 16.503906 C 31.998 15.674906 32.667094 15.002 33.496094 15 z M 24.980469 17 C 29.398469 16.99 32.989 20.562469 33 24.980469 C 33.01 29.398469 29.437531 32.989 25.019531 33 C 20.601531 33.011 17.011 29.437531 17 25.019531 C 16.99 20.601531 20.562469 17.011 24.980469 17 z M 24.982422 18 C 21.116422 18.009 17.991 21.151578 18 25.017578 C 18.009 28.883578 21.151578 32.009 25.017578 32 C 28.883578 31.991 32.009 28.848422 32 24.982422 C 31.991 21.116422 28.848422 17.991 24.982422 18 z"/></svg></a></li>
-          <li class="ms-3"><a class="link-dark" href="#" style="height:48px; width:48px;"><svg fill="#FFFFFF" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 50 50" width="50px" height="50px"><path d="M 44.898438 14.5 C 44.5 12.300781 42.601563 10.699219 40.398438 10.199219 C 37.101563 9.5 31 9 24.398438 9 C 17.800781 9 11.601563 9.5 8.300781 10.199219 C 6.101563 10.699219 4.199219 12.199219 3.800781 14.5 C 3.398438 17 3 20.5 3 25 C 3 29.5 3.398438 33 3.898438 35.5 C 4.300781 37.699219 6.199219 39.300781 8.398438 39.800781 C 11.898438 40.5 17.898438 41 24.5 41 C 31.101563 41 37.101563 40.5 40.601563 39.800781 C 42.800781 39.300781 44.699219 37.800781 45.101563 35.5 C 45.5 33 46 29.398438 46.101563 25 C 45.898438 20.5 45.398438 17 44.898438 14.5 Z M 19 32 L 19 18 L 31.199219 25 Z"/></svg></a></li>
-          <li class="ms-3"><a class="link-dark" href="#" style="height:48px; width:48px;"><svg fill="#FFFFFF" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 50 50" width="50px" height="50px"><path d="M 6.9199219 6 L 21.136719 26.726562 L 6.2285156 44 L 9.40625 44 L 22.544922 28.777344 L 32.986328 44 L 43 44 L 28.123047 22.3125 L 42.203125 6 L 39.027344 6 L 26.716797 20.261719 L 16.933594 6 L 6.9199219 6 z"/></svg></a></li>
-        </ul>
-      </div>
-    </footer>
-  </div>
-</div>
+
 
 {%endblock%}
 {% block javascripts %}
 
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <script>
+
+
+        $(document).ready(function () {
+            var url = window.location.href;
+
+            // Vérifier l'URL de chaque lien de navigation
+            $('.nav-link').each(function () {
+                var linkPage = this.href;
+
+                if (url.indexOf(linkPage) !== -1) {
+                    $(this).addClass('active-link');
+                    updateVerticalLinePosition(this);
+                }
+            });
+
+            // Mettre à jour la position de la barre verticale lors du survol des liens
+            $('.nav-link').hover(
+                function () {
+                    updateVerticalLinePosition(this);
+                },
+                function () {
+                    // Réinitialiser la position lorsque le survol est terminé
+                    $('.vertical').css('height', '0');
+                }
+            );
+
+            // Fonction pour mettre à jour la position de la barre verticale
+            function updateVerticalLinePosition(link) {
+                var linkPosition = $(link).offset().top - $('.nav-link').first().offset().top;
+                $('.vertical').css('height', linkPosition + 'px');
+            }
+        });
+
+        $(document).ready(function () {
+            // ... (le reste de votre script)
+
+            // Ajoutez le soulignement au titre de la navigation au survol
+            $('.nav-title').hover(
+                function () {
+                    $(this).css('color', '#ffffff'); // Couleur du texte au survol
+                },
+                function () {
+                    $(this).css('color', 'white'); // Réinitialisez la couleur du texte lorsque le survol est terminé
+                }
+            );
+        });
+
+        $(document).ready(function () {
+
+        });
+    </script>
 
 
 
+    <script>
+        function openPopup() {
+            $('#popup').fadeIn();
+        }
 
+        function closePopup() {
+            $('#popup').fadeOut();
+        }
+    </script>
+    <style>
+        /* Ajouter ce style pour définir la couleur de la bordure du bouton */
+        #enSavoirPlusBtn {
+            border-color: #ffffff; /* Couleur bleue associée à la classe btn-primary de Bootstrap */
+        }
+    </style>
+
+    <script>
+        // Code pour créer et afficher la fenêtre modale au chargement de la page
+        var modalContent = '<div class="modal-body">' +
+            '<h4><strong>Informations de l\'entreprise :</strong></h4>' +
+            '<p><strong>Nom :</strong> JS ENERGIE</p>' +
+            '<p><strong>Téléphone :</strong><a href="tel:0606900805"> 06.06.90.08.05</a></p>' +
+            '<p><strong>Email :</strong> <a href="#" id="emailLink">jsenergie26770@gmail.com</a></p>' +
+            '<div class="d-flex justify-content-center">' +
+            '<a href="{{ path('app_contact_new_client') }}" id="enSavoirPlusBtn" class="btn btn-primary">Nous contacter par notre fiche</a>' +
+            '</div>' +
+            '</div>';
+
+
+        var modalHeader = '<div class="modal-header">' +
+            '<button type="button" class="close" data-dismiss="modal" aria-label="Fermer">' +
+            '<span aria-hidden="true">&times;</span>' +
+            '</button>' +
+            '</div>';
+
+        var newModal = $('<div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel" aria-hidden="true">' +
+            '<div class="modal-dialog" role="document">' +
+            '<div class="modal-content">' +
+            modalHeader +
+            modalContent +
+            '</div>' +
+            '</div>' +
+            '</div>');
+
+        // Ajouter la fenêtre modale au body au chargement de la page
+        $('body').append(newModal);
+
+        // Initialiser la fenêtre modale avec Bootstrap
+        newModal.modal('hide');
+
+        // Associer l'événement de fermeture de la fenêtre modale
+        newModal.on('hidden.bs.modal', function () {
+            console.log('Fermeture de la fenêtre modale détectée.');
+
+            // Cacher la fenêtre modale sans la supprimer
+            newModal.modal('hide');
+
+            console.log('Actions après la fermeture du pop-up.');
+        });
+
+        // Associer l'événement de clic sur le lien e-mail
+        $('#emailLink').on('click', function (e) {
+            e.preventDefault();
+            window.location.href = 'mailto:jsenergie26770@gmail.com';
+        });
+    </script>
+
+
+{#    <script>#}
+{#        document.addEventListener('DOMContentLoaded', function () {#}
+{#            // Initialisation du script Bootstrap pour le dropdown de la navbar#}
+{#            var navbarDropdownToggleList = [].slice.call(document.querySelectorAll('[data-bs-toggle="dropdown"]'));#}
+{#            navbarDropdownToggleList.forEach(function (dropdownToggle) {#}
+{#                new bootstrap.Dropdown(dropdownToggle);#}
+{#            });#}
+
+{#            // Initialisation du script Bootstrap pour le dropdown du footer#}
+{#            var footerDropdownToggleList = [].slice.call(document.querySelectorAll('#footerDropdownToggle'));#}
+{#            footerDropdownToggleList.forEach(function (dropdownToggle) {#}
+{#                new bootstrap.Dropdown(dropdownToggle);#}
+{#            });#}
+{#        });#}
+{#    </script>#}
 
 {% endblock %}

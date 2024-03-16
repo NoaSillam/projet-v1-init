@@ -27,7 +27,7 @@ use PhpOffice\PhpSpreadsheet\Cell\StringValueBinder;
 #[Route('/infos_devis')]
 class InfosDevisController extends AbstractController
 {
-    #[Route('/', name: 'app_infos_devis_index', methods: ['GET'])]
+    #[Route('', name: 'app_infos_devis_index', methods: ['GET'])]
     public function index(InfosDevisRepository $infosDevisRepository): Response
     {
         $infosDevis = $infosDevisRepository->findAllExceptRenoGlobal();
@@ -36,6 +36,7 @@ class InfosDevisController extends AbstractController
             'infos_devis' => $infosDevis,
         ]);
     }
+
     #[Route('/reno', name: 'app_infos_devis_index_reno', methods: ['GET'])]
     public function reno(InfosDevisRepository $infosDevisRepository): Response
     {

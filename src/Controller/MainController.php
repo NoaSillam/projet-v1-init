@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Repository\ArticleRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -13,6 +15,11 @@ class MainController extends AbstractController
     public function index(): Response
     {
         return $this->render('main/index.html.twig');
+    }
+    #[Route('/decret_tertiaire', name: 'decret_tertiaire')]
+    public function decret_tertiaire(): Response
+    {
+        return $this->render('main/decret_tertiaire.html.twig');
     }
 
     #[Route('/navbar', name: 'index_main_navbar')]
@@ -58,5 +65,7 @@ class MainController extends AbstractController
     {
         return $this->render('main/MentionLegale.html.twig');
     }
+
+
     
 }

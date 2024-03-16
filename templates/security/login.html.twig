@@ -1,59 +1,213 @@
-{% block stylesheets %}
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <style>
 
+
+
+{% block stylesheets %}
+
+    <!-- Liens vers les bibliothèques -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+
+    <!-- Styles personnalisés -->
+    <style>
+        /*body {*/
+        /*    !*background-color: #f8f9fa;*!*/
+        /*    background: linear-gradient(120deg, #84fab0 0%, #8facf4 100%);*/
+
+        /*}*/
+        html, body,.fondcss {
+            height: 100%;
+
+
+        }
+        .mb-2, alerte
+        {
+            margin-top:9% !important;
+        }
+
+        .fondcss {
+            background: linear-gradient(120deg, #84fab0 0%, #8facf4 100%);
+            margin: 0; /* Pour enlever la marge par défaut du body */
+            height: 102%;
+            margin-top: -2%;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: auto;
+            cursor: pointer;
+            /*margin-bottom: -100%;*/
+            /*margin-top: -20px;*/
+            /*!* Ajustez la valeur selon vos besoins *!*/
+        }
+
+        .custom-btn-width {
+            width: 100%;
+        }
+
+        .welcome-title {
+            text-shadow: 0 1px 0 #598d87,
+            0 2px 0 #344f4b,
+            0 3px 0 #344f4b,
+            0 4px 0 #344f4b,
+            0 5px 0 #344f4b,
+            0 6px 1px rgb(0, 0, 0),
+            0 1px 1px rgb(255, 255, 255),
+            0 3px 3px rgb(0, 0, 0),
+            0 5px 5px rgb(0, 0, 0);
+            color: #344f4b;
+            margin: auto;
+            text-align: center;
+            margin-top: 150px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 3em;
+            opacity: 0;
+        }
+
+        .login-btn {
+            background: #344f4b !important;
+            width: 100%;
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .login-btn:hover {
+            background: #000000 !important;
+        }
+
+        .login-btn:active {
+            background: #344f4b !important;
+        }
     </style>
 {% endblock %}
 
-
-
-
 {% block body %}
-    {{ include('base.html.twig') }}
-<section class="container my-3">
-    <div class="row">
-        <div class="col">
-            <form method="post">
-                {% if error %}
-                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-                {% endif %}
-            
-                {% if app.user %}
-                    <div class="mb-3">
-                        Vous êtes connecté(e) comme {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Se déconnecter</a>
-                    </div>
-                {% endif %}
-            
-                <h1 class="h3 mb-3 font-weight-normal" style="text-align:center;">Se connecter</h1>
-                <div style="margin: auto; width: 70%;">
-                    <div style="margin-left:auto; margin-right:auto;">
-                <label for="inputEmail">Email</label>
-                <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
-                <label for="inputPassword">Mot de passe</label>
-                <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
-            
-                <input type="hidden" name="_csrf_token"
-                       value="{{ csrf_token('authenticate') }}"
-                >
-            
-                <button class="btn btn-lg btn-primary mt-3" type="submit">
-                Me connecter
-                </button>
-                <a href="{{ path('app_register')}}" class="btn btn-secondary  mt-3">S'inscrire</a>
-                <a href="{{ path('forgotten_password')}}" class="btn btn-secondary  mt-3">Mot de passe oublié</a>
-                    </div>
+    <div class="fondcss">
+        <!-- Contenu de la page -->
+        <section class="container my-3">
+            <div class="row">
+                <div class="col-lg-8">
+                    <!-- Colonne pour l'image -->
+                    <img id="animated-image" src="{{ asset("/assets/images/Image-remove.png") }}" class="img-fluid" alt="Image Responsive" style="margin-left: -40px; margin-top: 30px; height: 120%;">
                 </div>
-            </form>
-        </div>
-    </div>
+                <!-- margin-top: -16px; height: 170%;-->
+                <div class="col-lg-4">
+                    <!-- Colonne pour le formulaire -->
+                    <form method="post" style="width: 70%; margin: auto;">
+                        {% if error %}
+                            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                        {% endif %}
 
-</section>
+                        {% if app.user %}
+                            <div class="mb-2 alerte">
+                                Vous êtes connecté(e) en tant que {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Se déconnecter</a>
+                            </div>
+                        {% endif %}
+
+                        <h1 class="welcome-title">BIENVENUE !</h1>
+
+                        <h1 class="h3 mb-3 font-weight-normal" style="text-align:center; margin-top: 40px; text-decoration: underline; color :#344f4b; font-size: 2em">Login</h1>
+
+                        <div class="mx-auto" style=" width: 100%;">
+                            <label for="inputEmail">Email</label>
+                            <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus placeholder="Entrez votre email">
+
+                            <label for="inputPassword">Mot de passe</label>
+                            <div class="input-group">
+                                <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required placeholder="Entrez votre mot de passe">
+                                <button type="button" id="togglePassword" class="btn btn-outline-secondary">
+                                    <i id="eyeIcon" class="bi bi-eye">👁️‍🗨️️</i>
+                                </button>
+                                <input type="hidden" name="_csrf_token"
+                                       value="{{ csrf_token('authenticate') }}"
+                                >
+
+                            </div>
+                        </div>
+                        <br>
+                        <button class="btn btn-lg btn-primary mt-3 mx-auto custom-btn-width login-btn" type="submit">
+                            Login
+                        </button>
+                        <br>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
 
 {% endblock %}
 
     {%block javascripts %}
 
+        <!-- Liens vers les bibliothèques JavaScript -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.0/anime.min.js"></script>
 
+        <!-- Script anime.js pour une nouvelle animation -->
+        <!-- Script anime.js pour une nouvelle animation -->
+        <script>
+            // Animation du titre de bienvenue
+            anime.timeline({
+                targets: '.welcome-title',
+                opacity: 1,
+                duration: 1500,
+                easing: 'easeOutExpo',
+                loop: true
+            })
+                .add({
+                    translateY: [-50, 0],
+                    delay: anime.stagger(200),
+                })
+                .add({
+                    translateY: [0, -50],
+                    delay: anime.stagger(200),
+                });
+
+            // Animation de l'image comme un cadeau
+            function giftAnimation() {
+                anime({
+                    targets: '#animated-image',
+                    translateY: [
+                        { value: '-5%', duration: 500, easing: 'easeInOutQuad' },
+                        { value: '5%', duration: 1000, easing: 'easeInOutQuad' },
+                        { value: '-5%', duration: 500, easing: 'easeInOutQuad' },
+                        { value: '0%', duration: 1000, easing: 'easeInOutQuad' }
+                    ],
+                    rotate: [
+                        { value: '5deg', duration: 500, easing: 'easeInOutQuad' },
+                        { value: '-5deg', duration: 1000, easing: 'easeInOutQuad' },
+                        { value: '5deg', duration: 500, easing: 'easeInOutQuad' },
+                        { value: '0deg', duration: 1000, easing: 'easeInOutQuad' }
+                    ],
+                    loop: true
+                });
+            }
+
+            // Démarrer l'animation du cadeau après une pause de 10 secondes
+            setTimeout(function () {
+                giftAnimation();
+                // Définir l'intervalle de l'animation du cadeau
+                setInterval(function () {
+                    giftAnimation();
+                }, 10000);
+            }, 10000);
+
+
+
+
+            const passwordInput = document.getElementById('inputPassword');
+            const eyeIcon = document.getElementById('eyeIcon');
+            const togglePassword = document.getElementById('togglePassword');
+
+            togglePassword.addEventListener('click', function () {
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+
+                // Change l'icône en conséquence
+                eyeIcon.innerHTML = type === 'password' ? '👁️‍🗨️️' : '👁️';
+            });
+        </script>
     {%endblock%}

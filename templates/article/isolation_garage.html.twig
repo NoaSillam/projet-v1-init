@@ -143,27 +143,34 @@
         <div style="margin-left:auto; margin-right:auto;">
             <section class="section_1" style="display: flex; justify-content: space-between;">
                 <article class="articlePresentation" >
-                    <h3 style="text-align:center; color: #1D4851;"><b>Isoler votre maison</b></h3>
+                    <h3 style="text-align:center; color: #1D4851;"><b>Améliorer l'isolation et la durabilité avec l'isolation du sous-sol/garage</b></h3>
                     <br>
                     <p style="font-size:18px;">
                         Isoler sa maison offre une multitude d'avantages significatifs.
 
                         <br>
-                    <h5 style="color: #1D4851;"><b>Sous-sol et Garage : L'Importance de l'Isolation</b></h5>
-                    L'isolation du sous-sol et du garage émerge comme une étape cruciale pour garantir un environnement intérieur sain et écoénergétique. En utilisant des matériaux isolants, cette mesure permet de créer une barrière thermique efficace, prévenant les pertes de chaleur et contribuant ainsi au confort global de l'habitat.
+                    <h5 style="color: #1D4851;"><b>Prévenir les pertes de chaleur</b></h5>
+                    L'isolation du sous-sol ou du garage est essentielle pour prévenir les pertes de chaleur dans un bâtiment. En isolant les planchers et les murs souterrains, on crée une barrière efficace qui empêche la chaleur de s'échapper, contribuant ainsi à maintenir une température intérieure stable et confortable. Cette mesure permet également de réduire la consommation d'énergie et les coûts de chauffage.
                     <br>
                     <br>
-                    <h5 style=" color: #1D4851;"><b>Confort Toute Saison et Protection Structurelle</b></h5>
-                    Au-delà des avantages thermiques, l'isolation du sous-sol et du garage offre une régulation de la température tout au long de l'année. Elle évite les variations extrêmes, créant un espace habitable agréable. De plus, en protégeant la structure du bâtiment contre les fluctuations thermiques et l'humidité, cette démarche contribue à la durabilité du logement, assurant un investissement judicieux pour le confort et la préservation du patrimoine immobilier.
+                    <h5 style=" color: #1D4851;"><b>Protéger contre l'humidité et les infiltrations</b></h5>
+                    En plus de ses avantages en termes d'efficacité énergétique, l'isolation du sous-sol ou du garage contribue à protéger le bâtiment contre l'humidité et les infiltrations d'eau. En installant des matériaux isolants résistants à l'humidité, on prévient les risques de moisissures et de pourriture, ce qui prolonge la durabilité de la structure et assure un environnement intérieur sain et sécuritaire.
                     <br>
                     </p>
                 </article>
                 <br>
                 <br>
                 <article class="articlePresentation articlePresentation_2">
-                    <iframe class="iframePresentation" src="https://www.youtube.com/embed/3sip7GsijQs?si=BFcSA5Z_lGcZ68dI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" class="card-img-top" allowfullscreen></iframe>
 
-                </article>
+                    <img src="{{ asset('assets/images/vecteezy_garage-vector-icon-design_25974258-removebg-preview.png') }}" class="img-top" style="width: 300px; height: 300px; margin-top: 15px;">
+                    <p style="color: grey; font-size: 11px; margin-left: 5%; margin-top: 2%;"><a style="color: grey; font-size: 11px; text-decoration: underline;" href="https://fr.freepik.com/vecteurs-libre/composition-reparations-isometriques-vue-salon-personnage-reparateur-renovant-illustration-vectorielle-mur_23547802.htm#fromView=search&page=1&position=3&uuid=b35d7ef3-6c54-479e-9844-cd72ef09e850">Image de macrovector</a> sur Freepik</p>
+                    <img src="{{ asset('assets/images/1912.i121.041.P.m005.c33.isometric_repairs_set-07-removebg-preview.png') }}" class="img-top" style="width: 300px; height: 300px; margin-top: -340px; margin-left: 370px;">
+                    <br>
+                    <p style="color: grey; font-size: 11px; margin-left: 67%;  margin-top: -5%;"><a style="color: grey; font-size: 11px; text-decoration: underline;" href="https://fr.vecteezy.com/vecteur-libre/garage">Garage Vecteurs par Vecteezy</a></p>
+
+
+                    {#                    <iframe class="iframePresentation" src="https://www.youtube.com/embed/3sip7GsijQs?si=BFcSA5Z_lGcZ68dI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" class="card-img-top" allowfullscreen></iframe>#}
+   </article>
             </section>
         </div>
     </div>
@@ -195,9 +202,14 @@
                                 <div class="imgCard-isolation">
                                     <img src="{{ asset('assets/images/' ~ article.Image ) }}" class="card-img-top imgCarousel" alt="...">
                                 </div>
-                                <div class="card-body " style="height: 250px;" >
-                                    <h5 class="card-title">{{ article.Nom }}</h5>
-                                    <div class="card-text" style="max-height: 180px; overflow: hidden;">
+{#                                <div class="card-body " style="height: 250px;" >#}
+{#                                    <h5 class="card-title">{{ article.Nom }}</h5>#}
+{#                                    <div class="card-text" style="max-height: 180px; overflow: hidden;">#}
+{#                                        <p>{{ article.Annonce|raw }}</p></div>...#}
+{#                                </div>#}
+                                <div class="card-body " style="height: 270px; " >
+                                    <h5 class="card-title" style="font-size: 16.5px;">{{ article.Nom }}</h5>
+                                    <div class="card-text" style="max-height: 190px; overflow: hidden; font-size: 15px; margin-top: -17px;">
                                         <p>{{ article.Annonce|raw }}</p></div>...
                                 </div>
                                 <div class="card-footer" style="display: flex; align-items: center; justify-content: center; ">

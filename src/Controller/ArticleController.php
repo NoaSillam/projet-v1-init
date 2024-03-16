@@ -27,7 +27,7 @@ class ArticleController extends AbstractController
     #[Route('/isolation', name: 'app_article_index_2', methods: ['GET'])]
     public function isolation(Request $request, ArticleRepository $articleRepository): Response
     {
-        $articles = $articleRepository->findByTypeArt([1, 5, 6, 7]);
+        $articles = $articleRepository->findByTypeArt([1, 2, 3, 4]);
         $screenWidth = $request->query->get('screen_width');
 
         // Définissez les variables en fonction de la largeur de l'écran
@@ -43,7 +43,7 @@ class ArticleController extends AbstractController
         ]);
     }
 
-    #[Route('/isolation-interieur', name: 'isolation_interieur', methods: ['GET'])]
+    #[Route('/isl-interieur', name: 'isolation_interieur', methods: ['GET'])]
     public function isolation_interieur(Request $request, ArticleRepository $articleRepository): Response
     {
         $articles = $articleRepository->findByType(1);
@@ -65,10 +65,11 @@ class ArticleController extends AbstractController
 
 
 
-    #[Route('/isolation-exterieur', name: 'isolation_exterieur', methods: ['GET'])]
+    #[Route('/islt-exterieur', name: 'isolation_exterieur', methods: ['GET'])]
     public function isolation_exterieur(Request $request, ArticleRepository $articleRepository): Response
     {
-        $articles = $articleRepository->findByType(5);
+       // $articles = $articleRepository->findByType(2);
+        $articles = $articleRepository->findByTypeArt([ 2, 4]);
         $screenWidth = $request->query->get('screen_width');
 
         // Définissez les variables en fonction de la largeur de l'écran
@@ -83,10 +84,10 @@ class ArticleController extends AbstractController
             // 'isMobile' => $isMobile,
         ]);
     }
-    #[Route('/isolation-comble', name: 'isolation_comble', methods: ['GET'])]
+    #[Route('/isolt-comble', name: 'isolation_comble', methods: ['GET'])]
     public function isolation_comble(Request $request, ArticleRepository $articleRepository): Response
     {
-        $articles = $articleRepository->findByType(6);
+        $articles = $articleRepository->findByType(3);
         $screenWidth = $request->query->get('screen_width');
 
         // Définissez les variables en fonction de la largeur de l'écran
@@ -102,10 +103,11 @@ class ArticleController extends AbstractController
         ]);
     }
 
-    #[Route('/isolation-garage', name: 'isolation_garage', methods: ['GET'])]
+    #[Route('/isotion-garage', name: 'isolation_garage', methods: ['GET'])]
     public function isolation_garage(Request $request, ArticleRepository $articleRepository): Response
     {
-        $articles = $articleRepository->findByType(7);
+       // $articles = $articleRepository->findByType(4);
+        $articles = $articleRepository->findByTypeArt([ 2, 4]);
         $screenWidth = $request->query->get('screen_width');
 
         // Définissez les variables en fonction de la largeur de l'écran
@@ -141,10 +143,88 @@ class ArticleController extends AbstractController
         // 'isMobile' => $isMobile,
         ]);
     }
+
+    #[Route('/pac_air_air', name: 'pac_air_air', methods: ['GET'])]
+    public function pac_air_air(Request $request, ArticleRepository $articleRepository): Response
+    {
+        $articles = $articleRepository->findByType(5);
+        $screenWidth = $request->query->get('screen_width');
+
+        // Définissez les variables en fonction de la largeur de l'écran
+        $isDesktop = $screenWidth > 768;
+        $isMobile = $screenWidth <= 768;
+
+        // $isMobile = $this->detectMobile();
+        return $this->render('article/pac_air_air.html.twig', [
+            'articles' => $articles,
+            'isDesktop' => $isDesktop,
+            'isMobile' => $isMobile,
+            // 'isMobile' => $isMobile,
+        ]);
+    }
+
+    #[Route('/pac_air_eau', name: 'pac_air_eau', methods: ['GET'])]
+    public function pac_air_eau(Request $request, ArticleRepository $articleRepository): Response
+    {
+        $articles = $articleRepository->findByType(6);
+        $screenWidth = $request->query->get('screen_width');
+
+        // Définissez les variables en fonction de la largeur de l'écran
+        $isDesktop = $screenWidth > 768;
+        $isMobile = $screenWidth <= 768;
+
+        // $isMobile = $this->detectMobile();
+        return $this->render('article/pac_air_eau.html.twig', [
+            'articles' => $articles,
+            'isDesktop' => $isDesktop,
+            'isMobile' => $isMobile,
+            // 'isMobile' => $isMobile,
+        ]);
+    }
+
+
+    #[Route('/poile_a_bois', name: 'poile_a_bois', methods: ['GET'])]
+    public function poile_a_bois(Request $request, ArticleRepository $articleRepository): Response
+    {
+        $articles = $articleRepository->findByType(7);
+        $screenWidth = $request->query->get('screen_width');
+
+        // Définissez les variables en fonction de la largeur de l'écran
+        $isDesktop = $screenWidth > 768;
+        $isMobile = $screenWidth <= 768;
+
+        // $isMobile = $this->detectMobile();
+        return $this->render('article/poile_a_bois.html.twig', [
+            'articles' => $articles,
+            'isDesktop' => $isDesktop,
+            'isMobile' => $isMobile,
+            // 'isMobile' => $isMobile,
+        ]);
+    }
+
+    #[Route('/poile_a_granulet', name: 'poile_a_granulet', methods: ['GET'])]
+    public function poile_a_granulet(Request $request, ArticleRepository $articleRepository): Response
+    {
+        $articles = $articleRepository->findByType(8);
+        $screenWidth = $request->query->get('screen_width');
+
+        // Définissez les variables en fonction de la largeur de l'écran
+        $isDesktop = $screenWidth > 768;
+        $isMobile = $screenWidth <= 768;
+
+        // $isMobile = $this->detectMobile();
+        return $this->render('article/poile_a_granulet.html.twig', [
+            'articles' => $articles,
+            'isDesktop' => $isDesktop,
+            'isMobile' => $isMobile,
+            // 'isMobile' => $isMobile,
+        ]);
+    }
+
     #[Route('/solaire', name: 'app_article_index_4', methods: ['GET'])]
     public function solaire(Request $request, ArticleRepository $articleRepository): Response
     {
-        $articles = $articleRepository->findByType(3);
+        $articles = $articleRepository->findByType(9);
         $screenWidth = $request->query->get('screen_width');
 
         // Définissez les variables en fonction de la largeur de l'écran
@@ -159,10 +239,51 @@ class ArticleController extends AbstractController
         // 'isMobile' => $isMobile,
         ]);
     }
+
+    #[Route('/panneau_photovoltaique', name: 'panneau_photovoltaique', methods: ['GET'])]
+    public function panneau_photovoltaique(Request $request, ArticleRepository $articleRepository): Response
+    {
+        $articles = $articleRepository->findByType(9);
+        $screenWidth = $request->query->get('screen_width');
+
+        // Définissez les variables en fonction de la largeur de l'écran
+        $isDesktop = $screenWidth > 768;
+        $isMobile = $screenWidth <= 768;
+
+        // $isMobile = $this->detectMobile();
+        return $this->render('article/panneau_photovoltaique.html.twig', [
+            'articles' => $articles,
+            'isDesktop' => $isDesktop,
+            'isMobile' => $isMobile,
+            // 'isMobile' => $isMobile,
+        ]);
+    }
+
+    #[Route('/chauffe_eau_thermodynamique', name: 'chauffe_eau_thermodynamique', methods: ['GET'])]
+    public function ballon_solaire_thermique(Request $request, ArticleRepository $articleRepository): Response
+    {
+        $articles = $articleRepository->findByType(10);
+        $screenWidth = $request->query->get('screen_width');
+
+        // Définissez les variables en fonction de la largeur de l'écran
+        $isDesktop = $screenWidth > 768;
+        $isMobile = $screenWidth <= 768;
+
+        // $isMobile = $this->detectMobile();
+        return $this->render('article/ballon_solaire_thermique.html.twig', [
+            'articles' => $articles,
+            'isDesktop' => $isDesktop,
+            'isMobile' => $isMobile,
+            // 'isMobile' => $isMobile,
+        ]);
+    }
+
+
+
     #[Route('/aidePrime', name: 'app_article_index_5', methods: ['GET'])]
     public function aidePrime(Request $request, ArticleRepository $articleRepository): Response
     {
-         $articles = $articleRepository->findByType(4);
+         $articles = $articleRepository->findByType(11);
         // $screenWidth = $request->query->get('screen_width');
 
         // // Définissez les variables en fonction de la largeur de l'écran
@@ -175,6 +296,25 @@ class ArticleController extends AbstractController
           
         ]);
     }
+
+
+    #[Route('/actualite', name: 'actualite', methods: ['GET'])]
+    public function actualite(Request $request, ArticleRepository $articleRepository): Response
+    {
+        $articles = $articleRepository->findByType(4);
+        // $screenWidth = $request->query->get('screen_width');
+
+        // // Définissez les variables en fonction de la largeur de l'écran
+        // $isDesktop = $screenWidth > 768;
+        // $isMobile = $screenWidth <= 768;
+
+        // $isMobile = $this->detectMobile();
+        return $this->render('article/actualite.html.twig', [
+            'articles' => $articles,
+
+        ]);
+    }
+
 
 
 

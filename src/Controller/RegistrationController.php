@@ -27,7 +27,6 @@ class RegistrationController extends AbstractController
         $user = new Users();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             // encode the plain password
             $user->setPassword(
@@ -36,20 +35,9 @@ class RegistrationController extends AbstractController
                     $form->get('plainPassword')->getData()
                 )
             );
-
-            // $role = [$form->get('roles')->getData()];
-            // $user->setRoles($role);
-
             $entityManager->persist($user);
             $entityManager->flush();
-
-
-
-
             // do anything else you need here, like send an email
-
-
-            
             $header = [
                         'typ' => 'JWT',
                         'alg' => 'HS256'
@@ -58,15 +46,10 @@ class RegistrationController extends AbstractController
                         'user_id'=> $user->getId()
             ];
             $token = $jwt->generate($header, $payload, $this->getParameter('app.jwtsecret'));
-            
-
             $mail->send('noasillam@gmail.com', 
             $user->getEmail(), 
             'Activation de votre compte',
-            'register',
-            
-               compact('user', 'token'));
-
+            'register', compact('user', 'token'));
             return $userAuthenticator->authenticateUser(
                 $user,
                 $authenticator,

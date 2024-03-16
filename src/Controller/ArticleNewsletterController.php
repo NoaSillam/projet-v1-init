@@ -4,7 +4,9 @@ namespace App\Controller;
 
 use App\Entity\ArticleNewsletter;
 use App\Entity\UserArticle;
+use App\Entity\UserNewsletter;
 use App\Form\ArticleNewsletterType;
+use App\Form\UserNewsletterType;
 use App\Repository\ArticleNewsletterRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -16,11 +18,12 @@ use App\Repository\UserNewsletterRepository;
 use App\Service\SendMailService;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 
 #[Route('/article_newsletter')]
 class ArticleNewsletterController extends AbstractController
 {
-    #[Route('/', name: 'app_article_newsletter_index', methods: ['GET'])]
+    #[Route('', name: 'app_article_newsletter_index', methods: ['GET'])]
     public function index(ArticleNewsletterRepository $articleNewsletterRepository): Response
     {
         return $this->render('article_newsletter/index.html.twig', [
@@ -28,6 +31,47 @@ class ArticleNewsletterController extends AbstractController
         ]);
     }
 
+    #[Route('/send_newsletter/{id}', name: 'send_newsletter')]
+    public function sendNewsletter(UserNewsletterRepository $userNewsletterRepository, ArticleNewsletter $articleNewsletter, MailerInterface $mailer, EntityManagerInterface $entityManager ):Response
+    {
+        $users = $userNewsletterRepository->findAll();
+        try {
+            foreach($users as $user)
+            {
+                $userEmail = $user->getAdresseMail();
+                $userId = $user->getId();
+                $email = (new TemplatedEmail())
+                    -> from('noasillam@gmail.com')
+                    -> to($user->getAdresseMail())
+                    ->subject($articleNewsletter->getNom())
+                    ->htmlTemplate('emails/newsletter.html.twig')
+                    ->context([
+                        'articleNewsletter' => $articleNewsletter,
+                        'user' => $user,
+                        'userEmail' => $userEmail,
+                        'userId' => $userId,
+                    ])
+                  //  ->context(compact('articleNewsletter', 'user'))
+                ;
+                $mailer->send($email);
+
+                $userArticle = new UserArticle();
+                $userArticle->setUserNewsletter($user);
+                $userArticle->setArticleNewsletter($articleNewsletter);
+
+                // Persist the UserArticle entity
+                $entityManager->persist($userArticle);
+
+
+            }
+            $entityManager->flush();
+            $this->addFlash('success', 'La newsletter a bien était envoyée !!!!');
+        } catch (\Exception $e) {
+            $this->addFlash('error', 'Erreur lors de l\'envoi de la newsletter : ' . $e->getMessage());
+        }
+        return $this->redirectToRoute('app_article_newsletter_index');
+
+    }
     #[Route('/new', name: 'app_article_newsletter_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -71,85 +115,6 @@ class ArticleNewsletterController extends AbstractController
             'article_newsletter' => $articleNewsletter,
         ]);
     }
-
-  
-
-    // #[Route('/send_newsletter', name: 'send_newsletter')]
-    // public function sendNewsletter(UserNewsletterRepository $userNewsletterRepository, SendMailService $mail, EntityManagerInterface $entityManager): Response // Injectez EntityManagerInterface
-    // {
-    //     // Récupérer tous les utilisateurs de la newsletter
-    //     $users = $userNewsletterRepository->findAll();
-
-    //     // Récupérer l'article que vous souhaitez envoyer
-    //     $article = $entityManager->getRepository(ArticleNewsletter::class)->find(1); // Remplacez 1 par l'ID de l'article que vous souhaitez envoyer
-
-    //     // Vérifiez que l'article existe
-    //     if (!$article) {
-    //         $this->addFlash('danger', 'L\'article n\'existe pas.');
-    //         return $this->redirectToRoute('newsletter_dashboard'); // Remplacez 'newsletter_dashboard' par la route de votre tableau de bord newsletter
-    //     }
-
-    //     // Envoi de l'article à tous les utilisateurs de la newsletter
-    //     foreach ($users as $user) {
-    //         $mail->send(
-    //             'noasillam@gmail.com',
-    //             $user->getAdresseMail(),
-    //             'Sujet de l\'article', // Remplacez par le sujet de l'e-mail
-    //             'register', // Remplacez par le template d'e-mail que vous souhaitez utiliser
-    //             ['user' => $user, 'article' => $article]
-    //         );
-    //     }
-
-    //     $this->addFlash('success', 'L\'article a été envoyé à tous les utilisateurs de la newsletter.');
-    //     return $this->redirectToRoute('newsletter_dashboard'); // Remplacez 'newsletter_dashboard' par la route de votre tableau de bord newsletter
-    // }
-
-
-
-    #[Route('/send_newsletter/{id}', name: 'send_newsletter')]
-    public function sendNewsletter(UserNewsletterRepository $userNewsletterRepository, ArticleNewsletter $articleNewsletter, MailerInterface $mailer, EntityManagerInterface $entityManager ):Response
-    {
-        $users = $userNewsletterRepository->findAll();
-        try {
-        foreach($users as $user)
-        {
-                $email = (new TemplatedEmail())
-                    -> from('noasillam@gmail.com')
-                    -> to($user->getAdresseMail())
-                    ->subject($articleNewsletter->getNom())
-                    ->htmlTemplate('emails/newsletter.html.twig')
-                    ->context(compact('articleNewsletter', 'user'))
-                    ;
-                    $mailer->send($email);
-
-                    $userArticle = new UserArticle();
-                    $userArticle->setUserNewsletter($user);
-                    $userArticle->setArticleNewsletter($articleNewsletter);
-            
-                    // Persist the UserArticle entity
-                    $entityManager->persist($userArticle);
-
-            
-        }
-        $entityManager->flush();
-        $this->addFlash('success', 'La newsletter a bien était envoyée !!!!');
-        } catch (\Exception $e) {
-            $this->addFlash('error', 'Erreur lors de l\'envoi de la newsletter : ' . $e->getMessage());
-        }
-        return $this->redirectToRoute('app_article_newsletter_index');
-
-    }
-
-
-
-
-
-
-
-
-
-
-
 
 
     #[Route('/{id}/edit', name: 'app_article_newsletter_edit', methods: ['GET', 'POST'])]

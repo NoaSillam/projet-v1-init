@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/menage')]
 class MenageController extends AbstractController
 {
-    #[Route('/', name: 'app_menage_index', methods: ['GET'])]
+    #[Route('', name: 'app_menage_index', methods: ['GET'])]
     public function index(MenageRepository $menageRepository): Response
     {
         return $this->render('menage/index.html.twig', [

@@ -11,6 +11,8 @@
     {{ include('base.html.twig') }}
 <br>
     <h1 style="text-align: center;">S'Inscrire</h1>
+<div style="margin: auto; width: 50%;">
+    <div style="margin-left:auto; margin-right:auto;">
     <section class="container my-3">
         <div class="row">
             <div class="col">
@@ -19,13 +21,17 @@
                 <fieldset class="mb-3">
                     <legend> Mon Identité</legend>
                     {{ form_row(registrationForm.prenom) }}
-            
+                    <br>
                     {{ form_row(registrationForm.nom) }}
+                    <br>
                 </fieldset>
                 <fieldset class="mb-3">
                     <legend> Mes identifiants</legend>
                     {{ form_row(registrationForm.email) }}
-                 {{ form_row(registrationForm.roles) }}
+                    <br>
+                    <label for="registration_form_roles" class="required">Roles</label>
+                    {{ form_widget(registrationForm.roles) }}
+                    <br>
 
 
         {{ form_row(registrationForm.plainPassword, {
@@ -33,14 +39,18 @@
         }) }}
     </fieldset>
         {{ form_row(registrationForm.agreeTerms) }}
+                <br>
 
         <button type="submit" class="btn btn-primary btn-lg">S'inscrire</button>
         <a href="{{ path('app_login')}}" class="btn btn-secondary">Se connecter</a>
     {{ form_end(registrationForm) }}
             </div>
         </div>
-    </div>
+
     </section>
+
+</div>
+    </div>
     
 {% endblock %}
         {%block javascripts %}

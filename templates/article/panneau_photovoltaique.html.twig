@@ -1,0 +1,336 @@
+{#{% extends 'base.html.twig' %}#}
+
+
+{% block stylesheets %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+        @media (max-width: 950px) {
+            .section_1 {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+            }
+            .articlePresentation
+            {
+                width:100%;
+            }
+            .articlePresentation_2{
+                height:500px;
+                margin-top:3%;
+            }
+            .iframePresentation
+            {
+                width:100%;
+                height:100%;
+            }
+            .certificationPresentation_2 {
+                flex-direction: column; /* Change la direction à la colonne */
+                align-items: center;
+                height:300px;
+            }
+
+            .img_1, .img_2, .img_3, .img_4 {
+                width: 100%; /* Ajuste la largeur pour occuper la largeur de la colonne */
+                margin-bottom:15%; /* Ajoute un espacement entre les images */
+                margin-right:10%;
+            }
+            .img_1
+            {
+                margin-right: 50px;
+            }
+            .img_2
+            {
+                margin-left: 130px;
+                margin-top: -100px;
+
+            }
+            .img_3
+            {
+                margin-bottom:25px;
+                width:50px;
+            }
+
+            .img_4
+            {
+                margin-left: 130px;
+                margin-top: -75px;
+
+            }
+
+
+        }
+        .section_2 {
+            display: flex;
+            flex-direction: column; /* Aligner les enfants en colonne */
+            align-items: center;
+        }
+
+
+        @media (min-width: 951px) {
+
+            .articlePresentation{
+                margin-right: 30px;
+                width:50%;
+            }
+            .articlePresentation_2{
+                height:500px;
+            }
+            .iframePresentation
+            {
+                width:100%;
+                height:100%;
+            }
+            .certificationPresention
+            {
+                width:100%;
+            }
+            .certificationPresentation_2
+            {
+                width: 100%;
+                display: flex;
+                flex-direction: row; /* Aligner horizontalement */
+                justify-content: space-between;
+                align-items: center;
+                margin-top: 5%;
+            }
+            .img_1,
+            .img_2,
+            .img_3,
+            .img_4 {
+                display: flex;
+                justify-content: center;
+                width:100px;
+            }
+            .section_2{
+                display: flex;
+                flex-direction: column; /* Align children in a column */
+                align-items: center;
+            }
+        }
+        .imgCarousel{
+
+            object-fit: scale-down;
+            max-width: 100%;
+            max-height: 300px; /* Remplacez par la hauteur maximale souhaitée */
+            height: auto;
+
+        }
+        .imgCard-solaire
+        {
+            height: 300px;
+        }
+        .imgCard-solaire-mobile
+        {
+            height: 350px;
+        }
+
+
+    </style>
+{% endblock %}
+
+{% block body %}
+    {{ include('base.html.twig') }}
+    <br>
+
+    <h1 style="text-align: center; color: #1D4851;"><b>Solaire & Photovoltaique</b></h1>
+    <br>
+    <br>
+    <br>
+
+
+    {#</div>#}
+    {#</div>#}
+    <div style="margin: auto; width: 85%;" >
+        <div style="margin-left:auto; margin-right:auto;">
+            <section class="section_1" style="display: flex; justify-content: space-between;">
+                <article class="articlePresentation" >
+                    <h3 style="text-align:center; color: #1D4851;"><b>Installer une source d'énergie solaire et photovoltaïque chez vous</b></h3>
+                    <br>
+                    <p style="font-size:18px;">
+                        L'installation d'une source d'énergie solaire et photovoltaïque à domicile présente des avantages considérables.
+                        <br>
+                    <h5 style=" color: #1D4851;"><b>Réduction de coûts</b></h5>
+                    En exploitant l'énergie du soleil, elle permet de réaliser des économies substantielles sur les factures d'électricité, contribuant ainsi à la rentabilité à long terme.    <br>
+                    <br>
+                    <h5 style=" color: #1D4851;"><b>Réduction de l'empreinte carbone</b></h5>
+                    De plus, cette solution renouvelable réduit l'empreinte carbone individuelle, participant activement à la lutte contre le changement climatique.    <br>
+                    <br>
+                    <h5 style=" color: #1D4851;"><b>Indépendance énergétique</b></h5>
+                    Enfin, en offrant une indépendance énergétique et une fiabilité accrue, elle constitue un investissement durable dans un avenir éco-responsable.    </p>
+                </article>
+                <br>
+                <br>
+                <article class="articlePresentation articlePresentation_2">
+{#                    <iframe class="iframePresentation" src="https://www.youtube.com/embed/alyLWA-H2Ao?si=DYm_kPTW-ZS0xeoZ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" class="card-img-top" allowfullscreen></iframe>#}
+{#              #}
+
+                    <img src="{{ asset('assets/images/vecteezy_two-builders-are-installing-solar-panels_4579204-1-removebg-preview.png') }}" class="img-top" style="width: 500px; height: 500px; margin-top: -55px; margin-left: 75px;">
+                    <br>
+                    <p style="color: grey; font-size: 11px; margin-left: 40%; margin-top: 2%;"><a style="color: grey; font-size: 11px; text-decoration: underline;"  href="https://fr.vecteezy.com/vecteur-libre/panneau-solaire">Panneau Solaire Vecteurs par Vecteezy</a></p>
+
+                </article>
+            </section>
+        </div>
+    </div>
+
+    <br>
+    <br>
+
+    {#    {% if isDesktop %}#}
+
+    <h2 style="text-align:center; color: #1D4851;"><b>Quelques articles</b></h2>
+    <br>
+
+    <div style="margin: auto; width: 80%;" class="contentOrdi">
+        <div style="margin-left:auto; margin-right:auto; ">
+            <div id="carouselExampleIntervalDesktop" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                <div class="carousel-inner" style="height:100%;">
+                    {% set isFirst = true %}
+                    {% for article in articles %}
+                        {% if loop.index % 3 == 1 %}
+                            <div class="carousel-item {% if isFirst %}active{% endif %}" data-bs-interval="10000">
+                            <div class="d-flex flex-row justify-content-around">
+                            {#
+                            <div class="row row-cols-1 row-cols-md-3 g-4">#}
+                            <div class="row row-cols-1 row-cols-md-3 g-4">
+                        {% endif %}
+                        <div class="col">
+                            <div class="card h-100" >
+                                <div class="imgCard-solaire">
+                                    <img src="{{ asset('assets/images/' ~ article.Image ) }}" class="card-img-top imgCarousel"  alt="...">
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ article.Nom }}</h5>
+                                    <div class="card-text" style="max-height: 130px; overflow: hidden;">
+                                        <p>{{ article.Annonce|raw }}</p></div>...
+                                </div>
+                                <div class="card-footer" style="display: flex; align-items: center; justify-content: center; ">
+                                    <a href="{{ path('app_article_show_voir_plus', {'id': article.id}) }}" class="btn btn-success">Voir plus</a>
+                                </div>
+                            </div>
+                        </div>
+                        {% if loop.index % 3 == 0 or loop.last %}
+                            </div>
+                            </div>
+                            </div>
+                            {% set isFirst = false %}
+                        {% endif %}
+                    {% endfor %}
+                </div>
+
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIntervalDesktop" data-bs-slide="prev" style="height:70%;">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIntervalDesktop" data-bs-slide="next" style="height:70%;">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+    <div style="margin: auto; width: 80%;" class="contentMobile">
+        <div style="margin-left:auto; margin-right:auto;">
+            <div id="carouselExampleIntervalMobile" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                <div class="carousel-inner" style="height:100%; ">
+                    {% set isFirst = true %}
+                    {% for article in articles %}
+                        {% if loop.index % 1 == 0 %}
+                            <div class="carousel-item {% if isFirst %}active{% endif %}" data-bs-interval="10000">
+                            <div class="d-flex flex-row justify-content-around">
+                            {#
+                            <div class="row row-cols-1 row-cols-md-1 g-4">#}
+                            <div class="row row-cols-1 row-cols-md-3 g-4">
+                        {% endif %}
+                        <div class="col">
+                            <div class="card h-100">
+                                <div class="imgCard-solaire-mobile">
+                                    <img src="{{ asset('assets/images/' ~ article.Image ) }}" class="card-img-top imgCarousel" alt="...">
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ article.Nom }}</h5>
+                                    <div class="card-text" style="max-height: 130px; overflow: hidden;">
+                                        <p>{{ article.Annonce|raw }}</p></div>...
+                                </div>
+                                <div class="card-footer" style="display: flex; align-items: center; justify-content: center; ">
+                                    <a href="{{ path('app_article_show_voir_plus', {'id': article.id}) }}" class="btn btn-success">Voir plus</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        </div>
+                        </div>
+                        </div>
+                        {% set isFirst = false %}
+
+                    {% endfor %}
+                </div>
+
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIntervalMobile" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIntervalMobile" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    {{ include('main/accueil.html.twig') }}
+
+    {#  {% endif %}#}
+
+
+
+{% endblock %}
+
+
+
+            {%block javascripts %}
+
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+                <script>
+                    document.addEventListener("DOMContentLoaded", function () {
+                        var screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+                        var contentOrdi = $('.contentOrdi');
+                        var contentMobile = $('.contentMobile');
+
+                        if (screenWidth > 768) {
+                            // Code à exécuter pour les écrans larges
+                            contentOrdi.show();
+                            contentMobile.hide();
+                        } else {
+                            // Code à exécuter pour les écrans étroits
+                            contentOrdi.hide();
+                            contentMobile.show();
+                        }
+                    });
+
+                    document.addEventListener("DOMContentLoaded", function () {
+                        // ... (votre code pour afficher/masquer en fonction de la largeur de l'écran)
+
+                        // Initialisation du carousel desktop
+                        $('#carouselExampleIntervalDesktop').carousel();
+
+                        // Initialisation du carousel mobile
+                        $('#carouselExampleIntervalMobile').carousel();
+                    });
+                </script>
+            {%endblock%}
+
+
+
+

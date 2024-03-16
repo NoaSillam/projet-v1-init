@@ -199,9 +199,14 @@
                                     <div class="imgCard-isolation">
                                     <img src="{{ asset('assets/images/' ~ article.Image ) }}" class="card-img-top imgCarousel" alt="...">
                                     </div>
-                                    <div class="card-body " style="height: 250px;" >
-                                        <h5 class="card-title">{{ article.Nom }}</h5>
-                                        <div class="card-text" style="max-height: 180px; overflow: hidden;">
+{#                                    <div class="card-body " style="height: 250px;" >#}
+{#                                        <h5 class="card-title">{{ article.Nom }}</h5>#}
+{#                                        <div class="card-text" style="max-height: 180px; overflow: hidden;">#}
+{#                                            <p>{{ article.Annonce|raw }}</p></div>...#}
+{#                                    </div>#}
+                                    <div class="card-body " style="height: 270px; " >
+                                        <h5 class="card-title" style="font-size: 16.5px;">{{ article.Nom }}</h5>
+                                        <div class="card-text" style="max-height: 190px; overflow: hidden; font-size: 15px; margin-top: -17px;">
                                             <p>{{ article.Annonce|raw }}</p></div>...
                                     </div>
                                     <div class="card-footer" style="display: flex; align-items: center; justify-content: center; ">

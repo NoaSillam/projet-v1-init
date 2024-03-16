@@ -18,6 +18,12 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 
 class RegistrationFormType extends AbstractType
 {
+    private RolesTransformer $rolesTransformer;
+
+    public function __construct(RolesTransformer $rolesTransformer)
+    {
+        $this->rolesTransformer = $rolesTransformer;
+    }
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -34,21 +40,59 @@ class RegistrationFormType extends AbstractType
                 'attr' =>['class' => 'form-control'],
                 'label' => 'E-mail',
             ] )
+//            ->add('roles', ChoiceType::class, [
+//                'choices' => [
+//                    'Users' => 'ROLE_USERS',
+//                    'User' => 'ROLE_USER',
+//                    'Admin' => 'ROLE_ADMIN',
+//                    'Product Admin' => 'ROLE_PRODUCT_ADMIN',
+//                   // 'Role admin' => 'ROLE_ADMIN',
+//                    'Super Admin' => 'ROLE_SUPER_ADMIN'
+//                    // Ajoutez d'autres rôles selon vos besoins
+//                ],
+//                'expanded' => false,
+//                'multiple' => true,
+//                'attr' => ['class' => 'form-control'],
+//            ])
+
+//            ->add('roles', ChoiceType::class, [
+//                'choices' => [
+//                    'Users' => 'ROLE_USERS',
+//                    'User' => 'ROLE_USER',
+//                    'Admin' => 'ROLE_ADMIN',
+//                    'Product Admin' => 'ROLE_PRODUCT_ADMIN',
+//                    'Super Admin' => 'ROLE_SUPER_ADMIN'
+//                ],
+//                'expanded' => false,
+//                'multiple' => true, // Mettez à false pour permettre un seul choix
+//                'attr' => ['class' => 'form-control'],
+//                'data' => 'ROLE_USER', // Valeur par défaut pour s'assurer qu'il y a toujours une valeur
+//                'label' => 'Roles',
+//            ])
+
+//            ->add('roles', TextType::class, [
+//                'attr' => ['class' => 'form-control'],
+//                'data_class' => null,
+//                'label' => 'Roles',
+//                'required' => false,
+//                'data' => 'ROLE_USER',
+//                'mapped' => false,
+//            ])
+
             ->add('roles', ChoiceType::class, [
                 'choices' => [
-                    'Users' => 'ROLE_USERS',
-                    'User' => 'ROLE_USER',
-                    'Admin' => 'ROLE_ADMIN',
-                    'Product Admin' => 'ROLE_PRODUCT_ADMIN',
-                   // 'Role admin' => 'ROLE_ADMIN',
-                    'Super Admin' => 'ROLE_SUPER_ADMIN'
-                    // Ajoutez d'autres rôles selon vos besoins
+                    'Role users' => 'ROLE_USERS',
+                    'Role user' => 'ROLE_USER',
+                    'Role product admin' => 'ROLE_PRODUCT_ADMIN',
+                    'Role admin' => 'ROLE_ADMIN',
+                    'Role super admin' => 'ROLE_SUPER_ADMIN',
                 ],
                 'expanded' => false,
-                'multiple' => true,
+                'multiple' => false, // Un seul choix autorisé
                 'attr' => ['class' => 'form-control'],
+                'data' => 'ROLE_USER', // Mettez la valeur par défaut sous forme de chaîne
+                'label' => 'Roles',
             ])
-
 
 
             // ->add('roles', ChoiceType::class, [
@@ -99,6 +143,7 @@ class RegistrationFormType extends AbstractType
                 ],
             ])
         ;
+        $builder->get('roles')->addModelTransformer($this->rolesTransformer);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

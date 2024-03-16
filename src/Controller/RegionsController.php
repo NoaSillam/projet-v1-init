@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/regions')]
 class RegionsController extends AbstractController
 {
-    #[Route('/', name: 'app_regions_index', methods: ['GET'])]
+    #[Route('', name: 'app_regions_index', methods: ['GET'])]
     public function index(RegionsRepository $regionsRepository): Response
     {
         return $this->render('regions/index.html.twig', [

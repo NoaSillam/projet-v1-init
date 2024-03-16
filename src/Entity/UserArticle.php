@@ -13,11 +13,11 @@ class UserArticle
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToOne(inversedBy: 'UserArticles')]
+    #[ORM\ManyToOne(inversedBy: 'userArticles', cascade: ["remove"])]
     #[ORM\JoinColumn(nullable: false)]
-    private ?userNewsletter $userNewsletter = null;
+    private ?UserNewsletter $userNewsletter = null;
 
-    #[ORM\ManyToOne(inversedBy: 'ArticleNewsletter')]
+    #[ORM\ManyToOne(inversedBy: 'userArticles')]
     #[ORM\JoinColumn(nullable: false)]
     private ?ArticleNewsletter $articleNewsletter = null;
 

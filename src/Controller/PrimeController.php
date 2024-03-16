@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/prime')]
 class PrimeController extends AbstractController
 {
-    #[Route('/', name: 'app_prime_index', methods: ['GET'])]
+    #[Route('', name: 'app_prime_index', methods: ['GET'])]
     public function index(PrimeRepository $primeRepository): Response
     {
         return $this->render('prime/index.html.twig', [
