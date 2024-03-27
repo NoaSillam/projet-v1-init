@@ -10,7 +10,10 @@
 {% block body %}
     {{ include('base.html.twig') }}
     <br>
-    <h1  style="text-align:center;">Nous contacter</h1>
+    <h1  style="text-align:center; color: #1D4851; font-weight: bold;">Nous contacter</h1>
+
+    <hr style="width: 50px; color: #66FF66FF; background-color: #66FF66FF; border: 4px #66FF66FF solid; border-radius: 4px; text-align: center; margin: 0 auto;">
+
     <br>
     <b style="margin-left:25%;">Par télephone : </b> <a href="tel:0606900805"> 0606900805</a>
     <br>
@@ -18,6 +21,11 @@
     <br>
     <b style="margin-left:25%;">Par notre fiche : </b>
     {{ include('contact/_form.html.twig') }}
+
+    <br>
+    <br>
+    <br>
+{#    {{ include('main/accueil.html.twig') }}#}
 
 
 

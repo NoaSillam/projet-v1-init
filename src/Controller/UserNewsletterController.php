@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\UserNewsletter;
 use App\Form\UserNewsletterType;
 use App\Repository\UserNewsletterRepository;
+use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -57,12 +58,34 @@ class UserNewsletterController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($userNewsletter);
-            $entityManager->flush();
+//            $entityManager->persist($userNewsletter);
+//            $entityManager->flush();
+//            // Ajout d'un message flash pour afficher une alerte Bootstrap
+//            $this->addFlash('success', 'Vous êtes bien inscrit à notre newsletter.');
+//
+//            return $this->redirectToRoute('main_accueil_user', [], Response::HTTP_SEE_OTHER);
 
-            return $this->redirectToRoute('main_index_main', [], Response::HTTP_SEE_OTHER);
+            try {
+                $entityManager->persist($userNewsletter);
+                $entityManager->flush();
+
+                // Ajout d'un message flash pour afficher une alerte Bootstrap en cas de succès
+                $this->addFlash('success', 'Vous êtes bien inscrit à notre newsletter.');
+
+                return $this->redirectToRoute('main_accueil_user', [], Response::HTTP_SEE_OTHER);
+            } catch (UniqueConstraintViolationException $e) {
+                // Ajout d'un message flash pour afficher une alerte Bootstrap en cas de violation de contrainte unique
+                $this->addFlash('danger', 'Vous êtes déjà inscrit à notre newsletter.');
+
+                return $this->redirectToRoute('main_accueil_user', [], Response::HTTP_SEE_OTHER);
+            }
         }
+     //   $this->addFlash('danger', 'Une erreur s\'est produite. Veuillez réessayer.');
 
+        // Ajout d'un message flash pour afficher une alerte Bootstrap en cas d'erreur
+        if ($form->isSubmitted() && !$form->isValid()) {
+            $this->addFlash('danger', 'Une erreur s\'est produite. Veuillez réessayer.');
+        }
         return $this->render('user_newsletter/new_user.html.twig', [
             'user_newsletter' => $userNewsletter,
             'form' => $form,

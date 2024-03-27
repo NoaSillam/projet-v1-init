@@ -30,6 +30,14 @@ class Article
     #[ORM\ManyToOne(inversedBy: 'articles')]
     private ?Type $type_article = null;
 
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $date_created = null;
+
+    public function __construct()
+    {
+        $this->date_created = new \DateTime();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -79,6 +87,18 @@ class Article
     public function setTypeArticle(?Type $type_article): static
     {
         $this->type_article = $type_article;
+
+        return $this;
+    }
+
+    public function getDateCreated(): ?\DateTimeInterface
+    {
+        return $this->date_created;
+    }
+
+    public function setDateCreated(?\DateTimeInterface $date_created): static
+    {
+        $this->date_created = $date_created;
 
         return $this;
     }

@@ -1,341 +1,595 @@
 {% block stylesheets %}
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-<style>
-    .isolation{
-        width: 170px;
-        height: 160px;
-        background-color: white;
-        border: 1px solid #D3D3D3;
-        border-radius: 50px; 
-        display: flex; 
-        flex-direction: column; 
-        align-items: center; 
-        justify-content: center;
-    }
-    .isolation:hover
-    {
-        background-color: #ADD8E6;
-    }
-    .pompeChaleur
-    {
-        width: 170px;
-        height: 160px;
-        background-color: white; 
-        border-radius: 50px;
-        border: 1px solid #D3D3D3;
-        display: flex; 
-        flex-direction: column; 
-        align-items: center; 
-        justify-content: center;
-    }
-    .pompeChaleur:hover
-    {
-        background-color:#FFB6C1;
-    }
-    .solaire
-    {
-        width: 170px;
-        height: 160px;
-        background-color: white; 
-        border-radius: 50px;
-        border: 1px solid #D3D3D3;
-        display: flex; 
-        flex-direction: column; 
-        align-items: center; 
-        justify-content: center;
-    }
-    .solaire:hover{
-        background-color: #8FBC8F;
-    }
-    .aide{
-        width: 170px;
-        height: 160px;
-        background-color: white; 
-        border-radius: 50px;
-        border: 1px solid #D3D3D3;
-        display: flex; 
-        flex-direction: column; 
-        align-items: center; 
-        justify-content: center;
-    }
-    .aide:hover{
-        background-color:#FFEFD5;
-    }
-    #map{ /* la carte DOIT avoir une hauteur sinon elle n'apparaît pas */
-        height:650px;
+{#<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">#}
+{#<style>#}
+{#    .isolation{#}
+{#        width: 170px;#}
+{#        height: 160px;#}
+{#        background-color: white;#}
+{#        border: 1px solid #D3D3D3;#}
+{#        border-radius: 50px; #}
+{#        display: flex; #}
+{#        flex-direction: column; #}
+{#        align-items: center; #}
+{#        justify-content: center;#}
+{#    }#}
+{#    .isolation:hover#}
+{#    {#}
+{#        background-color: #ADD8E6;#}
+{#    }#}
+{#    .pompeChaleur#}
+{#    {#}
+{#        width: 170px;#}
+{#        height: 160px;#}
+{#        background-color: white; #}
+{#        border-radius: 50px;#}
+{#        border: 1px solid #D3D3D3;#}
+{#        display: flex; #}
+{#        flex-direction: column; #}
+{#        align-items: center; #}
+{#        justify-content: center;#}
+{#    }#}
+{#    .pompeChaleur:hover#}
+{#    {#}
+{#        background-color:#FFB6C1;#}
+{#    }#}
+{#    .solaire#}
+{#    {#}
+{#        width: 170px;#}
+{#        height: 160px;#}
+{#        background-color: white; #}
+{#        border-radius: 50px;#}
+{#        border: 1px solid #D3D3D3;#}
+{#        display: flex; #}
+{#        flex-direction: column; #}
+{#        align-items: center; #}
+{#        justify-content: center;#}
+{#    }#}
+{#    .solaire:hover{#}
+{#        background-color: #8FBC8F;#}
+{#    }#}
+{#    .aide{#}
+{#        width: 170px;#}
+{#        height: 160px;#}
+{#        background-color: white; #}
+{#        border-radius: 50px;#}
+{#        border: 1px solid #D3D3D3;#}
+{#        display: flex; #}
+{#        flex-direction: column; #}
+{#        align-items: center; #}
+{#        justify-content: center;#}
+{#    }#}
+{#    .aide:hover{#}
+{#        background-color:#FFEFD5;#}
+{#    }#}
+{#    #map{ /* la carte DOIT avoir une hauteur sinon elle n'apparaît pas */#}
+{#        height:650px;#}
 
-    }
-    .demarche{
-        width: 170px;
-        height: 160px;
-        background-color: white;
-        border: 1px solid #D3D3D3;
-        border-radius: 50px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
+{#    }#}
+{#    .demarche{#}
+{#        width: 170px;#}
+{#        height: 160px;#}
+{#        background-color: white;#}
+{#        border: 1px solid #D3D3D3;#}
+{#        border-radius: 50px;#}
+{#        display: flex;#}
+{#        flex-direction: column;#}
+{#        align-items: center;#}
+{#        justify-content: center;#}
 
-    }
-    .demarche:hover
-    {
-        background-color: #ADD8E6;
-    }
-    .expert
-    {
-        width: 170px;
-        height: 160px;
-        background-color: white;
-        border-radius: 50px;
-        border: 1px solid #D3D3D3;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
-    .expert:hover
-    {
-        background-color:#FFB6C1;
-    }
-    .suivi
-    {
-        width: 170px;
-        height: 160px;
-        background-color: white;
-        border-radius: 50px;
-        border: 1px solid #D3D3D3;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
-    .suivi:hover{
-        background-color: #8FBC8F;
-    }
-    .assistance{
-        width: 170px;
-        height: 160px;
-        background-color: white;
-        border-radius: 50px;
-        border: 1px solid #D3D3D3;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
-    .assistance:hover{
-        background-color:#FFEFD5;
-    }
-
-
+{#    }#}
+{#    .demarche:hover#}
+{#    {#}
+{#        background-color: #ADD8E6;#}
+{#    }#}
+{#    .expert#}
+{#    {#}
+{#        width: 170px;#}
+{#        height: 160px;#}
+{#        background-color: white;#}
+{#        border-radius: 50px;#}
+{#        border: 1px solid #D3D3D3;#}
+{#        display: flex;#}
+{#        flex-direction: column;#}
+{#        align-items: center;#}
+{#        justify-content: center;#}
+{#    }#}
+{#    .expert:hover#}
+{#    {#}
+{#        background-color:#FFB6C1;#}
+{#    }#}
+{#    .suivi#}
+{#    {#}
+{#        width: 170px;#}
+{#        height: 160px;#}
+{#        background-color: white;#}
+{#        border-radius: 50px;#}
+{#        border: 1px solid #D3D3D3;#}
+{#        display: flex;#}
+{#        flex-direction: column;#}
+{#        align-items: center;#}
+{#        justify-content: center;#}
+{#    }#}
+{#    .suivi:hover{#}
+{#        background-color: #8FBC8F;#}
+{#    }#}
+{#    .assistance{#}
+{#        width: 170px;#}
+{#        height: 160px;#}
+{#        background-color: white;#}
+{#        border-radius: 50px;#}
+{#        border: 1px solid #D3D3D3;#}
+{#        display: flex;#}
+{#        flex-direction: column;#}
+{#        align-items: center;#}
+{#        justify-content: center;#}
+{#    }#}
+{#    .assistance:hover{#}
+{#        background-color:#FFEFD5;#}
+{#    }#}
 
 
-    .pompeAChaleur{
-        width: 270px;
-        height: 260px;
-        background-color: white;
-        border: 1px solid #D3D3D3;
-        border-radius: 50px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
-    .pompeAChaleur:hover
-    {
-        background-color: #ADD8E6;
-    }
-    .ballonThermodynamique
-    {
-        width: 270px;
-        height: 260px;
-        background-color: white;
-        border-radius: 50px;
-        border: 1px solid #D3D3D3;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
-    .ballonThermodynamique:hover
-    {
-        background-color:#FFB6C1;
-    }
-    .isolationExterieurInterieur
-    {
-        width: 270px;
-        height: 260px;
-        background-color: white;
-        border-radius: 50px;
-        border: 1px solid #D3D3D3;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
-    .isolationExterieurInterieur:hover{
-        background-color: #8FBC8F;
-    }
-
-    .reno
-    {
-        width: 100%;
-        height: 100%;
-        background-image: url('{{ asset("assets/images/maison-style-contemporain-construction.jpg") }}');
-        background-size: cover;
-        background-position: center;
-        background-repeat: repeat;
-        border-radius: 50px;
-        margin: 0 auto;
-        padding: 20px;
-        box-sizing: border-box;
-        border-color: gray;
-
-    }
-.contain-reno
-{
-    margin: auto;
-    width: 70%;
-}
-.contain-main-reno{
-    width: 100%;
-    height: 550px;
-    border-radius: 50px;
-    text-align: center;
-    background-color: #f5f5f5;
-    overflow: hidden;
-    border-color: gray;
-}
 
 
-.contain-offre{
-    margin: auto;
-    width: 70%;
-}
+{#    .pompeAChaleur{#}
+{#        width: 270px;#}
+{#        height: 260px;#}
+{#        background-color: white;#}
+{#        border: 1px solid #D3D3D3;#}
+{#        border-radius: 50px;#}
+{#        display: flex;#}
+{#        flex-direction: column;#}
+{#        align-items: center;#}
+{#        justify-content: center;#}
+{#    }#}
+{#    .pompeAChaleur:hover#}
+{#    {#}
+{#        background-color: #ADD8E6;#}
+{#    }#}
+{#    .ballonThermodynamique#}
+{#    {#}
+{#        width: 270px;#}
+{#        height: 260px;#}
+{#        background-color: white;#}
+{#        border-radius: 50px;#}
+{#        border: 1px solid #D3D3D3;#}
+{#        display: flex;#}
+{#        flex-direction: column;#}
+{#        align-items: center;#}
+{#        justify-content: center;#}
+{#    }#}
+{#    .ballonThermodynamique:hover#}
+{#    {#}
+{#        background-color:#FFB6C1;#}
+{#    }#}
+{#    .isolationExterieurInterieur#}
+{#    {#}
+{#        width: 270px;#}
+{#        height: 260px;#}
+{#        background-color: white;#}
+{#        border-radius: 50px;#}
+{#        border: 1px solid #D3D3D3;#}
+{#        display: flex;#}
+{#        flex-direction: column;#}
+{#        align-items: center;#}
+{#        justify-content: center;#}
+{#    }#}
+{#    .isolationExterieurInterieur:hover{#}
+{#        background-color: #8FBC8F;#}
+{#    }#}
 
-.contain-main-offre{
-    width: 100%;
-    height: 300px;
-    border-radius: 50px;
-    text-align: center;
-    background-color: #f5f5f5;
-}
+{#    .reno#}
+{#    {#}
+{#        width: 100%;#}
+{#        height: 100%;#}
+{#        background-image: url('{{ asset("assets/images/maison-style-contemporain-construction.jpg") }}');#}
+{#        background-size: cover;#}
+{#        background-position: center;#}
+{#        background-repeat: repeat;#}
+{#        border-radius: 50px;#}
+{#        margin: 0 auto;#}
+{#        padding: 20px;#}
+{#        box-sizing: border-box;#}
+{#        border-color: gray;#}
 
-.contain-avantage{
-    margin: auto;
-    width: 70%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.contain-main-avantage{
-    width: 200%;
-    height: auto;
-    border-radius: 50px;
-    text-align: center;
-    background-color: #f5f5f5;
-}
+{#    }#}
+{#.contain-reno#}
+{#{#}
+{#    margin: auto;#}
+{#    width: 70%;#}
+{#}#}
+{#.contain-main-reno{#}
+{#    width: 100%;#}
+{#    height: 550px;#}
+{#    border-radius: 50px;#}
+{#    text-align: center;#}
+{#    background-color: #f5f5f5;#}
+{#    overflow: hidden;#}
+{#    border-color: gray;#}
+{#}#}
 
-    .contain-accompagnement{
-        margin: auto;
-        width: 70%;
-        margin-top: 10px;
-        margin-bottom: 10px;
-    }
-    .contain-main-accompagnement{
-        width: 100%;
-        height: 300px;
-        border-radius: 50px;
-        text-align: center;
-        background-color: #f5f5f5;
-        padding-right: 40px;
-        padding-left: 40px;
-    }
-    .contain-map{
-        margin: auto;
-        width: 70%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    .contain-main-map{
-        width: 200%;
-        height: 150%;
-        border-radius: 50px;
-        text-align: center;
-        background-color: #f5f5f5;
-    }
-    /* Ajout de la règle media query pour les écrans de moins de 1200px */
-    @media (max-width: 1200px) {
-        .contain-reno {
-            width: 90%;
+
+{#.contain-offre{#}
+{#    margin: auto;#}
+{#    width: 70%;#}
+{#}#}
+
+{#.contain-main-offre{#}
+{#    width: 100%;#}
+{#    height: 300px;#}
+{#    border-radius: 50px;#}
+{#    text-align: center;#}
+{#    background-color: #f5f5f5;#}
+{#}#}
+
+{#.contain-avantage{#}
+{#    margin: auto;#}
+{#    width: 70%;#}
+{#    display: flex;#}
+{#    align-items: center;#}
+{#    justify-content: center;#}
+{#}#}
+{#.contain-main-avantage{#}
+{#    width: 200%;#}
+{#    height: auto;#}
+{#    border-radius: 50px;#}
+{#    text-align: center;#}
+{#    background-color: #f5f5f5;#}
+{#}#}
+
+{#    .contain-accompagnement{#}
+{#        margin: auto;#}
+{#        width: 70%;#}
+{#        margin-top: 10px;#}
+{#        margin-bottom: 10px;#}
+{#    }#}
+{#    .contain-main-accompagnement{#}
+{#        width: 100%;#}
+{#        height: 300px;#}
+{#        border-radius: 50px;#}
+{#        text-align: center;#}
+{#        background-color: #f5f5f5;#}
+{#        padding-right: 40px;#}
+{#        padding-left: 40px;#}
+{#    }#}
+{#    .contain-map{#}
+{#        margin: auto;#}
+{#        width: 70%;#}
+{#        display: flex;#}
+{#        align-items: center;#}
+{#        justify-content: center;#}
+{#    }#}
+{#    .contain-main-map{#}
+{#        width: 200%;#}
+{#        height: 150%;#}
+{#        border-radius: 50px;#}
+{#        text-align: center;#}
+{#        background-color: #f5f5f5;#}
+{#    }#}
+{#    /* Ajout de la règle media query pour les écrans de moins de 1200px */#}
+{#    @media (max-width: 1200px) {#}
+{#        .contain-reno {#}
+{#            width: 90%;#}
+{#        }#}
+{#        .contain-offre{#}
+{#            width: 90%;#}
+{#        }#}
+{#        .contain-avantage{#}
+{#            width: 90%;#}
+{#        }#}
+{#        .contain-accompagnement{#}
+{#            width: 90%;#}
+{#        }#}
+{#        .contain-map{#}
+{#            width: 90%;#}
+{#        }#}
+{#        .contain-deb{#}
+{#            width: 90% !important;#}
+{#        }#}
+{#    }#}
+
+{#    .contain-deb{#}
+{#        margin: auto;#}
+{#        width: 70%;#}
+{#        display: flex;#}
+{#        align-items: center;#}
+{#        justify-content: center;#}
+{#    }#}
+
+{#    .contain-main-deb {#}
+{#        width: 200%;#}
+{#        height: 150%;#}
+{#        border-radius: 50px;#}
+{#        text-align: center;#}
+{#        background-color: #f5f5f5;#}
+
+{#    }#}
+
+
+
+{#    /*.animate-charcter*/#}
+{#    /*{*/#}
+{#    /*    text-transform: uppercase;*/#}
+{#    /*    background-size: auto auto;*/#}
+{#    /*    background-clip: border-box;*/#}
+{#    /*    background-size: 200% auto;*/#}
+{#    /*    color: #fff;*/#}
+{#    /*    background-clip: text;*/#}
+{#    /*    text-fill-color: transparent;*/#}
+{#    /*    -webkit-background-clip: text;*/#}
+{#    /*    -webkit-text-fill-color: transparent;*/#}
+{#    /*    animation: textclip 2s linear infinite;*/#}
+{#    /*    background-image: linear-gradient(*/#}
+{#    /*            -225deg,*/#}
+{#    /*            #231557 0%,*/#}
+{#    /*            #44107a 29%,*/#}
+{#    /*            #ff1361 67%,*/#}
+{#    /*            #fff800 100%*/#}
+{#    /*    );*/#}
+{#    /*    display: inline-block;*/#}
+{#    /*    font-size: 190px;*/#}
+{#    /*}*/#}
+
+{#    /*@keyframes textclip {*/#}
+{#    /*    to {*/#}
+{#    /*        background-position: 200% center;*/#}
+{#    /*    }*/#}
+{#    /*}*/#}
+
+
+
+{#    .welcome-title-1 {#}
+{#        background: linear-gradient(45deg, #f5f5f5, #66FF66FF, #f5f5f5, #f5f5f5);#}
+{#        background-size: 400% 400%;#}
+{#        animation: gradientAnimation 8s infinite alternate;#}
+{#        margin-top: 15%;#}
+{#    }#}
+{#</style>#}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <style>
+        @media (max-width: 1200px) {
+            .contain-reno {
+                width: 90%;
+            }
+            .contain-offre{
+                width: 90%;
+            }
+            .contain-avantage{
+                width: 90%;
+            }
+            .contain-accompagnement{
+                width: 90%;
+            }
+            .contain-map{
+                width: 90%;
+            }
+            .contain-deb{
+                width: 250px!important;
+            }
         }
         .contain-offre{
-            width: 90%;
+            margin: auto;
+            width: 45%;
+
         }
-        .contain-avantage{
-            width: 90%;
+
+        .contain-main-offre{
+            width: 100%;
+            /*height: 210px;*/
+            height: 170px;
+            text-align: center;
+            /*background-color: #f5f5f5;*/
+            background-color: #f8f8f8;
         }
-        .contain-accompagnement{
-            width: 90%;
+        .isolation{
+            width: 130px;
+            height: 120px;
+            background-color: white;
+            border: 1px solid #D3D3D3;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
-        .contain-map{
-            width: 90%;
+        .isolation:hover
+        {
+            background-color: #ADD8E6;
+        }
+        .pompeChaleur
+        {
+            width: 130px;
+            height: 120px;
+            background-color: white;
+            border-radius: 15px;
+            border: 1px solid #D3D3D3;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .pompeChaleur:hover
+        {
+            background-color:#FFB6C1;
+        }
+        .solaire
+        {
+            width: 130px;
+            height: 120px;
+            background-color: white;
+            border-radius: 15px;
+            border: 1px solid #D3D3D3;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .solaire:hover{
+            background-color: #8FBC8F;
+        }
+        .aide{
+            width: 130px;
+            height: 120px;
+            background-color: white;
+            border-radius: 15px;
+            border: 1px solid #D3D3D3;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .aide:hover{
+            background-color:#FFEFD5;
         }
         .contain-deb{
-            width: 90% !important;
+            margin: auto;
+            /*width: 70%;*/
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
         }
-    }
 
-    .contain-deb{
-        margin: auto;
-        width: 70%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+        .contain-main-deb {
+            /*width: 150px;*/
+            /*height: 50px;*/
+            border-radius: 50px;
+            text-align: center;
+            background-color: transparent;
+            margin-top: -900px;
+            margin-left: -750px;
 
-    .contain-main-deb {
-        width: 200%;
-        height: 150%;
-        border-radius: 50px;
-        text-align: center;
-        background-color: #f5f5f5;
+        }
+        .contain-avantage{
+            margin: auto;
+            width: 70%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .contain-main-avantage{
+            width: 200%;
+            height: auto;
+            border-radius: 15px;
+            text-align: center;
+            /*background-color: #f5f5f5;*/
+            background-color: #f8f8f8;
+        }
+        .imgCard-isolation
+        {
+            height: 275px;
+        }
+        .imgCard-isolation-mobile
+        {
+            height: 350px;
+        }
+        .imgCarousel{
 
-    }
+            object-fit: scale-down;
+            max-width: 95%;
+            max-height: 280px; /* Remplacez par la hauteur maximale souhaitée */
+            height: auto;
+        }
 
+        .contain-accompagnement{
+            margin: auto;
+            width: 70%;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        .contain-main-accompagnement{
+            width: 100%;
+            height: 300px;
+            /*border-radius: 50px;*/
+            border-radius: 15px;
+            text-align: center;
+            /*background-color: #f5f5f5;*/
+            background-color: #f8f8f8;
+            padding-right: 40px;
+            padding-left: 40px;
+        }
+        .contain-map{
+            margin: auto;
+            width: 70%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .contain-main-map{
+            width: 200%;
+            height: 150%;
+            /*border-radius: 50px;*/
+            border-radius: 15px;
+            text-align: center;
+            /*background-color: #f5f5f5;*/
+            background-color: #f8f8f8;
+        }
+        .demarche{
+            width: 170px;
+            height: 160px;
+            background-color: white;
+            border: 1px solid #D3D3D3;
+            border-radius: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
 
+        }
+        .demarche:hover
+        {
+            background-color: #ADD8E6;
+        }
+        .expert
+        {
+            width: 170px;
+            height: 160px;
+            background-color: white;
+            border-radius: 50px;
+            border: 1px solid #D3D3D3;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .expert:hover
+        {
+            background-color:#FFB6C1;
+        }
+        .suivi
+        {
+            width: 170px;
+            height: 160px;
+            background-color: white;
+            border-radius: 50px;
+            border: 1px solid #D3D3D3;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .suivi:hover{
+            background-color: #8FBC8F;
+        }
+        .assistance{
+            width: 170px;
+            height: 160px;
+            background-color: white;
+            border-radius: 50px;
+            border: 1px solid #D3D3D3;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .assistance:hover{
+            background-color:#FFEFD5;
+        }
+        #map{ /* la carte DOIT avoir une hauteur sinon elle n'apparaît pas */
+            height:650px;
 
-    /*.animate-charcter*/
-    /*{*/
-    /*    text-transform: uppercase;*/
-    /*    background-size: auto auto;*/
-    /*    background-clip: border-box;*/
-    /*    background-size: 200% auto;*/
-    /*    color: #fff;*/
-    /*    background-clip: text;*/
-    /*    text-fill-color: transparent;*/
-    /*    -webkit-background-clip: text;*/
-    /*    -webkit-text-fill-color: transparent;*/
-    /*    animation: textclip 2s linear infinite;*/
-    /*    background-image: linear-gradient(*/
-    /*            -225deg,*/
-    /*            #231557 0%,*/
-    /*            #44107a 29%,*/
-    /*            #ff1361 67%,*/
-    /*            #fff800 100%*/
-    /*    );*/
-    /*    display: inline-block;*/
-    /*    font-size: 190px;*/
-    /*}*/
-
-    /*@keyframes textclip {*/
-    /*    to {*/
-    /*        background-position: 200% center;*/
-    /*    }*/
-    /*}*/
-
-</style>
+        }
+    </style>
 {% endblock %}
 
 {% block body %}
@@ -349,128 +603,621 @@
 {#        </div>#}
 {#    </div>#}
 
+{#    <div  class="contain-deb">#}
+{#        <div class="contain-main-deb">#}
+{#            <br>#}
+{#            <h1 style="text-align:center; color: #1D4851; font-size: 65px;">  <img src="{{ asset('assets/images/LOGO_JS_ENERGIE_DEFINITIF2_3_copie-2.png') }}" width="100"  height="96">  <b>JS ENERGIE</b></h1>#}
 
-<div  class="contain-deb">
-    <div class="contain-main-deb">
-        <br>
-<h1 style="text-align:center; color: #1D4851; font-size: 65px;">  <img src="{{ asset('assets/images/LOGO_JS_ENERGIE_DEFINITIF2_3_copie-2.png') }}" width="100"  height="96">  <b>JS ENERGIE</b></h1>
+
+{#            <h5 style="text-align:center; color: #1D4851; font-size: 30px; margin-left: 130px;"><b>Votre patrimoine énergétique</b></h5>#}
+{#        </div>#}
+{#    </div>#}
+
+{#    <br>#}
 
 
-    <h5 style="text-align:center; color: #1D4851; font-size: 30px; margin-left: 130px;"><b>Votre patrimoine énergétique</b></h5>
+{#<div  class="contain-deb">#}
+{#    <div class="contain-main-deb welcome-title-1">#}
+{#        <br>#}
+{#<h1 style="text-align:center; color: #1D4851; font-size: 65px;">  <img src="{{ asset('assets/images/LOGO_JS_ENERGIE_DEFINITIF2_3_copie-2.png') }}" width="100"  height="96">  <b>JS ENERGIE</b></h1>#}
+
+
+{#    <h5 style="text-align:center; color: #1D4851; font-size: 30px; margin-left: 130px;"><b>Votre patrimoine énergétique</b></h5>#}
+{#    </div>#}
+{#</div>#}
+
+
+
+{#<br>#}
+{#    <br>#}
+
+{#<div  class="contain-offre">#}
+{#    <div class="contain-main-offre">#}
+
+{#       <br>#}
+{#        <h3 style="text-align:center; color: #1D4851; width: 100%; "><b>Voici nos offres</b></h3>#}
+{#        <br>#}
+{#        <div style="display: flex; align-items: center; justify-content: center;">#}
+{#            <div style="display: flex; flex-direction: row; align-items: center; justify-content: space-around; width: 100%; ">#}
+
+{#    <a href="{{path ('app_article_index_2')}}" style="text-decoration:none; color: black;">#}
+{#        <div class="isolation">#}
+{#            <img src="{{ asset('assets/images/isole.png') }}" style="width: 60%;" class="img-top">#}
+{#            <img src="{{ asset('assets/images/1912.i121.041.P.m005.c33.isometric_repairs_set-07-removebg-preview.png') }}" style="width: 60%;" class="img-top">#}
+
+{#            <p style="font-size: 15px;"><b>Isolation</b></p>#}
+{#        </div>#}
+{#    </a>#}
+
+{#    <a href="{{path ('app_article_index_3')}}" style="text-decoration:none; color: black;">#}
+{#        <div class="pompeChaleur">#}
+{#            <img src="{{ asset('assets/images/pompe-a-chaleur-removebg-preview.png') }}" style="width: 60%;" class="img-top">#}
+{#            <img src="{{ asset('assets/images/vecteezy_maintenance-flat-icon-vector-illustration_7132031-removebg-preview.png') }}" style="width: 60%;" class="img-top">#}
+{#            <p style="font-size: 15px;"><b>Pompe à chaleur</b></p>#}
+{#        </div>#}
+{#    </a>#}
+
+{#    <a href="{{path ('app_article_index_4')}}" style="text-decoration:none; color: black;">#}
+{#        <div class="solaire">#}
+{#            <img src="{{ asset('assets/images/solaire-removebg-preview.png') }}" style="width: 65%;" class="img-top">#}
+{#            <img src="{{ asset('assets/images/vecteezy_two-builders-are-installing-solar-panels_4579204-1-removebg-preview.png') }}" style="width: 65%;" class="img-top">#}
+{#            <p style="font-size:13px;"><b>Solaire & Photovoltaïque</b></p>#}
+{#        </div>#}
+{#    </a>#}
+
+{#    <a href="{{path ('app_article_index_5')}}" style="text-decoration:none; color: black;">#}
+{#        <div class="aide">#}
+{#            <img src="{{ asset('assets/images/aide-prime.png') }}" style="width: 95%;" class="img-top">#}
+{#            <img src="{{ asset('assets/images/envio-02-removebg-preview.png') }}" style="width: 55%; height: 90px;" class="img-top">#}
+{#            <p style="font-size: 15px;"><b>Aides & primes</b></p>#}
+{#        </div>#}
+{#    </a>#}
+
+{#            </div>#}
+{#        </div>#}
+
+{#    </div>#}
+{#</div>#}
+{#<br>#}
+{#<br>#}
+
+{#<div  class="contain-avantage">#}
+{#    <div class="contain-main-avantage">#}
+{#        <br>#}
+{#        <h3 style="text-align: center; color: #1D4851;"><b>Comment faire des économies sur le gaz et l'électricité ?</b></h3>#}
+
+
+{#        <img src="{{ asset('assets/images/vecteezy_man-saves-money-from-business-investment-in-bank_4474434-1-removebg-preview.png') }}" class="img-top" style="width: 30%; border-radius: 20px; ">#}
+{#        <br>#}
+{#        <br>#}
+{#        <h4 style="text-align: center; color: #1D4851;"><b>Maximiser l'efficacité énergétique grâce à l'isolation :</b></h4>#}
+{#        <p style="margin: 0 auto; width: 700px; text-align: center;">#}
+{#            L'isolation est un premier pas essentiel pour économiser de le gaz et de l'électricité. En améliorant l'isolation de votre maison, vous réduisez les pertes de chaleur en hiver et de fraîcheur en été. Cela signifie moins de recours au chauffage et au raffraichissement, ce qui se traduit par une réduction significative de votre consommation énergétique. Assurez-vous que votre isolation est adéquate pour minimiser les déperditions thermiques.#}
+{#        </p>#}
+{#      #}
+{#        <br>#}
+{#        <h4 style="text-align: center; color: #1D4851;"><b>Adopter une pompe à chaleur pour un chauffage plus efficace :</b></h4>#}
+{#        <p style="margin: 0 auto; width: 700px; text-align: center;">#}
+{#            L'installation d'une pompe à chaleur est une solution économique pour chauffer votre maison tout en réduisant votre empreinte énergétique. Ces systèmes exploitent l'énergie thermique de l'air ou du sol pour chauffer votre maison de manière efficiente. Ils consomment moins d'électricité que les systèmes de chauffage traditionnels, réduisant ainsi votre facture d'énergie tout en préservant l'environnement.#}
+{#        </p>#}
+{#      #}
+{#        <br>#}
+{#        <h4 style="text-align: center; color: #1D4851;"><b>Investir dans l'énergie solaire et photovoltaïque :</b></h4>#}
+{#        <p style="margin: 0 auto; width: 700px; text-align: center;">#}
+{#            L'énergie solaire est une ressource abondante et renouvelable. En installant des panneaux solaires photovoltaïques sur votre toit, vous pouvez produire votre propre électricité, ce qui réduit votre dépendance aux fournisseurs d'énergie traditionnels. De plus, grâce aux incitations fiscales et aux tarifs de rachat d'électricité, l'investissement initial dans les panneaux solaires peut être rapidement amorti. C'est un moyen durable et économique de réduire votre facture d'électricité et de contribuer à la protection de l'environnement.#}
+{#        </p>#}
+{#        <br>#}
+{#        <br>#}
+{#        <br>#}
+{#    </div>#}
+{#</div>#}
+{#</br>#}
+{#</br>#}
+
+{#<div  class="contain-accompagnement">#}
+{#    <div class="contain-main-accompagnement">#}
+{#            <br>#}
+{#            <h3 style="text-align:center; color: #1D4851; width: 100%;"><b>On vous accompagne tout au long de votre rénovation énergétique</b></h3>#}
+{#            <br>#}
+{#            <div style="display: flex; align-items: center; justify-content: space-between;">#}
+{#                <a href="{{ path('main_accueil_presentation') }}" style="text-decoration:none; color: black;">#}
+{#                    <div class="demarche">#}
+{#                        <img src="{{ asset('assets/images/vecteezy_businesswoman-secretary-assistant-multitasking-flat_14622082-removebg-preview.png') }}" style="width: 60%;" class="img-top">#}
+{#                        <p style="font-size: 13px;"><b>Démarches administratives</b></p>#}
+{#                    </div>#}
+{#                </a>#}
+
+{#                <a href="" style="text-decoration:none; color: black;">#}
+{#                    <div class="expert">#}
+{#                        <img src="{{ asset('assets/images/5995357-removebg-preview.png') }}" style="width: 57%;" class="img-top">#}
+{#                        <img src="{{ asset('assets/images/vecteezy_certified-icon-badge-ribbon-gold-icon-modern-simple-symbol_13258790-1-removebg-preview.png') }}" style="width: 67%;" class="img-top">#}
+
+{#                        <p style="font-size: 13px;"><b>Nos experts sont là pour vous accompagner</b></p>#}
+{#                    </div>#}
+{#                </a>#}
+
+{#                <a href="" style="text-decoration:none; color: black;">#}
+{#                    <div class="suivi">#}
+{#                        <img src="{{ asset('assets/images/vecteezy_hand-holding-clipboard-with-checklist-at-green-background_35630140-removebg-preview.png') }}" style="width: 70%;" class="img-top">#}
+{#                        <p style="font-size: 15px;"><b>Suivi personnalisé</b></p>#}
+{#                    </div>#}
+{#                </a>#}
+
+{#                <a href="" style="text-decoration:none; color: black;">#}
+{#                    <div class="assistance">#}
+{#                        <img src="{{ asset('assets/images/vecteezy_business-woman-work-on-laptop-on-office-desk-concept-with_4725569-removebg-preview.png') }}" style="width: 94%;" class="img-top">#}
+{#                        <p style="font-size: 13px;"><b>Nous sommes à votre écoute</b></p>#}
+{#                    </div>#}
+{#                </a>#}
+
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+
+
+{#    <br>#}
+{#    <br>#}
+{#<div  class="contain-map">#}
+{#    <div class="contain-main-map">#}
+{#        <br>#}
+{#        <h3 style="text-align:center; color: #1D4851;"><b>Intervention sur toute la France</b></h3>#}
+{#        <br>#}
+
+{#        <div id="map" style="width: 96%; margin-left: 2%;">#}
+{#        <!-- Ici s'affichera la carte -->#}
+{#    </div>#}
+{#        <br>#}
+{#        <br>#}
+
+{#    </div>#}
+{#</div>#}
+
+
+{#    {{ include('main/accueil.html.twig') }}#}
+
+
+    <div class="test" style="background-image: url('{{ asset('assets/images/Capture.png') }}'); width: 100%; height: 650px; margin-top: -37px; background-size: cover; background-position: center; margin-left: 0px;"></div>
+
+    {#    Capture_d_écran_2024-03-27_à_13.40.49-removebg-preview.png#}
+    {#    <div class="test" style="background-image: url('{{ asset('assets/images/Capture1.png') }}'); width: 100%; height: 650px; margin-top: -37px; background-size: cover; background-position: center; margin-left: 0px;"></div>#}
+    {#<div  class="contain-deb" >#}
+
+    <div  class="contain-deb" style="margin-left: 95%; ">
+        <div class="contain-main-deb">
+            <br>
+            <h1 style="text-align:center; color: white; font-size: 65px;">  <img src="{{ asset('assets/images/LOGO_JS_ENERGIE_DEFINITIF2_3_copie-2.png') }}" width="100"  height="96">  <b>JS ENERGIE</b></h1>
+
+
+            <h5 style="text-align:center; color: white; font-size: 30px; margin-left: 130px;"><b>Votre patrimoine énergétique</b></h5>
+        </div>
     </div>
-</div>
+    {#    <img src="{{ asset('assets/images/vecteezy_ai-genere-moderne-maison-avec-bleu-solaire-panneaux-sur-le_35270274.jpg') }}" class="img-top" style="width: 100%; height: 600px; margin-top: -110px;">#}
 
-<br>
+
+
     <br>
 
-<div  class="contain-offre">
-    <div class="contain-main-offre">
+    <div  class="contain-offre" style="margin-top: -194px; margin-right: 1px; ">
+        <div class="contain-main-offre" style="border-top-left-radius: 15px; overflow: hidden;">
 
-       <br>
-        <h3 style="text-align:center; color: #1D4851; width: 100%; "><b>Voici nos offres</b></h3>
-        <br>
-        <div style="display: flex; align-items: center; justify-content: center;">
-            <div style="display: flex; flex-direction: row; align-items: center; justify-content: space-around; width: 100%; ">
+            {#            <br>#}
+            {#            <h3 style="text-align:center; color: #1D4851; width: 100%; "><b>Voici nos offres</b></h3>#}
+            {#            <br>#}
+            <br>
+            <div style="display: flex; align-items: center; justify-content: center; ">
+                <div style="display: flex; flex-direction: row; align-items: center; justify-content: space-around; width: 100%; ">
 
-    <a href="{{path ('app_article_index_2')}}" style="text-decoration:none; color: black;">
-        <div class="isolation">
-            <img src="{{ asset('assets/images/isole.png') }}" style="width: 60%;" class="img-top">
-            <p style="font-size: 15px;"><b>Isolation</b></p>
+                    <a href="{{path ('app_article_index_2')}}" style="text-decoration:none; color: black;">
+                        <div class="isolation">
+                            {#            <img src="{{ asset('assets/images/isole.png') }}" style="width: 60%;" class="img-top">#}
+                            <img src="{{ asset('assets/images/1912.i121.041.P.m005.c33.isometric_repairs_set-07-removebg-preview.png') }}" style="width: 60%;" class="img-top">
+
+                            <p style="font-size: 15px;"><b>Isolation</b></p>
+                        </div>
+                    </a>
+
+                    <a href="{{path ('app_article_index_3')}}" style="text-decoration:none; color: black;">
+                        <div class="pompeChaleur">
+                            {#            <img src="{{ asset('assets/images/pompe-a-chaleur-removebg-preview.png') }}" style="width: 60%;" class="img-top">#}
+                            <img src="{{ asset('assets/images/vecteezy_maintenance-flat-icon-vector-illustration_7132031-removebg-preview.png') }}" style="width: 60%;" class="img-top">
+                            <p style="font-size: 15px;"><b>Pompe à chaleur</b></p>
+                        </div>
+                    </a>
+
+                    <a href="{{path ('app_article_index_4')}}" style="text-decoration:none; color: black;">
+                        <div class="solaire">
+                            {#            <img src="{{ asset('assets/images/solaire-removebg-preview.png') }}" style="width: 65%;" class="img-top">#}
+                            <img src="{{ asset('assets/images/vecteezy_two-builders-are-installing-solar-panels_4579204-1-removebg-preview.png') }}" style="width: 65%;" class="img-top">
+                            <p style="font-size:13px;"><b>Solaire & Photovoltaïque</b></p>
+                        </div>
+                    </a>
+
+                    <a href="{{path ('app_article_index_5')}}" style="text-decoration:none; color: black;">
+                        <div class="aide">
+                            {#            <img src="{{ asset('assets/images/aide-prime.png') }}" style="width: 95%;" class="img-top">#}
+                            <img src="{{ asset('assets/images/envio-02-removebg-preview.png') }}" style="width: 55%; height: 90px;" class="img-top">
+                            <p style="font-size: 15px;"><b>Aides & primes</b></p>
+                        </div>
+                    </a>
+
+                </div>
+            </div>
+
         </div>
-    </a>
+    </div>
 
-    <a href="{{path ('app_article_index_3')}}" style="text-decoration:none; color: black;">
-        <div class="pompeChaleur">
-            <img src="{{ asset('assets/images/pompe-a-chaleur-removebg-preview.png') }}" style="width: 60%;" class="img-top">
-            <p style="font-size: 15px;"><b>Pompe à chaleur</b></p>
-        </div>
-    </a>
+    <br>
+    <br>
 
-    <a href="{{path ('app_article_index_4')}}" style="text-decoration:none; color: black;">
-        <div class="solaire">
-            <img src="{{ asset('assets/images/solaire-removebg-preview.png') }}" style="width: 65%;" class="img-top">
-            <p style="font-size:13px;"><b>Solaire & Photovoltaïque</b></p>
-        </div>
-    </a>
+    <h3 style="text-align:center; color: #1D4851; width: 100%; "><b>Ils nous ont fait confiance et on les remercie :</b></h3>
+    <hr style="width: 50px; color: #66FF66FF; background-color: #66FF66FF; border: 4px #66FF66FF solid; border-radius: 4px; text-align: center; margin: 0 auto;">
+    <br>
+    <div style="margin: auto; width: 80%;" class="contentOrdi">
+        <div style="margin-left:auto; margin-right:auto;">
+            <div id="carouselExampleIntervalDesktop" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                <div class="carousel-inner" style="height:370px;">
+                    <div class="carousel-item active" data-bs-interval="10000">
+                        <div class="d-flex flex-row justify-content-around">
+                            <div class="row row-cols-1 row-cols-md-3 g-4">
+                                <div class="col">
+                                    <div class="card h-100">
+                                        <div class="imgCard-isolation">
+                                            <img src="{{ asset('assets/images/la-blaque.jpeg') }}" class="card-img-top imgCarousel" alt="...">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="card h-100">
+                                        <div class="imgCard-isolation">
+                                            <img src="{{ asset('assets/images/cabinet-immobilier-plouhinec.jpeg') }}" class="card-img-top imgCarousel" alt="...">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col ">
+                                    <div class="card h-100">
+                                        <div class="imgCard-isolation">
+                                            <img src="{{ asset('assets/images/korian-removebg-preview.png') }}" class="card-img-top imgCarousel" style="margin-top: 35px;" alt="...">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item" data-bs-interval="10000">
+                        <div class="d-flex flex-row justify-content-around">
+                            <div class="row row-cols-1 row-cols-md-3 g-4">
+                                <div class="col">
+                                    <div class="card h-100">
+                                        <div class="imgCard-isolation">
+                                            <img src="{{ asset('assets/images/maisel.jpeg') }}" class="card-img-top imgCarousel" style="margin-top: 65px; margin-left: 10px;" alt="...">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="card h-100">
+                                        <div class="imgCard-isolation">
+                                            <img src="{{ asset('assets/images/2hoqtZjq_400x400-removebg-preview.png') }}" class="card-img-top imgCarousel" style="margin-left: 10px;" alt="...">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="card h-100">
+                                        <div class="imgCard-isolation">
+                                            <img src="{{ asset('assets/images/drancy.svg.png') }}" class="card-img-top imgCarousel" style="margin-top: 75px; margin-left: 10px;" alt="...">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item" data-bs-interval="10000">
+                        <div class="d-flex flex-row justify-content-around">
+                            <div class="row row-cols-1 row-cols-md-3 g-4">
+                                <div class="col">
+                                    <div class="card h-100">
+                                        <div class="imgCard-isolation">
+                                            <img src="{{ asset('assets/images/HEC_Paris.svg.png') }}" class="card-img-top imgCarousel" STYLE="margin-top: 60px;" alt="...">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="card h-100">
+                                        <div class="imgCard-isolation">
+                                            <img src="{{ asset('assets/images/hangars-agricoles.png') }}" class="card-img-top imgCarousel" alt="...">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="card h-100">
+                                        <div class="imgCard-isolation">
+                                            <img src="{{ asset('assets/images/champs-agricoles.png') }}" class="card-img-top imgCarousel" alt="...">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-    <a href="{{path ('app_article_index_5')}}" style="text-decoration:none; color: black;">
-        <div class="aide">
-            <img src="{{ asset('assets/images/aide-prime.png') }}" style="width: 95%;" class="img-top">
-            <p style="font-size: 15px;"><b>Aides & primes</b></p>
-        </div>
-    </a>
+                    <div class="carousel-item" data-bs-interval="10000">
+                        <div class="d-flex flex-row justify-content-around">
+                            <div class="row row-cols-1 row-cols-md-3 g-4">
+                                <div class="col">
+                                    <div class="card h-100">
+                                        <div class="imgCard-isolation">
+                                            <img src="{{ asset('assets/images/ehpad-removebg-preview.png') }}" class="card-img-top imgCarousel" style="margin-top: -15px;" alt="...">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="card h-100">
+                                        <div class="imgCard-isolation">
+                                            <img src="{{ asset('assets/images/vecteezy_warehouse-industry-with-storage-buildings-vector_34795673.jpg') }}" style="margin-top: 35px;" class="card-img-top imgCarousel" alt="...">
+                                        </div>
+                                        <div class="card-body" style="margin-top: -70px;">
+                                            <h5 class="card-title">Entrepôts</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="card h-100">
+                                        <div class="imgCard-isolation">
+                                            <img src="{{ asset('assets/images/vecteezy_line-art-house-in-circle-logo_7296070-1-removebg-preview.png') }}" class="card-img-top imgCarousel" style="width: 400px; margin-top: -40px;" alt="...">
 
+                                        </div>
+                                        <div class="card-body" style="margin-top: -150px;">
+                                            <h5 class="card-title">EHPAD</h5>
+                                            <div class="card-text" style="max-height: 130px; overflow: hidden;">
+                                                <p>BOIS BALLIER SAINT QUENTIN-FALLAVIER (38)</p></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIntervalDesktop" data-bs-slide="prev" style="height: 350px;">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIntervalDesktop" data-bs-slide="next" style="height: 350px;">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
             </div>
         </div>
-
     </div>
-</div>
-<br>
-<br>
 
-<div  class="contain-avantage">
-    <div class="contain-main-avantage">
-        <br>
-        <h3 style="text-align: center; color: #1D4851;"><b>Comment faire des économies sur le gaz et l'électricité ?</b></h3>
-    <br>
+    <div style="margin: auto; width: 80%;" class="contentMobile">
+        <div style="margin-left:auto; margin-right:auto;">
+            <div id="carouselExampleIntervalMobile" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                <div class="carousel-inner" style="height:400px;">
+                    <div class="carousel-item active" data-bs-interval="10000">
+                        <div class="d-flex flex-row justify-content-around">
+                            <div class="col">
+                                <div class="card h-100">
+                                    <div class="imgCard-isolation-mobile">
+                                        <img src="{{ asset('assets/images/la-blaque.jpeg') }}" style="margin-top: 7%;" class="card-img-top imgCarousel" alt="...">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item" data-bs-interval="10000">
+                        <div class="d-flex flex-row justify-content-around">
+                            <div class="col">
+                                <div class="card h-100">
+                                    <div class="imgCard-isolation-mobile">
+                                        <img src="{{ asset('assets/images/cabinet-immobilier-plouhinec.jpeg') }}" style="margin-top: 6%;" class="card-img-top imgCarousel" alt="...">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item" data-bs-interval="10000">
+                        <div class="d-flex flex-row justify-content-around">
+                            <div class="col">
+                                <div class="card h-100">
+                                    <div class="imgCard-isolation-mobile">
+                                        <img src="{{ asset('assets/images/korian-removebg-preview.png') }}" class="card-img-top imgCarousel" alt="...">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item" data-bs-interval="10000">
+                        <div class="d-flex flex-row justify-content-around">
+                            <div class="col">
+                                <div class="card h-100">
+                                    <div class="imgCard-isolation-mobile">
+                                        <img src="{{ asset('assets/images/maisel.jpeg') }}" class="card-img-top imgCarousel" alt="...">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item" data-bs-interval="10000">
+                        <div class="d-flex flex-row justify-content-around">
+                            <div class="col">
+                                <div class="card h-100">
+                                    <div class="imgCard-isolation-mobile">
+                                        <img src="{{ asset('assets/images/2hoqtZjq_400x400-removebg-preview.png') }}" class="card-img-top imgCarousel" alt="...">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item" data-bs-interval="10000">
+                        <div class="d-flex flex-row justify-content-around">
+                            <div class="col">
+                                <div class="card h-100">
+                                    <div class="imgCard-isolation-mobile">
+                                        <img src="{{ asset('assets/images/drancy.svg.png') }}" class="card-img-top imgCarousel" style="margin-top: 75px; margin-left: 10px;" alt="...">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item" data-bs-interval="10000">
+                        <div class="d-flex flex-row justify-content-around">
+                            <div class="col">
+                                <div class="card h-100">
+                                    <div class="imgCard-isolation-mobile">
+                                        <img src="{{ asset('assets/images/HEC_Paris.svg.png') }}" class="card-img-top imgCarousel" STYLE="margin-top: 60px;" alt="...">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item" data-bs-interval="10000">
+                        <div class="d-flex flex-row justify-content-around">
+                            <div class="col">
+                                <div class="card h-100">
+                                    <div class="imgCard-isolation-mobile">
+                                        <img src="{{ asset('assets/images/hangars-agricoles.png') }}" class="card-img-top imgCarousel" alt="...">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item" data-bs-interval="10000">
+                        <div class="d-flex flex-row justify-content-around">
+                            <div class="col">
+                                <div class="card h-100">
+                                    <div class="imgCard-isolation-mobile">
+                                        <img src="{{ asset('assets/images/champs-agricoles.png') }}" class="card-img-top imgCarousel" alt="...">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item" data-bs-interval="10000">
+                        <div class="d-flex flex-row justify-content-around">
+                            <div class="col">
+                                <div class="card h-100">
+                                    <div class="imgCard-isolation-mobile">
+                                        <img src="{{ asset('assets/images/ehpad-removebg-preview.png') }}" class="card-img-top imgCarousel" style="margin-top: -15px;" alt="...">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item" data-bs-interval="10000">
+                        <div class="d-flex flex-row justify-content-around">
+                            <div class="col">
+                                <div class="card h-100">
+                                    <div class="imgCard-isolation-mobile">
+                                        <img src="{{ asset('assets/images/vecteezy_warehouse-industry-with-storage-buildings-vector_34795673.jpg') }}" style="margin-top: 35px;" class="card-img-top imgCarousel" alt="...">
+                                    </div>
+                                    <div class="card-body" style="margin-top: -70px;">
+                                        <h5 class="card-title">Entrepôts</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item" data-bs-interval="10000">
+                        <div class="d-flex flex-row justify-content-around">
+                            <div class="col">
+                                <div class="card h-100">
+                                    <div class="imgCard-isolation-mobile">
+                                        <img src="{{ asset('assets/images/vecteezy_line-art-house-in-circle-logo_7296070-1-removebg-preview.png') }}" class="card-img-top imgCarousel" style="width: 400px; margin-top: -40px;" alt="...">
+                                    </div>
+                                    <div class="card-body" style="margin-top: -150px;">
+                                        <h5 class="card-title">EHPAD</h5>
+                                        <div class="card-text" style="max-height: 130px; overflow: hidden;">
+                                            <p>BOIS BALLIER SAINT QUENTIN-FALLAVIER (38)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-        <img src="{{ asset('assets/images/6573.jpg') }}" class="img-top" style="width: 20%; border-radius: 20px; ">
-        <br>
-        <br>
-        <h4 style="text-align: center; color: #1D4851;"><b>Maximiser l'efficacité énergétique grâce à l'isolation :</b></h4>
-        <p style="margin: 0 auto; width: 700px; text-align: center;">
-            L'isolation est un premier pas essentiel pour économiser de le gaz et de l'électricité. En améliorant l'isolation de votre maison, vous réduisez les pertes de chaleur en hiver et de fraîcheur en été. Cela signifie moins de recours au chauffage et à la climatisation, ce qui se traduit par une réduction significative de votre consommation énergétique. Assurez-vous que votre isolation est adéquate pour minimiser les déperditions thermiques.
-        </p>
-      
-        <br>
-        <h4 style="text-align: center; color: #1D4851;"><b>Adopter une pompe à chaleur pour un chauffage plus efficace :</b></h4>
-        <p style="margin: 0 auto; width: 700px; text-align: center;">
-            L'installation d'une pompe à chaleur est une solution économique pour chauffer votre maison tout en réduisant votre empreinte énergétique. Ces systèmes exploitent l'énergie thermique de l'air ou du sol pour chauffer votre maison de manière efficiente. Ils consomment moins d'électricité que les systèmes de chauffage traditionnels, réduisant ainsi votre facture d'énergie tout en préservant l'environnement.
-        </p>
-      
-        <br>
-        <h4 style="text-align: center; color: #1D4851;"><b>Investir dans l'énergie solaire et photovoltaïque :</b></h4>
-        <p style="margin: 0 auto; width: 700px; text-align: center;">
-            L'énergie solaire est une ressource abondante et renouvelable. En installant des panneaux solaires photovoltaïques sur votre toit, vous pouvez produire votre propre électricité, ce qui réduit votre dépendance aux fournisseurs d'énergie traditionnels. De plus, grâce aux incitations fiscales et aux tarifs de rachat d'électricité, l'investissement initial dans les panneaux solaires peut être rapidement amorti. C'est un moyen durable et économique de réduire votre facture d'électricité et de contribuer à la protection de l'environnement.
-        </p>
-        <br>
-        <br>
-        <br>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIntervalMobile" data-bs-slide="prev" style="height: 350px;">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIntervalMobile" data-bs-slide="next" style="height: 350px;">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
     </div>
-</div>
-</br>
-</br>
 
-<div  class="contain-accompagnement">
-    <div class="contain-main-accompagnement">
+
+
+    <div  class="contain-avantage">
+        <div class="contain-main-avantage">
+            <br>
+            <h3 style="text-align: center; color: #1D4851;"><b>Comment faire des économies sur le gaz et l'électricité ?</b></h3>
+            <hr style="width: 50px; color: #66FF66FF; background-color: #66FF66FF; border: 4px #66FF66FF solid; border-radius: 4px; text-align: center; margin: 0 auto;">
+            {#            #00ff00#}
+
+
+            <img src="{{ asset('assets/images/vecteezy_man-saves-money-from-business-investment-in-bank_4474434-1-removebg-preview.png') }}" class="img-top" style="width: 20%; border-radius: 20px; ">
+            <br>
+            <br>
+            <h4 style="text-align: center; color: #1D4851;"><b>Maximiser l'efficacité énergétique grâce à l'isolation :</b></h4>
+            <p style="margin: 0 auto; width: 700px; text-align: center;">
+                L'isolation est un premier pas essentiel pour économiser de le gaz et de l'électricité. En améliorant l'isolation de votre maison, vous réduisez les pertes de chaleur en hiver et de fraîcheur en été. Cela signifie moins de recours au chauffage et au raffraichissement, ce qui se traduit par une réduction significative de votre consommation énergétique. Assurez-vous que votre isolation est adéquate pour minimiser les déperditions thermiques.
+            </p>
+
+            <br>
+            <h4 style="text-align: center; color: #1D4851;"><b>Adopter une pompe à chaleur pour un chauffage plus efficace :</b></h4>
+            <p style="margin: 0 auto; width: 700px; text-align: center;">
+                L'installation d'une pompe à chaleur est une solution économique pour chauffer votre maison tout en réduisant votre empreinte énergétique. Ces systèmes exploitent l'énergie thermique de l'air ou du sol pour chauffer votre maison de manière efficiente. Ils consomment moins d'électricité que les systèmes de chauffage traditionnels, réduisant ainsi votre facture d'énergie tout en préservant l'environnement.
+            </p>
+
+            <br>
+            <h4 style="text-align: center; color: #1D4851;"><b>Investir dans l'énergie solaire et photovoltaïque :</b></h4>
+            <p style="margin: 0 auto; width: 700px; text-align: center;">
+                L'énergie solaire est une ressource abondante et renouvelable. En installant des panneaux solaires photovoltaïques sur votre toit, vous pouvez produire votre propre électricité, ce qui réduit votre dépendance aux fournisseurs d'énergie traditionnels. De plus, grâce aux incitations fiscales et aux tarifs de rachat d'électricité, l'investissement initial dans les panneaux solaires peut être rapidement amorti. C'est un moyen durable et économique de réduire votre facture d'électricité et de contribuer à la protection de l'environnement.
+            </p>
+            <br>
+            <br>
+            <br>
+        </div>
+    </div>
+
+    </br>
+    </br>
+
+    <div  class="contain-accompagnement">
+        <div class="contain-main-accompagnement">
             <br>
             <h3 style="text-align:center; color: #1D4851; width: 100%;"><b>On vous accompagne tout au long de votre rénovation énergétique</b></h3>
+            <hr style="width: 50px; color: #66FF66FF; background-color: #66FF66FF; border: 4px #66FF66FF solid; border-radius: 4px; text-align: center; margin: 0 auto;">
             <br>
             <div style="display: flex; align-items: center; justify-content: space-between;">
-                <a href="" style="text-decoration:none; color: black;">
+                <a href="{{ path('main_accueil_presentation') }}" style="text-decoration:none; color: black;">
                     <div class="demarche">
-                        <img src="{{ asset('assets/images/illustration-du-concept-multitache_23-2148405446-removebg-preview.png') }}" style="width: 50%;" class="img-top">
+                        <img src="{{ asset('assets/images/vecteezy_businesswoman-secretary-assistant-multitasking-flat_14622082-removebg-preview.png') }}" style="width: 60%;" class="img-top">
                         <p style="font-size: 13px;"><b>Démarches administratives</b></p>
                     </div>
                 </a>
 
-                <a href="" style="text-decoration:none; color: black;">
+                <a href="{{ path('main_accueil_presentation') }}" style="text-decoration:none; color: black;">
                     <div class="expert">
-                        <img src="{{ asset('assets/images/5995357-removebg-preview.png') }}" style="width: 57%;" class="img-top">
+                        {#                        <img src="{{ asset('assets/images/5995357-removebg-preview.png') }}" style="width: 57%;" class="img-top">#}
+                        <img src="{{ asset('assets/images/vecteezy_certified-icon-badge-ribbon-gold-icon-modern-simple-symbol_13258790-1-removebg-preview.png') }}" style="width: 67%;" class="img-top">
+
                         <p style="font-size: 13px;"><b>Nos experts sont là pour vous accompagner</b></p>
                     </div>
                 </a>
 
-                <a href="" style="text-decoration:none; color: black;">
+                <a href="{{ path('main_accueil_presentation') }}" style="text-decoration:none; color: black;">
                     <div class="suivi">
-                        <img src="{{ asset('assets/images/Checklist-removebg-preview.png') }}" style="width: 70%;" class="img-top">
+                        <img src="{{ asset('assets/images/vecteezy_hand-holding-clipboard-with-checklist-at-green-background_35630140-removebg-preview.png') }}" style="width: 70%;" class="img-top">
                         <p style="font-size: 15px;"><b>Suivi personnalisé</b></p>
                     </div>
                 </a>
 
-                <a href="" style="text-decoration:none; color: black;">
+                <a href="{{ path('main_accueil_presentation') }}" style="text-decoration:none; color: black;">
                     <div class="assistance">
-                        <img src="{{ asset('assets/images/illustration-du-support-client_23-2148890148-removebg-preview.png') }}" style="width: 54%;" class="img-top">
+                        <img src="{{ asset('assets/images/vecteezy_business-woman-work-on-laptop-on-office-desk-concept-with_4725569-removebg-preview.png') }}" style="width: 94%;" class="img-top">
                         <p style="font-size: 13px;"><b>Nous sommes à votre écoute</b></p>
                     </div>
                 </a>
@@ -478,35 +1225,34 @@
             </div>
         </div>
     </div>
-
-
     <br>
     <br>
-<div  class="contain-map">
-    <div class="contain-main-map">
-        <br>
-        <h3 style="text-align:center; color: #1D4851;"><b>Nous sommes partout en France</b></h3>
-        <br>
+    <div  class="contain-map">
+        <div class="contain-main-map">
+            <br>
+            <h3 style="text-align:center; color: #1D4851;"><b>Intervention sur toute la France</b></h3>
+            <hr style="width: 50px; color: #66FF66FF; background-color: #66FF66FF; border: 4px #66FF66FF solid; border-radius: 4px; text-align: center; margin: 0 auto;">
+            <br>
 
-        <div id="map" style="width: 96%; margin-left: 2%;">
-        <!-- Ici s'affichera la carte -->
+            <div id="map" style="width: 96%; margin-left: 2%;">
+                <!-- Ici s'affichera la carte -->
+            </div>
+            <br>
+            <br>
+
+        </div>
     </div>
-        <br>
-        <br>
-
-    </div>
-</div>
-
 
     {{ include('main/accueil.html.twig') }}
+
+
 
 
 {% endblock %}
 
 {%block javascripts %}
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://maps.google.com/maps/api/js?key=AIzaSyAzR974t2qokAtzcp_CAbmIbapUhqeN18g" type="text/javascript"></script>
     <script async type="text/javascript">
         // On initialise la latitude et la longitude de Paris (centre de la carte)
@@ -517,10 +1263,10 @@
         var villes = {
             // "Paris":{"lat": 48.852969,"lon": 2.349903},
             "Lille":{"lat": 50.63050633699946,"lon": 3.0450208797258327},
-           // "Caen":{"lat": 49.16387131579312,"lon": -0.36360986867510103},
+            // "Caen":{"lat": 49.16387131579312,"lon": -0.36360986867510103},
             "Rouen":{"lat": 49.43315087038192,"lon": 1.1121182974708699},
             // "Versailles":{"lat": 48.796621115409536,"lon": 2.14038954158438},
-           // "Saint-Malo":{"lat": 48.63308927151447,"lon": -2.0114328467328613},
+            // "Saint-Malo":{"lat": 48.63308927151447,"lon": -2.0114328467328613},
             "Rennes":{"lat": 48.10238825551071,"lon": -1.6777347455295333},
             // "Angers":{"lat": 47.454354294753216,"lon": -0.5388528457980502},
             "Tours":{"lat": 47.37888037073164,"lon": 0.7008764896587216},
@@ -530,10 +1276,10 @@
             "Strasbourg":{"lat": 48.56697810869012,"lon": 7.759080009336707},
             "Brest":{"lat": 48.383,"lon": -4.500},
             "Siege":{"lat": 48.89729592069684,"lon": 2.4053439235890233},
-           // "Calais":{"lat": 50.95235751613912,"lon": 1.8645713265067654},
+            // "Calais":{"lat": 50.95235751613912,"lon": 1.8645713265067654},
             "Reims":{"lat": 49.24371010892985,"lon": 4.039931895152327},
             "Metz":{"lat": 49.11499287874225,"lon": 6.1805862655849175},
-           // "Nancy":{"lat": 48.67799333702273,"lon": 6.19817871778225},
+            // "Nancy":{"lat": 48.67799333702273,"lon": 6.19817871778225},
             "Troyes":{"lat": 48.28242514829323,"lon": 4.079106017731897},
             "Orleans":{"lat": 47.88609723397634,"lon": 1.9234122947401566},
             // "Bourges":{"lat": 47.06582233670851,"lon": 2.39589529661131},
@@ -541,11 +1287,11 @@
             // "Besancon":{"lat": 47.229553107034306,"lon": 6.028389567569765},
             // "Belfort":{"lat": 47.62693384327874,"lon": 6.870503970709527},
             "Mulhouse":{"lat": 47.74000526474074,"lon": 7.336683732175855},
-           // "Nevers":{"lat": 46.98018496241854,"lon": 3.1654866765306267},
-          //  "Dunkerque":{"lat": 51.03051373237552,"lon": 2.3782812808846954},
+            // "Nevers":{"lat": 46.98018496241854,"lon": 3.1654866765306267},
+            //  "Dunkerque":{"lat": 51.03051373237552,"lon": 2.3782812808846954},
             // "Saint-Brieuc":{"lat": 48.50907938769857,"lon": -2.762395856801587},
-         //   "Creteil":{"lat": 48.7822654772598,"lon": 2.465726605080305},
-          //  "Beauvais":{"lat": 48.50907938769857,"lon": -2.762395856801587},
+            //   "Creteil":{"lat": 48.7822654772598,"lon": 2.465726605080305},
+            //  "Beauvais":{"lat": 48.50907938769857,"lon": -2.762395856801587},
             // "Chartres":{"lat": 48.44262042163912,"lon": 1.4896231101828938},
             // "Deauville":{"lat": 49.354909529804,"lon": 0.07084063789131623},
             // "Etretat":{"lat": 49.70753067755496,"lon": 0.20538495746792673},
@@ -599,9 +1345,143 @@
                 }
             }
         }
+
         window.onload = function(){
             // Fonction d'initialisation qui s'exécute lorsque le DOM est chargé
             initMap();
         };
+
+
+
+
+
+
+        document.addEventListener("DOMContentLoaded", function () {
+            var screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+            var contentOrdi = $('.contentOrdi');
+            var contentMobile = $('.contentMobile');
+
+            if (screenWidth > 768) {
+                // Code à exécuter pour les écrans larges
+                contentOrdi.show();
+                contentMobile.hide();
+            } else {
+                // Code à exécuter pour les écrans étroits
+                contentOrdi.hide();
+                contentMobile.show();
+            }
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            // ... (votre code pour afficher/masquer en fonction de la largeur de l'écran)
+
+            // Initialisation du carousel desktop
+            $('#carouselExampleIntervalDesktop').carousel();
+
+            // Initialisation du carousel mobile
+            $('#carouselExampleIntervalMobile').carousel();
+        });
+
+
     </script>
+
+{#<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>#}
+{#<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>#}
+{#    <script src="https://maps.google.com/maps/api/js?key=AIzaSyAzR974t2qokAtzcp_CAbmIbapUhqeN18g" type="text/javascript"></script>#}
+{#    <script async type="text/javascript">#}
+{#        // On initialise la latitude et la longitude de Paris (centre de la carte)#}
+{#        var lat = 48.81192336633934;#}
+{#        var lon = 2.3581540910644483;#}
+{#        var map = null;#}
+{#        // Fonction d'initialisation de la carte#}
+{#        var villes = {#}
+{#            // "Paris":{"lat": 48.852969,"lon": 2.349903},#}
+{#            "Lille":{"lat": 50.63050633699946,"lon": 3.0450208797258327},#}
+{#           // "Caen":{"lat": 49.16387131579312,"lon": -0.36360986867510103},#}
+{#            "Rouen":{"lat": 49.43315087038192,"lon": 1.1121182974708699},#}
+{#            // "Versailles":{"lat": 48.796621115409536,"lon": 2.14038954158438},#}
+{#           // "Saint-Malo":{"lat": 48.63308927151447,"lon": -2.0114328467328613},#}
+{#            "Rennes":{"lat": 48.10238825551071,"lon": -1.6777347455295333},#}
+{#            // "Angers":{"lat": 47.454354294753216,"lon": -0.5388528457980502},#}
+{#            "Tours":{"lat": 47.37888037073164,"lon": 0.7008764896587216},#}
+{#            "Nantes":{"lat": 47.198504965182636,"lon": -1.547766017051313},#}
+{#            // "Poitiers":{"lat": 46.56648544140624,"lon": 0.34938647534881184},#}
+{#            // "Dijon":{"lat": 47.314388238818616,"lon": 5.049204096038173},#}
+{#            "Strasbourg":{"lat": 48.56697810869012,"lon": 7.759080009336707},#}
+{#            "Brest":{"lat": 48.383,"lon": -4.500},#}
+{#            "Siege":{"lat": 48.89729592069684,"lon": 2.4053439235890233},#}
+{#           // "Calais":{"lat": 50.95235751613912,"lon": 1.8645713265067654},#}
+{#            "Reims":{"lat": 49.24371010892985,"lon": 4.039931895152327},#}
+{#            "Metz":{"lat": 49.11499287874225,"lon": 6.1805862655849175},#}
+{#           // "Nancy":{"lat": 48.67799333702273,"lon": 6.19817871778225},#}
+{#            "Troyes":{"lat": 48.28242514829323,"lon": 4.079106017731897},#}
+{#            "Orleans":{"lat": 47.88609723397634,"lon": 1.9234122947401566},#}
+{#            // "Bourges":{"lat": 47.06582233670851,"lon": 2.39589529661131},#}
+{#            // "Le Havre":{"lat": 49.48093938392777,"lon": 0.11027273732300724},#}
+{#            // "Besancon":{"lat": 47.229553107034306,"lon": 6.028389567569765},#}
+{#            // "Belfort":{"lat": 47.62693384327874,"lon": 6.870503970709527},#}
+{#            "Mulhouse":{"lat": 47.74000526474074,"lon": 7.336683732175855},#}
+{#           // "Nevers":{"lat": 46.98018496241854,"lon": 3.1654866765306267},#}
+{#          //  "Dunkerque":{"lat": 51.03051373237552,"lon": 2.3782812808846954},#}
+{#            // "Saint-Brieuc":{"lat": 48.50907938769857,"lon": -2.762395856801587},#}
+{#         //   "Creteil":{"lat": 48.7822654772598,"lon": 2.465726605080305},#}
+{#          //  "Beauvais":{"lat": 48.50907938769857,"lon": -2.762395856801587},#}
+{#            // "Chartres":{"lat": 48.44262042163912,"lon": 1.4896231101828938},#}
+{#            // "Deauville":{"lat": 49.354909529804,"lon": 0.07084063789131623},#}
+{#            // "Etretat":{"lat": 49.70753067755496,"lon": 0.20538495746792673},#}
+{#            // "Honfleur":{"lat": 49.41840390885456,"lon": 0.23613271442499695},#}
+{#        };#}
+{#        function initMap() {#}
+{#            // Créer l'objet "map" et l'insèrer dans l'élément HTML qui a l'ID "map"#}
+{#            map = new google.maps.Map(document.getElementById("map"), {#}
+{#                // Nous plaçons le centre de la carte avec les coordonnées ci-dessus#}
+{#                center: new google.maps.LatLng(lat, lon),#}
+{#                // Nous définissons le zoom par défaut#}
+{#                zoom: 6.8,#}
+{#                // Nous définissons le type de carte (ici carte routière)#}
+{#                mapTypeId: google.maps.MapTypeId.ROADMAP,#}
+{#                // Nous activons les options de contrôle de la carte (plan, satellite...)#}
+{#                mapTypeControl: true,#}
+{#                // Nous désactivons la roulette de souris#}
+{#                scrollwheel: false,#}
+{#                mapTypeControlOptions: {#}
+{#                    // Cette option sert à définir comment les options se placent#}
+{#                    style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR#}
+{#                },#}
+{#                // Activation des options de navigation dans la carte (zoom...)#}
+{#                navigationControl: true,#}
+{#                navigationControlOptions: {#}
+{#                    // Comment ces options doivent-elles s'afficher#}
+{#                    style: google.maps.NavigationControlStyle.ZOOM_PAN#}
+{#                }#}
+{#            });#}
+
+{#            for (ville in villes) {#}
+{#                var marker;#}
+{#                if (ville === "Siege") {#}
+{#                    // Marqueur jaune pour la ville "Siege"#}
+{#                    marker = new google.maps.Marker({#}
+{#                        position: { lat: villes[ville].lat, lng: villes[ville].lon },#}
+{#                        title: ville,#}
+{#                        map: map,#}
+{#                        icon: {#}
+{#                            url: 'http://maps.google.com/mapfiles/ms/micons/yellow-dot.png',#}
+{#                            scaledSize: new google.maps.Size(50, 50),#}
+{#                        },#}
+{#                    });#}
+{#                } else {#}
+{#                    // Marqueurs rouges pour les autres villes#}
+{#                    marker = new google.maps.Marker({#}
+{#                        position: { lat: villes[ville].lat, lng: villes[ville].lon },#}
+{#                        title: ville,#}
+{#                        map: map,#}
+{#                    });#}
+{#                }#}
+{#            }#}
+{#        }#}
+{#        window.onload = function(){#}
+{#            // Fonction d'initialisation qui s'exécute lorsque le DOM est chargé#}
+{#            initMap();#}
+{#        };#}
+{#    </script>#}
 {%endblock%}

@@ -55,6 +55,23 @@ class MainController extends AbstractController
         return $this->render('main/cgv.html.twig');
     }
 
+    #[Route('/credits', name: 'accueil_credits')]
+    public function credits(): Response
+    {
+        return $this->render('main/credits.html.twig');
+    }
+    #[Route('/presentation', name: 'accueil_presentation')]
+    public function presentation(): Response
+    {
+        return $this->render('main/presentation.html.twig');
+    }
+
+
+    #[Route('/accueilUserTest', name: 'accueil_user_test')]
+    public function accueilUserTest(): Response
+    {
+        return $this->render('main/accueilUserTest.html.twig');
+    }
     #[Route('/cgu', name: 'accueil_cgu')]
     public function cgu(): Response
     {

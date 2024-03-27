@@ -299,9 +299,16 @@ class ArticleController extends AbstractController
 
 
     #[Route('/actualite', name: 'actualite', methods: ['GET'])]
-    public function actualite(Request $request, ArticleRepository $articleRepository): Response
+    public function actualite(EntityManagerInterface $entityManager): Response
     {
-        $articles = $articleRepository->findByType(4);
+
+//        $entityManager = $this->getManager();
+        $articles = $entityManager->getRepository(Article::class)->findBy([], ['date_created' => 'DESC'], 9);
+
+//        return $this->render('article/list.html.twig', [
+//            'articles' => $articles,
+//        ]);
+//        $articles = $articleRepository->findByType(4);
         // $screenWidth = $request->query->get('screen_width');
 
         // // Définissez les variables en fonction de la largeur de l'écran
